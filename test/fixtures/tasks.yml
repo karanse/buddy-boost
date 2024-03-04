@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  status: MyString
+  match: one
+  user: one
+
+two:
+  description: MyText
+  status: MyString
+  match: two
+  user: two
