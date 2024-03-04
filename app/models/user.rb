@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :goals
-  has_many :tasks
+  has_many :tasks, through: :goal
   has_many :matches
 
   has_many :received_matches, through: :goals, source: :user
