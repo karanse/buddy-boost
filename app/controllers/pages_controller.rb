@@ -4,4 +4,7 @@ class PagesController < ApplicationController
 
   def legal
   end
+
+  def profile
+  end
 end
