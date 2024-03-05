@@ -9,7 +9,7 @@
 #   end
 
 
-puts "Cleaning the listings data..."
+puts "Cleaning the db.."
 Task.destroy_all
 Match.destroy_all
 Goal.destroy_all
@@ -251,3 +251,92 @@ goal1.save
 goal2.save
 
 puts "user4 is created"
+
+puts "craeting match data..."
+
+match1 = Match.new(status: "not started")
+match1.user = user1
+match1.goal = user1.goals.first
+match1.save
+
+puts "match1 is created"
+
+match2 = Match.new(status: "in progress")
+match2.user = user2
+match2.goal = user2.goals.first
+match2.save
+
+puts "match2 is created"
+
+match3 = Match.new(status: "completed")
+match3.user = user3
+match3.goal = user3.goals.first
+match3.save
+
+puts "match3 is created"
+
+match4 = Match.new(status: "not started")
+match4.user = user4
+match4.goal = user4.goals.first
+match4.save
+
+puts "match4 is created"
+
+puts "creating sample tasks for each match..."
+
+
+sample_task = tasks.sample
+task1 = Task.new(description: sample_task, status: [true, false].sample)
+task2 = Task.new(description: sample_task, status: [true, false].sample)
+task3 = Task.new(description: sample_task, status: [true, false].sample)
+task1.match = match1
+task2.match = match1
+task3.match = match1
+task1.user = user1
+task2.user = user1
+task3.user = user1
+task1.save
+task2.save
+task3.save
+
+task4 = Task.new(description: sample_task, status: [true, false].sample)
+task5 = Task.new(description: sample_task, status: [true, false].sample)
+task6 = Task.new(description: sample_task, status: [true, false].sample)
+task4.match = match2
+task5.match = match2
+task6.match = match2
+task4.user = user2
+task5.user = user2
+task6.user = user2
+task4.save
+task5.save
+task6.save
+
+task7 = Task.new(description: sample_task, status: [true, false].sample)
+task8 = Task.new(description: sample_task, status: [true, false].sample)
+task9 = Task.new(description: sample_task, status: [true, false].sample)
+task7.match = match3
+task8.match = match3
+task9.match = match3
+task7.user = user3
+task8.user = user3
+task9.user = user3
+task7.save
+task8.save
+task9.save
+
+task10 = Task.new(description: sample_task, status: [true, false].sample)
+task11 = Task.new(description: sample_task, status: [true, false].sample)
+task12 = Task.new(description: sample_task, status: [true, false].sample)
+task10.match = match4
+task11.match = match4
+task12.match = match4
+task10.user = user4
+task11.user = user4
+task12.user = user4
+task10.save
+task11.save
+task12.save
+
+puts "tasks created"
+puts "Seeding is done!"
