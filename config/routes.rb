@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :goals, only: [:new, :create, :show, :index] do
     resources :matches, only: [:new, :create]
   end
-  resouces :matches, only: [:show, :edit, :update] do
+  resources :matches, only: [:show, :edit, :update] do
     resources :tasks, only: [:new, :create]
   end
 
