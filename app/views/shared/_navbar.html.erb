@@ -17,11 +17,7 @@
                 destroy_user_session_path,
                 method: :delete, class: "btn btn-outline-secondary") %>
             </li>
-            <li>
-              <a href="/profile">
-                <%= image_tag "https://robohash.org/#{current_user.email}?set=set4", :class => "avatar" %>
-              </a>
-            </li>
+
           <% else %>
             <li class="nav-item">
               <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
