@@ -18,7 +18,7 @@
                 method: :delete, class: "btn btn-outline-secondary") %>
             </li>
             <li class="nav-item">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/karanse", class: "avatar dropdown-toggle",
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/karanse", class: "avatar-bordered-small dropdown-toggle",
               id: "navbarDropdown",
               data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             </li>
@@ -27,7 +27,7 @@
               <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Signup", new_user_registration_path, class: "btn btn-primary" %>
+              <%= link_to "Join us!", new_user_registration_path, class: "btn btn-primary" %>
             </li>
           <% end %>
       </ul>
