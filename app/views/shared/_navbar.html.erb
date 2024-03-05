@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><i class="fa-solid fa-user-group"></i></a>
+    <a class="navbar-brand" href="/">BuddyBoost</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= button_to(
+                "Log out",
+                destroy_user_session_path,
+                method: :delete, class: "btn btn-outline-secondary") %>
+            </li>
+            <li class="nav-item">
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/karanse", class: "avatar dropdown-toggle",
+              id: "navbarDropdown",
+              data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Signup", new_user_registration_path, class: "btn btn-primary" %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
