@@ -1,0 +1,72 @@
+.navbar-lewagon {
+  justify-content: space-between;
+  background: #F4F4F4;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
+.ml-auto {
+  margin-left: auto;
+}
+
+.navbar-nav {
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .btn:hover {
+  background-color: #9a031e;
+}
+
+.navbar-nav .btn.btn-primary {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.navbar-nav .btn {
+    // padding: 0 20px;
+    background-color: $purple;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+    // width: 100px;
+    // height: 45px;
+  }
+
+  .navbar-nav .avatar {
+    border: 1px solid #c7c7c7;
+    border-radius: 50%;
+    background-color: #c7c7c7;
+  }
+
+.navbar.nav .avatar:hover {
+  background-color: $purple;
+}
+
+.navbar-nav .btn.btn-outline-secondary {
+  // border: 1px solid #958c91;
+  background-color: #958c91;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  // height: 45px;
+}
+
+.navbar-nav .btn.btn-outline-secondary {
+  color: white;
+}
+.navbar-nav .btn.btn-outline-secondary:hover {
+  background-color: #9a031e;
+}
