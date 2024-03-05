@@ -17,7 +17,11 @@
                 destroy_user_session_path,
                 method: :delete, class: "btn btn-outline-secondary") %>
             </li>
-
+            <li class="nav-item">
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/karanse", class: "avatar dropdown-toggle",
+              id: "navbarDropdown",
+              data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            </li>
           <% else %>
             <li class="nav-item">
               <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
