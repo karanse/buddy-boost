@@ -1,12 +1,4 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'date'
 
 puts "Cleaning the db.."
 Task.destroy_all
@@ -142,7 +134,8 @@ goal1 = Goal.new(category: random_category,
                      description: random_description,
                      offline: false,
                      online: true,
-                     matched: false
+                     matched: false,
+                     deadline: Date.today + rand(1..365)
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -150,7 +143,8 @@ goal2 = Goal.new(category: random_category,
                      description: random_description,
                      offline: false,
                      online: true,
-                     matched: true
+                     matched: true,
+                     deadline: Date.today + rand(1..365)
                      )
 
 goal1.user = user1
@@ -175,15 +169,17 @@ goal1 = Goal.new(category: random_category,
                      description: random_description,
                      offline: false,
                      online: true,
-                     matched: false
+                     matched: false,
+                     deadline: Date.today + rand(1..365)
                     )
 
 goal2 = Goal.new(category: random_category,
                      sub_category: random_subcategory,
                      description: random_description,
                      offline: false,
-                     online: true
-                     matched: true
+                     online: true,
+                     matched: true,
+                     deadline: Date.today + rand(1..365)
                      )
 
 goal1.user = user2
@@ -208,7 +204,8 @@ goal1 = Goal.new(category: random_category,
                       description: random_description,
                       offline: false,
                       online: true,
-                      matched: false
+                      matched: false,
+                      deadline: Date.today + rand(1..365)
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -216,7 +213,8 @@ goal2 = Goal.new(category: random_category,
                       description: random_description,
                       offline: false,
                       online: true,
-                      matched: true
+                      matched: true,
+                      deadline: Date.today + rand(1..365)
                       )
 
 goal1.user = user3
@@ -241,7 +239,8 @@ goal1 = Goal.new(category: random_category,
                       description: random_description,
                       offline: false,
                       online: true,
-                      matched: false
+                      matched: false,
+                      deadline: Date.today + rand(1..365)
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -249,7 +248,9 @@ goal2 = Goal.new(category: random_category,
                       description: random_description,
                       offline: false,
                       online: true,
-                      matched: true
+                      matched: true,
+                      deadline: Date.today + rand(1..365)
+
                       )
 
 goal1.user = user4
@@ -259,18 +260,20 @@ goal2.save
 
 puts "user4 is created"
 
-puts "craeting match data..."
+puts "creating match data..."
 
 match1 = Match.new(status: "in progres")
-match1.goal = user1.goals.where("matched=true")
-match1.matched_goal = user2.goals.where("matched=true")
+match1.goal = Goal.where(user_id: user1.id, matched: true)
+puts "user1 added to match1"
+match1.matched_goal = Goal.where(user_id: user2.id, matched: true)
+puts "user2 added to match1"
 match1.save
 
 puts "match1 is created"
 
 match2 = Match.new(status: "in progress")
-match2.goal = user1.goals.where("matched=true")
-match2.matched_goal = user1.goals.where("matched=true")
+match2.goal = user3.goals.where(matched: true)
+match2.matched_goal = user4.goals.where(matched: true)
 match2.save
 
 puts "match2 is created"
