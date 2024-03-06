@@ -8,7 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-
 puts "Cleaning the db.."
 Task.destroy_all
 Match.destroy_all
