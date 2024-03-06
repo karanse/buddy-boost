@@ -1,0 +1,45 @@
+.form-inputs {
+  margin-bottom: 20px;
+}
+
+.form-inputs input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-actions {
+  margin-bottom: 20px;
+}
+
+.form-actions .btn {
+  padding: 10px 20px;
+  margin: 5px;
+}
+
+.sign-in-button,
+.sign-up-button {
+  font-family: "Poppins", "Helvetica", sans-serif;
+  background-color: #4B45E6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.sign-in-button:hover,
+.sign-up-button:hover {
+  background-color: #6587EB;
+}
+
+.legal-link {
+  font-family: "Poppins", "Helvetica", sans-serif;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.legal-link:hover {
+  color: #0056b3;
+}

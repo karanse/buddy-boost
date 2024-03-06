@@ -7,9 +7,7 @@ class User < ApplicationRecord
   has_one_attached :photo, dependent: :destroy
 
   has_many :goals
-  has_many :tasks, through: :goal
-  has_many :matches
-
-  has_many :received_matches, through: :goals, source: :user
+  has_many :tasks
+  has_many :matches, through: :goals
   validates :first_name, :last_name, presence: true
 end
