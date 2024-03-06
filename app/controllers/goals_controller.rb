@@ -1,9 +1,9 @@
 class GoalsController < ApplicationController
   before_action :authenticate_user!
 
-  # def index
-  #   @goals = Goal.all(we are gonna see all goals from all users)
-  # end
+  def index
+    @goals = Goal.where(user: current_user)
+  end
 
   # def show
   #   @goal = Goal.find(params[:id])
@@ -15,7 +15,7 @@ class GoalsController < ApplicationController
 
   def create
     @goal = Goal.new(goal_params)
-    @goal.user = @user
+    @goal.user = current_user
     if @goal.save
       redirect_to goals_path(@goal)
     else
