@@ -1,0 +1,30 @@
+#profile a {
+  text-decoration: none;
+  color: white;
+}
+
+.fa-pencil-alt {
+  color: $buddy-medium-blue;
+}
+
+.fa-pencil-alt:hover {
+  color: $buddy-dark-blue;
+}
+
+#profile li {
+  list-style: none;
+}
+
+#password-change {
+  opacity: 0.5;
+}
+
+#btn-new-password {
+  font-size: smaller;
+  background-color: $buddy-light-blue;
+  border: none;
+}
+
+#btn-new-password:hover {
+  background-color: $buddy-medium-blue;
+}

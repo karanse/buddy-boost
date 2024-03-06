@@ -8,4 +8,7 @@ class PagesController < ApplicationController
 
   def profile
   end
+
+  private
+
 end
