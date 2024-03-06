@@ -18,9 +18,11 @@
                 method: :delete, class: "btn btn-outline-secondary") %>
             </li>
             <li class="nav-item">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/karanse", class: "avatar-bordered-small dropdown-toggle",
+              <%= image_tag(current_user.photo || "avatar_default.svg",
+              class: "avatar-bordered-small dropdown-toggle",
               id: "navbarDropdown",
-              data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              style: "object-fit: cover",
+              data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false)%>
             </li>
           <% else %>
             <li class="nav-item">
