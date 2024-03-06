@@ -4,11 +4,12 @@
   <h2>Hi <%= current_user.first_name %>! 👋</h2>
 
     <div id="profile-information" class="w-50 my-3" >
-      <%# avatar  %>
       <div>
+        <%# avatar  %>
         <div id="profile-avatar" class="p-3 text-center">
           <img src="https://source.unsplash.com/boys-face-close-up-photography-n4KewLKFOZw" alt="avatar-photo" class="avatar-bordered-large-shadow">
         </div>
+
         <%# profile info block + edit options %>
         <div id="profile-info" class="d-flex flex-column mt-2 align-items-center">
           <li class="d-flex justify-content-between mb-2">
@@ -50,3 +51,13 @@
 
   </div>
 </div>
+
+<%# // TESTING AREA //  %>
+
+<%= cl_image_tag current_user.photo.key %>
+
+<%= simple_form_for(@user) do |f| %>
+  <!-- [...] -->
+  <%= f.input :photo, as: :file %>
+  <!-- [...] -->
+<% end %>
