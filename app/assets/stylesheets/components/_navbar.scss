@@ -1,0 +1,38 @@
+.navbar-lewagon {
+  justify-content: space-between;
+  background: #F4F4F4;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
+.ml-auto {
+  margin-left: auto;
+}
+
+.navbar-nav {
+  padding: 10px 20px;
+}
+
+.navbar-nav .btn:hover {
+  background-color: $buddy-medium-blue;
+}
+
+.navbar-nav .btn.btn-primary {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.navbar-nav .btn {
+    background-color: $buddy-dark-blue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+
+  }

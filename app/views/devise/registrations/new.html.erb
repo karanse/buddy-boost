@@ -4,6 +4,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "last_name" }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
@@ -20,7 +28,9 @@
  <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>
+  <%= render "devise/shared/links" %>
 <% end %>
+
 
 <p><%= link_to "Sign in", new_user_session_path %></p>
 <p><%= link_to "Legal", legal_path %></p>
