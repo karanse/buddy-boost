@@ -1,22 +1,38 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center" id="profile">
 
-  <div class="col-md-7 mt-5">
+  <div class="col-md-7 my-5">
+  <h2>Hi <%= current_user.first_name %>! 👋</h2>
 
-  <h2>Profile</h2>
 
-    <div id="profile-info" >
-      <h5>Profile information</h5>
-      <div class="d-flex align-items-center justify-content-start">
-        <img src="https://source.unsplash.com/boys-face-close-up-photography-n4KewLKFOZw" alt="avatar-photo" class="avatar-bordered-large">
-        <ul class="">
-          <li>Username / edit username</li>
-          <li>Full name / edit fullname</li>
-          <li>Edit avatar option</li>
-        </ul>
+    <div id="profile-information" class="w-50 my-3" >
+      <%# avatar  %>
+      <div>
+        <div id="profile-avatar" class="p-3 text-center">
+          <img src="https://source.unsplash.com/boys-face-close-up-photography-n4KewLKFOZw" alt="avatar-photo" class="avatar-bordered-large-shadow">
+        </div>
+        <%# profile info block + edit options %>
+        <div id="profile-info" class="d-flex flex-column mt-2 align-items-center">
+          <li class="d-flex justify-content-between mb-2">
+            <div><%= current_user.first_name %> <%= current_user.last_name %></div>
+            <%= link_to edit_user_registration_path do %>
+              <i class="fas fa-pencil-alt ms-3"></i>
+            <% end %>
+          </li>
+          <li class="d-flex justify-content-between">
+            <div><%= current_user.email %></div>
+            <%= link_to edit_user_registration_path do %>
+              <i class="fas fa-pencil-alt ms-3"></i>
+            <% end %>
+          </li>
+          <li>
+
+            <button class="btn btn-primary mt-2" id="btn-new-password">edit password</button>
+          </li>
+        </div>
       </div>
     </div>
 
-    <div id="profile-dashboard-link">
+    <div id="profile-dashboard-link" class="my-5">
       <h5>Dashboards</h5>
       <p>Placeholder for: go to my buddy dashboard(s) (for each match: matches#show)</p>
     </div>

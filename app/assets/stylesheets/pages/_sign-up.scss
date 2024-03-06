@@ -1,0 +1,72 @@
+.form-inputs {
+  margin-bottom: 20px;
+}
+
+.form-inputs input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-actions {
+  margin-bottom: 20px;
+}
+
+.form-actions .btn {
+  padding: 10px 20px;
+  margin: 5px;
+}
+
+#sign-in-button {
+  background-color: #4B45E6;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-family: "Poppins", "Helvetica", sans-serif;
+}
+
+#sign-in-button:hover {
+  background-color: #6587EB;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+#sign-up-button {
+  background-color: #4B45E6;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-family: "Poppins", "Helvetica", sans-serif;
+}
+
+#sign-up-button:hover {
+  background-color: #6587EB;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  border-radius: 5px;
+  font-family: "Poppins", "Helvetica", sans-serif;
+}
+
+#legal-button {
+  background-color: #4B45E6;
+  opacity: 80%;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-family: "Poppins", "Helvetica", sans-serif;
+}
+
+#legal-button:hover {
+  background-color: #6587EB;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
