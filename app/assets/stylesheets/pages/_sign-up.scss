@@ -20,53 +20,26 @@
   margin: 5px;
 }
 
-#sign-in-button {
+.sign-in-button,
+.sign-up-button {
+  font-family: "Poppins", "Helvetica", sans-serif;
   background-color: #4B45E6;
   color: #fff;
   border: none;
-  outline: none;
   border-radius: 5px;
-  font-family: "Poppins", "Helvetica", sans-serif;
 }
 
-#sign-in-button:hover {
+.sign-in-button:hover,
+.sign-up-button:hover {
   background-color: #6587EB;
-  border: none;
-  outline: none;
-  border-radius: 5px;
 }
 
-#sign-up-button {
-  background-color: #4B45E6;
-  color: #fff;
-  border: none;
-  outline: none;
-  border-radius: 5px;
+.legal-link {
   font-family: "Poppins", "Helvetica", sans-serif;
+  color: #007bff;
+  text-decoration: underline;
 }
 
-#sign-up-button:hover {
-  background-color: #6587EB;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  border-radius: 5px;
-  font-family: "Poppins", "Helvetica", sans-serif;
-}
-
-#legal-button {
-  background-color: #4B45E6;
-  opacity: 80%;
-  color: #fff;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  font-family: "Poppins", "Helvetica", sans-serif;
-}
-
-#legal-button:hover {
-  background-color: #6587EB;
-  border: none;
-  outline: none;
-  border-radius: 5px;
+.legal-link:hover {
+  color: #0056b3;
 }
