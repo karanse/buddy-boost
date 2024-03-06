@@ -1,0 +1,29 @@
+.login-form .form-inputs {
+  margin-bottom: 20px;
+}
+
+.login-form .form-inputs input[type="email"],
+.login-form .form-inputs input[type="password"],
+.login-form .form-inputs input[type="checkbox"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-form .form-inputs input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+.login-form .form-actions {
+  margin-bottom: 20px;
+}
+
+.login-form .form-actions button {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+}
