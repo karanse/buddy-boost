@@ -8,8 +8,10 @@
       <h5>Profile information</h5>
       <div class="d-flex align-items-center justify-content-start">
         <img src="https://source.unsplash.com/boys-face-close-up-photography-n4KewLKFOZw" alt="avatar-photo" class="avatar-bordered-large">
-        <ul class="">
-          <li>Username / edit username</li>
+        <ul id="profile-info-update">
+          <li>Username / edit username
+            <%= link_to "change my password" edit_user_password_path %>
+          </li>
           <li>Full name / edit fullname</li>
           <li>Edit avatar option</li>
         </ul>
