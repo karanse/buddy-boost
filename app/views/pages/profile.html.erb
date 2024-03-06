@@ -3,6 +3,7 @@
   <div class="col-md-7 my-5">
   <h2>Hi <%= current_user.first_name %>! 👋</h2>
 
+
     <div id="profile-information" class="w-50 my-3" >
       <%# avatar  %>
       <div>
@@ -25,6 +26,7 @@
           </li>
           <li>
             <button class="btn btn-primary mt-2" id="btn-new-password"> <%= link_to "change password", edit_user_registration_path %> </button>
+
           </li>
         </div>
       </div>
