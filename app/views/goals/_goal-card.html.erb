@@ -1,11 +1,11 @@
-<%# <% @listings.each do |listing| %>
-  <div class="list-card">
-    <div class="list-card-info">
-      <div>
-        <h2> <%= link_to "#{goal.category}, #{goal.sub_category}", goal %></h2>
-        <p> <%= goal.category.capitalize %> </p>
-        <p> <%= goal.description %> </p>
-      </div>
-    </div>
+<div class="card w-75 mb-3">
+  <div class="card-body">
+    <% if goal.matched == false %>
+    <h5 class="card-title"><%="#{goal.category.capitalize} goal" %></h5>
+    <p class="card-text"><%= goal.description %></p>
+    <p><strong>Deadline: <%= goal.deadline %></strong></p>
+    <a href="#" class="btn btn-primary">Match</a>
+    <a href="#" class="card-link">Edit goal</a>
+    <% end %>
   </div>
-<%# <% end %>
+</div>
