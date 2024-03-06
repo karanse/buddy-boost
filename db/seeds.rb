@@ -146,11 +146,21 @@ goal2 = Goal.new(category: random_category,
                      matched: true,
                      deadline: Date.today + rand(1..365)
                      )
+goal3 = Goal.new(category: random_category,
+                      sub_category: random_subcategory,
+                      description: random_description,
+                      offline: false,
+                      online: true,
+                      matched: false,
+                      deadline: Date.today + rand(1..365)
+                      )
 
 goal1.user = user1
 goal2.user = user1
+goal3.user = user1
 goal1.save
 goal2.save
+goal3.save
 
 puts "user1 is created"
 
