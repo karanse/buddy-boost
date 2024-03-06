@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_05_202426) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_06_100604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,11 +58,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_202426) do
   create_table "matches", force: :cascade do |t|
     t.string "status"
     t.bigint "goal_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "matched_goal_id"
     t.index ["goal_id"], name: "index_matches_on_goal_id"
-    t.index ["user_id"], name: "index_matches_on_user_id"
+    t.index ["matched_goal_id"], name: "index_matches_on_matched_goal_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -94,7 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_202426) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "goals", "users"
   add_foreign_key "matches", "goals"
-  add_foreign_key "matches", "users"
+  add_foreign_key "matches", "goals", column: "matched_goal_id"
   add_foreign_key "tasks", "matches"
   add_foreign_key "tasks", "users"
 end
