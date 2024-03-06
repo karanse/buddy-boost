@@ -7,7 +7,13 @@
       <div>
         <%# avatar  %>
         <div id="profile-avatar" class="px-3 text-center">
-          <%= image_tag(current_user.photo || "/app/assets/images/avatar_default.svg", class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;") %>
+
+          <% if current_user.photo.attached? %>
+            <%= image_tag(current_user.photo, class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;") %>
+          <% else %>
+            <%= image_tag "avatar_default.svg", class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;" %>
+          <% end %>
+
           <div id="add-avatar-button">
             <%= link_to edit_user_registration_path do %>
                 <i class="fas fa-pencil-alt ms-3"></i>
