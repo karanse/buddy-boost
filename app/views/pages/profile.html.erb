@@ -3,28 +3,29 @@
   <div class="col-md-7 my-5">
   <h2>Hi <%= current_user.first_name %>! 👋</h2>
 
-    <div id="profile-information" class="w-50 my-5" >
+
+    <div id="profile-information" class="w-50 my-3" >
       <%# avatar  %>
-      <div class="">
-        <h5 class="">Profile information</h5>
-        <div id="profile-avatar" class="p-3">
-          <img src="https://source.unsplash.com/boys-face-close-up-photography-n4KewLKFOZw" alt="avatar-photo" class="avatar-bordered-large">
+      <div>
+        <div id="profile-avatar" class="p-3 text-center">
+          <img src="https://source.unsplash.com/boys-face-close-up-photography-n4KewLKFOZw" alt="avatar-photo" class="avatar-bordered-large-shadow">
         </div>
         <%# profile info block + edit options %>
-        <div id="profile-info" class="d-flex flex-column mt-2">
+        <div id="profile-info" class="d-flex flex-column mt-2 align-items-center">
           <li class="d-flex justify-content-between mb-2">
             <div><%= current_user.first_name %> <%= current_user.last_name %></div>
             <%= link_to edit_user_registration_path do %>
-              <i class="fas fa-pencil-alt ms-1"></i>
+              <i class="fas fa-pencil-alt ms-3"></i>
             <% end %>
           </li>
-          <li class="d-flex justify-content-between mb-2">
+          <li class="d-flex justify-content-between">
             <div><%= current_user.email %></div>
             <%= link_to edit_user_registration_path do %>
-              <i class="fas fa-pencil-alt ms-1"></i>
+              <i class="fas fa-pencil-alt ms-3"></i>
             <% end %>
           </li>
-          <li class="">
+          <li>
+
             <button class="btn btn-primary mt-2" id="btn-new-password">edit password</button>
           </li>
         </div>
