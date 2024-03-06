@@ -2,8 +2,8 @@
 
 <%= form_for @goal do |f| %>
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -12,3 +12,4 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>

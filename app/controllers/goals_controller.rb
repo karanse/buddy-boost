@@ -1,14 +1,13 @@
 class GoalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
 
-  def index
-    @goals = Goal.all
-  end
+  # def index
+  #   @goals = Goal.all(we are gonna see all goals from all users)
+  # end
 
-  def show
-    @goal = Goal.find(params[:id])
-  end
+  # def show
+  #   @goal = Goal.find(params[:id])
+  # end
 
   def new
     @goal = Goal.new
