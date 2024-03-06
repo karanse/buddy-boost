@@ -1,1 +1,39 @@
-<h1>Home page placeholder</h1>
+<%= render "shared/banner" %>
+<br>
+<div id="values d-flex flex-column justify-content-center">
+  <h1>Values</h1>
+  <div class="cards d-flex justify-content-between">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<%= asset_path('accessibility.svg') %>" alt="icon accessibility" >
+      <div class="card-body">
+        <h3>Accessibility</h3>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<%= asset_path('inclusivity.svg') %>" alt="icon accessibility" >
+      <div class="card-body">
+        <h3>Inclusivity</h3>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<%= asset_path('easiness.svg') %>" alt="icon accessibility" >
+      <div class="card-body">
+        <h3>Easiness</h3>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div id="how-works">
+<h1>HERE IS HOW IT WORKS STEPS</h1>
+<ol>
+  <li>Sign up</li>
+  <li>Set your goal</li>
+  <li>Match your buddy</li>
+  <li>Track your progress</li>
+  <li>Celebrate success</li>
+</ol>
+</div>
