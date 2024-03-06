@@ -1,15 +1,14 @@
-<h1>Here you can add your new goal</h1>
-
-<%= form_for @goal do |f| %>
-  <div class="field">
-    <%= f.label :category %><br>
-    <%= f.text_field :category %>
+<div class="d-flex flex-column align-items-center">
+  <h2>Add your goal</h2>
+  <div class="mt-4 listing-form">
+    <%= simple_form_for(@goal) do |f| %>
+      <%= f.input :category, as: :select, collection: Goal::CATEGORIES %>
+      <%= f.input :sub_category, as: :select, collection: Goal::CATEGORIES.values %>
+      <%= f.input :description, placeholder: "Type your 1-2 sentences goal..." %>
+      <%= f.input :deadline  %>
+      <%= f.input :offline %>
+      <%= f.input :online %>
+      <%= f.submit class: "btn btn-primary my-4"%>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
