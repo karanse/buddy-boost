@@ -20,14 +20,11 @@
 }
 
 #btn-new-password {
-  font-size: smaller;
-  color: white;
-  background-color: transparent;
-  border: none;
-}
-
-#btn-new-password:hover {
-  background-color: $buddy-medium-blue;
+  .fas {
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  }
 }
 
 #profile-information {

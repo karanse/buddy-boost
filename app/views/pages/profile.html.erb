@@ -17,14 +17,16 @@
 
         <%# profile info block + edit options %>
         <div id="profile-info" class="d-flex flex-column align-items-center">
-          <li class="d-flex justify-content-between mb-2">
-            <div><%= current_user.first_name %> <%= current_user.last_name %></div>
+          <li class="d-flex justify-content-between">
+            <h4><%= current_user.first_name %> <%= current_user.last_name %></h4>
           </li>
           <li class="d-flex justify-content-between">
             <div><%= current_user.email %></div>
           </li>
-          <li>
-            <button class="btn btn-primary mt-2" id="btn-new-password"> <%= link_to "update my information", edit_user_registration_path %> </button>
+          <li class="mt-2 align-self-end" id="btn-new-password">
+            <%= link_to edit_user_registration_path do %>
+                <i class="fas fa-pencil-alt ms-3"></i>
+            <% end %>
           </li>
         </div>
       </div>
@@ -50,5 +52,3 @@
 
   </div>
 </div>
-
-<%# // TESTING AREA //  %>
