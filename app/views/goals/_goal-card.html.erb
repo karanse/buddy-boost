@@ -5,7 +5,7 @@
       <p class="card-text"><%= goal.description %></p>
       <p><strong>Deadline: <%= goal.deadline %></strong></p>
       <a href="#" class="btn btn-primary">Match</a>
-      <a href="#" class="card-link">Edit goal</a>
+      <a class="card-link"><%= link_to "Edit goal", goals_path  %></a>
     </div>
   </div>
 <% end %>
