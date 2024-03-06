@@ -3,15 +3,13 @@ class GoalsController < ApplicationController
 
   def index
     @goals = Goal.where(user: current_user)
+    @goal = Goal.new
   end
 
   # def show
   #   @goal = Goal.find(params[:id])
   # end
 
-  def new
-    @goal = Goal.new
-  end
 
   def create
     @goal = Goal.new(goal_params)
