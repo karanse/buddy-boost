@@ -7,7 +7,7 @@
       <div>
         <%# avatar  %>
         <div id="profile-avatar" class="p-3 text-center">
-          <img src="https://source.unsplash.com/boys-face-close-up-photography-n4KewLKFOZw" alt="avatar-photo" class="avatar-bordered-large-shadow">
+          <%= image_tag(current_user.photo || "avatar_default.svg", class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;") %>
         </div>
 
         <%# profile info block + edit options %>
@@ -53,11 +53,3 @@
 </div>
 
 <%# // TESTING AREA //  %>
-
-<%= cl_image_tag current_user.photo.key %>
-
-<%= simple_form_for(@user) do |f| %>
-  <!-- [...] -->
-  <%= f.input :photo, as: :file %>
-  <!-- [...] -->
-<% end %>
