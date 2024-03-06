@@ -26,16 +26,16 @@
     </div>
 
   <div class="form-actions">
-    <%= link_to new_user_session_path, class: "btn btn-primary", role: "button", id: "sign-in-button" do %>
+    <%= link_to new_user_session_path, class: "btn btn-primary sign-in-button", role: "button" do %>
       Sign in
     <% end %>
 
-    <%= link_to new_user_registration_path, class: "btn btn-success", role: "button", id: "sign-up-button" do %>
+    <%= link_to new_user_registration_path, class: "btn btn-success sign-up-button", role: "button" do %>
       Sign up
     <% end %>
 
-    <%= link_to legal_path, class: "btn btn-info", role: "button",  id: "legal-button" do %>
-      Legal
+    <%= link_to legal_path, class: "legal-link", role: "button" do %>
+      Read our privacy policy here
     <% end %>
   </div>
 <% end %>
