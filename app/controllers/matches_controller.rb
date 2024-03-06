@@ -10,4 +10,7 @@ class MatchesController < ApplicationController
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
   end
 
+  def show
+    @match = Match.find(params[:id])
+  end
 end

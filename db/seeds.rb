@@ -154,13 +154,23 @@ goal3 = Goal.new(category: random_category,
                       matched: false,
                       deadline: Date.today + rand(1..365)
                       )
+goal4 = Goal.new(category: random_category,
+                        sub_category: random_subcategory,
+                        description: random_description,
+                        offline: false,
+                        online: true,
+                        matched: true,
+                        deadline: Date.today + rand(1..365)
+                        )
 
 goal1.user = user1
 goal2.user = user1
 goal3.user = user1
+goal4.user = user1
 goal1.save
 goal2.save
 goal3.save
+goal4.save
 
 puts "user1 is created"
 
@@ -226,11 +236,21 @@ goal2 = Goal.new(category: random_category,
                       matched: true,
                       deadline: Date.today + rand(1..365)
                       )
+goal3 = Goal.new(category: random_category,
+                        sub_category: random_subcategory,
+                        description: random_description,
+                        offline: false,
+                        online: true,
+                        matched: true,
+                        deadline: Date.today + rand(1..365)
+                        )
 
 goal1.user = user3
 goal2.user = user3
+goal3.user = user3
 goal1.save
 goal2.save
+goal3.save
 
 puts "user3 is created"
 
@@ -273,16 +293,24 @@ puts "user4 is created"
 puts "creating match data..."
 
 match1 = Match.new(status: "in progres")
-match1.goal = Goal.find_by(user_id: user1.id, matched: true)
+match1.goal = Goal.where(user_id: user1.id, matched: true).first
 puts "user1 added to match1"
 match1.matched_goal = Goal.find_by(user_id: user2.id, matched: true)
 puts "user2 added to match1"
 match1.save
 
+match11 = Match.new(status: "in progres")
+match11.goal = Goal.where(user_id: user1.id, matched: true).last
+puts "user1 added to match1"
+match11.matched_goal = Goal.where(user_id: user3.id, matched: true).last
+puts "user2 added to match1"
+match11.save
+
+
 puts "match1 is created"
 
 match2 = Match.new(status: "in progress")
-match2.goal = Goal.find_by(user_id: user3.id, matched: true)
+match2.goal = Goal.where(user_id: user3.id, matched: true).first
 match2.matched_goal = Goal.find_by(user_id: user4.id, matched: true)
 match2.save
 

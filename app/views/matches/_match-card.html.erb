@@ -17,6 +17,6 @@
       <div class="card-body">
       <h5 class="card-title"><%= "#{match.matched_goal.user.first_name}'s & #{match.goal.user.first_name}'s Buddy Dashboard" %></h5>
       <p class="card-text">You can track your and <%= match.matched_goal.user.first_name %>'s <strong><%= match.goal.category %></strong> goal progress in this dashboard.</p>
-      <a href="#" class="btn btn-primary">Go dashboard</a>
+      <%= link_to "Go Dashboard", match, class: "btn btn-primary" %>
     </div>
 </div>
