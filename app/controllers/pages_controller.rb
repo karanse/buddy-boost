@@ -11,10 +11,9 @@ class PagesController < ApplicationController
     # for goals overview
     @goals = Goal.where(user: current_user)
     @goal = Goal.new
-    # for buddy dashboards overview
+    # for buddy dashboards overview - index
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
-    # @match = Match.find(params[:id]) >> did not work
-    @match = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
+    # @match = Match.find(params[:id]) >> did not work - show
   end
 
   private
