@@ -30,12 +30,14 @@
               <h5 class="card-title">
                 <%= "Buddy Dashboard for #{@match.goal.user.first_name.capitalize} & #{@match.matched_goal.user.first_name.capitalize}" %>
               </h5>
-              <div class= "d-flex flex-row">
-                <div id="user1-goal" class="col">
+              <div class= "d-flex flex-row m-4">
+                <div id="user1-goal" class="col p-4">
                   <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
+                  <div class="alert alert-primary">Some progress stats X%</div>
                 </div>
-                <div id="user2-goal" class="col">
+                <div id="user2-goal" class="col p-4">
                   <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
+                  <div class="alert alert-primary">Some progress stats X%</div>
                 </div>
               </div>
 
