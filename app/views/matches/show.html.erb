@@ -1,5 +1,39 @@
-<h2>Buddy Dashboard show page</h2>
-<div class="container border border-dark rounded p-3 mt-4">
+<div class="row justify-content-center" >
+<div class="col-md-7 mt-5">
+
+  <h2><%= "Buddy Dashboard of #{@match.goal.user.first_name.capitalize} & #{@match.matched_goal.user.first_name.capitalize} 🚀" %></h2>
+
+  <%# container for all dashboard content %>
+  <div class="container" id="buddy-dash">
+
+    <%# first column: avatars %>
+    <div>
+      <div id="profile-avatar" class="px-3 text-center">
+        <% if current_user.photo.attached? %>
+          <%= image_tag(current_user.photo, class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
+        <% else %>
+          <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;" %>
+        <% end %>
+      </div>
+      <div id="profile-avatar" class="px-3 text-center">
+        <% if @match.matched_goal.user.photo.attached? %>
+          <%= image_tag(@match.matched_goal.user.photo, class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
+        <% else %>
+          <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.matched_goal.user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;" %>
+        <% end %>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+  </div>
+
+
+  <div class="container border border-dark rounded p-3 mt-4">
         <div class="row">
             <div class="col d-flex flex-column">
                 <!-- Content for the first column -->
@@ -25,6 +59,8 @@
                   <%= link_to "Complete goal", "#", class: "btn btn-secondary" %>
                 </div>
             </div>
+
+
             <div class="col-9">
                 <!-- Content for the second column -->
               <h5 class="card-title">
@@ -43,7 +79,9 @@
                 </div>
               </div>
 
-
             </div>
         </div>
     </div>
+
+</div>
+</div>
