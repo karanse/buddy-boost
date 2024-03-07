@@ -34,10 +34,12 @@
                 <div id="user1-goal" class="col p-4">
                   <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
                   <div class="alert alert-primary">Some progress stats X%</div>
+                  <div id="user1-tasks">Tasks goes here</div>
                 </div>
                 <div id="user2-goal" class="col p-4">
                   <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
                   <div class="alert alert-primary">Some progress stats X%</div>
+                  <div id="user2-tasks">Tasks goes here</div>
                 </div>
               </div>
 
