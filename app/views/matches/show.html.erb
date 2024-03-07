@@ -16,15 +16,13 @@
         <% end %>
       </div>
       <div id="profile-avatar" class="px-3 text-center">
-        <% if @match.matched_goal.user.photo.attached? %>
-          <%= image_tag(@match.matched_goal.user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
+        <% if @match.goal.user.photo.attached? %>
+          <%= image_tag(@match.goal.user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
         <% else %>
-          <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.matched_goal.user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;" %>
+          <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.goal.user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;" %>
         <% end %>
       </div>
     </div>
-
-
   </div>
 
 
@@ -37,22 +35,8 @@
         <div class="row">
             <div class="col d-flex flex-column">
                 <!-- Content for the first column -->
-                <div class="avatars col d-flex flex-row">
-                  <div id="profile-avatar" class="px-3 text-center">
-                    <% if current_user.photo.attached? %>
-                      <%= image_tag(current_user.photo, class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
-                    <% else %>
-                      <%= image_tag "avatar_default.svg", class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;" %>
-                    <% end %>
-                  </div>
-                  <div id="profile-avatar" class="px-3 text-center">
-                    <% if @match.matched_goal.user.photo.attached? %>
-                      <%= image_tag(@match.matched_goal.user.photo, class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
-                    <% else %>
-                      <%= image_tag "avatar_default.svg", class: "avatar-bordered-small-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;" %>
-                    <% end %>
-                  </div>
-                </div>
+
+                
                 <div class="col-9" ></div>
                 <div class="col d-flex flex-column">
                   <%= link_to "Chat", "#", class: "btn btn-primary" %>
