@@ -1,10 +1,11 @@
 <div class="row justify-content-center" id="profile">
 
-  <div class="col-md-7 my-5">
-  <h2>Hi <%= current_user.first_name %>! 👋</h2>
+  <div class="col-md-7 mt-5">
+  <h2>Hi <%= current_user.first_name.capitalize %>! 👋</h2>
 
+<%# 1. PROFILE  %>
 
-    <div id="profile-information" class="w-50 my-3" >
+    <div id="profile-information" class="w-100 my-3" >
       <div>
         <%# avatar  %>
         <div id="profile-avatar" class="px-3 text-center">
@@ -25,7 +26,7 @@
         <%# profile info block + edit options %>
         <div id="profile-info" class="d-flex flex-column align-items-center">
           <li class="d-flex justify-content-between">
-            <h4><%= current_user.first_name %> <%= current_user.last_name %></h4>
+            <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
           </li>
           <li class="d-flex justify-content-between">
             <div><%= current_user.email %></div>
@@ -40,23 +41,48 @@
       </div>
     </div>
 
-    <div id="profile-dashboard-link" class="my-5">
+<%# 2. DASHBOARDS %>
+    <div id="profile-dashboard-link" class="my-3 gray-background">
       <h5>Dashboards</h5>
       <p>Placeholder for: go to my buddy dashboard(s) (for each match: matches#show)</p>
     </div>
 
-    <div id="profile-goals">
-      <div id="profile-all-goals">
-        <h5>Goals</h5>
-        <p>Placeholder for: all my goals (goals#index)</p>
-      </div>
-      <div id="profile-add-goal">
-        <p>Placeholder for: add a goal (goals#new)</p>
-      </div>
-      <div id="profile-edit-goal">
-        <p>Placeholder for: edit goal (goals#edit)</p>
-      </div>
-    </div>
+<%# 3. GOALS  %>
+    <div id="profile-goals" class="my-3 gray-background">
+      <h5>Your goals</h5>
+      <p>You can create as many goals as you want but you can be matched only for 3 goals at a time. We want you to stay focused! 💪</p>
 
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#newGoalModalCenter">
+        Add goal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add your goal</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render "shared/new-goal" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <%# -- GOALS INDEX -- %>
+      <div class="">
+        <div class="list-card-container d-flex flex-column align-items-center list-index">
+            <% @goals.each do |goal| %>
+              <%= render "shared/goal-card", goal: goal %>
+            <% end %>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
