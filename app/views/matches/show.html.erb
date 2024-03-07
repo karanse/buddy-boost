@@ -1,6 +1,6 @@
 <div class="row justify-content-center" >
 
-  <div class="col-md-7 mt-5 mb-3">
+  <div class="col-md-7 my-5">
     <h2><%= "Buddy Dashboard of #{@match.goal.user.first_name.capitalize} & #{@match.matched_goal.user.first_name.capitalize} 🚀" %></h2>
   </div>
 
@@ -33,39 +33,17 @@
 
     <%# second column: buddy 1  %>
     <div class="col-4 gray-background mx-3">
+      <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
+      <div class="alert alert-primary">Some progress stats X%</div>
+      <div>Tasks go here</div>
     </div>
 
     <%# third column: buddy 2  %>
     <div class="col-4 gray-background">
+      <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
+      <div class="alert alert-primary">Some progress stats X%</div>
+      <div>Tasks go here</div>
     </div>
 
   </div>
-
-
-
-
-  </div>
-
-
-  <div class="container border border-dark rounded p-3 mt-4">
-        <div class="row">
-            <div class="col-9">
-
-              <div class= "d-flex flex-row m-4">
-                <div id="user1-goal" class="col p-4">
-                  <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
-                  <div class="alert alert-primary">Some progress stats X%</div>
-                  <div id="user1-tasks">Tasks goes here</div>
-                </div>
-                <div id="user2-goal" class="col p-4">
-                  <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
-                  <div class="alert alert-primary">Some progress stats X%</div>
-                  <div id="user2-tasks">Tasks goes here</div>
-                </div>
-              </div>
-
-            </div>
-        </div>
-    </div>
-
 </div>
