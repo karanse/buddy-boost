@@ -7,11 +7,12 @@
        <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;" %>
     <% end %>
   </div>
+
   <div class="px-3 text-center">
-    <% if match.goal.user.photo.attached? %>
-      <%= image_tag(match.goal.user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;") %>
+    <% if match.other(current_user).user.photo.attached? %>
+      <%= image_tag(match.other(current_user).user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;") %>
     <% else %>
-       <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{match.goal.user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;" %>
+       <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{match.other(current_user).user.photo.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;" %>
     <% end %>
   </div>
 
