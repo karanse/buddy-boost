@@ -11,6 +11,7 @@ class TasksController < ApplicationController
   def create
     @match = Match.find(params[:match_id]) # Find the match associated with the task
     @task = Task.new(task_params)
+    @task.match = @match
     @task.user = current_user
     if @task.save
       redirect_to match_tasks_path(@match)

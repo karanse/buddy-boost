@@ -2,6 +2,7 @@
   <div class="mt-4 listing-form">
     <%= simple_form_for([@match, @task]) do |f| %>
       <%= f.input :description%>
+      <%= f.input :status, as: :boolean %>
       <%= f.submit class: "btn btn-primary my-4"%>
     <% end %>
   </div>
