@@ -27,7 +27,19 @@
             </div>
             <div class="col-9">
                 <!-- Content for the second column -->
-              <h2>Title</h2>
+              <h5 class="card-title">
+                <%= "Buddy Dashboard for #{@match.goal.user.first_name.capitalize} & #{@match.matched_goal.user.first_name.capitalize}" %>
+              </h5>
+              <div class= "d-flex flex-row">
+                <div id="user1-goal" class="col">
+                  <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
+                </div>
+                <div id="user2-goal" class="col">
+                  <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
+                </div>
+              </div>
+
+
             </div>
         </div>
     </div>
