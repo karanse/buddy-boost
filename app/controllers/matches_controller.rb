@@ -7,6 +7,7 @@ class MatchesController < ApplicationController
   # end
 
   def index
+    # matches only belongs to the current logged in user
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
   end
 
