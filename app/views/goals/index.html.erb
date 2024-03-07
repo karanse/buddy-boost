@@ -20,7 +20,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= render "new-goal" %>
+        <%= render "shared/new-goal" %>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
 <div class="d-flex justify-content-between align-items-start">
   <div class="list-card-container list-index">
        <% @goals.each do |goal| %>
-        <%= render "goal-card", goal: goal %>
+        <%= render "shared/goal-card", goal: goal %>
       <% end %>
   </div>
 </div>

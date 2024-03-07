@@ -3,3 +3,17 @@
   padding: 20px;
   border-radius: 10px;
 }
+
+.white-background-shadow {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent;
+  box-shadow: 0px 0px 10px rgba(15, 14, 14, 0.6);
+}
+
+.gray-background {
+  background-color: rgb(220, 221, 222);
+  padding: 20px;
+  border-radius: 10px;
+}
