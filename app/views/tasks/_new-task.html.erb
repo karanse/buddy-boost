@@ -1,0 +1,9 @@
+<div class="d-flex flex-column align-items-center">
+  <div class="mt-4 listing-form">
+    <%= simple_form_for(goal) do |f| %>
+      <%= f.input :description%>
+      <%= f.input :status%>
+      <%= f.submit class: "btn btn-primary my-4"%>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<h1>Here goes tasks</h1>
+
+  <%= render "task-list",task: task %>
+<div><%= task.description %></div>
+<% end %>
+
+
+<% @buddy_tasks.each do |task| %>
+<div><%= task.description %></div>
+<% end %>
+
+
+<div class="container">
+  <h2><%= task.user.first_name.capitalize %>'s Tasks</h2>
+  <% @my_tasks.each do |task| %>
+  <% end %>
+
+        <ul class="list-group">
+            <%= render "task-list", task: task %>
+        </ul>
+</div>

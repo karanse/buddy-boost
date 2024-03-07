@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :matches, only: [:new, :create]
   end
   resources :matches, only: [:show, :edit, :update, :index] do
-    resources :tasks, only: [:new, :create]
+    resources :tasks, only: [:new, :create, :index]
   end
 
   resources :tasks, only: [:edit, :update]
