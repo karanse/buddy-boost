@@ -19,6 +19,9 @@
           <%= f.input :last_name,
                       hint: "",
                       required: false %>
+          <%# test with photo upload %>
+          <%= f.input :photo, as: :file,
+                      required: false %>
           <%= f.input :password,
                       hint: "leave blank if password stays the same",
                       required: false,

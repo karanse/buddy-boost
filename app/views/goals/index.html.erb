@@ -1,1 +1,36 @@
-<h1>Here you can see all your goals!</h1>
+<h2>Your goals</h2>
+
+<p>You can create as many goals as you want but you can be matched
+ only for 3 goals at a time. We want you to stay focused!</p>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newGoalModalCenter">
+  Add goal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add your goal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "new-goal" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="d-flex justify-content-between align-items-start">
+  <div class="list-card-container list-index">
+       <% @goals.each do |goal| %>
+        <%= render "goal-card", goal: goal %>
+      <% end %>
+  </div>
+</div>

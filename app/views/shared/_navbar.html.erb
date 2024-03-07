@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><i class="fa-solid fa-user-group"></i></a>
     <a class="navbar-brand" href="/">BuddyBoost</a>
@@ -9,18 +9,32 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto align-items-center">
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= button_to(
                 "Log out",
                 destroy_user_session_path,
-                method: :delete, class: "btn btn-outline-secondary") %>
+                method: :delete, class: "btn btn-outline-primary") %>
             </li>
             <li class="nav-item">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/karanse", class: "avatar-bordered-small dropdown-toggle",
-              id: "navbarDropdown",
-              data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <a href="/profile">
+                  <% if current_user.photo.attached? %>
+                    <%= image_tag current_user.photo,
+                      id: "navbarDropdown",
+                      class: "avatar-bordered-small dropdown-toggle",
+                      alt: "avatar",
+                      style: "object-fit: cover;",
+                      data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <% else %>
+                    <%= image_tag "avatar_default.svg",
+                      id: "navbarDropdown",
+                      class: "avatar-bordered-small dropdown-toggle",
+                      alt: "avatar",
+                      style: "object-fit: cover;",
+                      data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <% end %>
+              </a>
             </li>
           <% else %>
             <li class="nav-item">
