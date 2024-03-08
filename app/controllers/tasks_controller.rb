@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     @task.match = @match
     @task.user = current_user
     if @task.save
-      redirect_to match_tasks_path(@match)
+      redirect_to match_path(@match)
     else
       render :new, status: :unprocessable_entity
     end

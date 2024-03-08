@@ -15,7 +15,7 @@
     <div>
       <% @my_tasks.each do |task| %>
         <ul class="list-group">
-          <%= render "task-list", task: task %>
+          <%= render "shared/task-list", task: task %>
         </ul>
       <% end %>
     </div>
@@ -35,7 +35,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <%= render "new-task" %>
+            <%= render "shared/new-task" %>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
     <div>
       <% @buddy_tasks.each do |task| %>
         <ul class="list-group">
-          <%= render "task-list", task: task %>
+          <%= render "shared/task-list", task: task %>
         </ul>
       <% end %>
     </div>

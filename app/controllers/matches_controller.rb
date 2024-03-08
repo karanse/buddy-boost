@@ -9,6 +9,10 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+     # for buddy dashboard tasks
+    @my_tasks = Task.where(user: current_user).where(match: @match)
+    @buddy_tasks = Task.where(match: @match).reject { |task| task.user == current_user }
+    @task = Task.new
   end
 
   def edit
@@ -20,6 +24,7 @@ class MatchesController < ApplicationController
     @match.update(match_params)
     redirect_to profile_path(current_user)
   end
+
 
   private
 
