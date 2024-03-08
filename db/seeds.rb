@@ -113,7 +113,6 @@ tasks = [
   'Stay balanced and prioritize well-being.'
 ]
 
-
 user1 = User.create!(first_name: 'sema',
                      last_name: 'karan',
                      email: 'hello.sema@gmail.com',
@@ -122,10 +121,8 @@ user1 = User.create!(first_name: 'sema',
 
 # Select a random category
 random_category = categories.keys.sample
-
 # Retrieve the hash of subcategories and descriptions corresponding to the random category
 subcategories_with_descriptions = categories[random_category]
-
 # Select a random subcategory and its description from the hash
 random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
 
@@ -135,7 +132,8 @@ goal1 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: false,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -144,7 +142,8 @@ goal2 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: true,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                      )
 goal3 = Goal.new(category: random_category,
                       sub_category: random_subcategory,
@@ -152,7 +151,8 @@ goal3 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: false,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                       )
 goal4 = Goal.new(category: random_category,
                         sub_category: random_subcategory,
@@ -160,7 +160,8 @@ goal4 = Goal.new(category: random_category,
                         offline: false,
                         online: true,
                         matched: true,
-                        deadline: Date.today + rand(1..365)
+                        deadline: Date.today + rand(1..365),
+                        status: "completed"
                         )
 
 goal1.user = user1
@@ -190,7 +191,8 @@ goal1 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: false,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -199,7 +201,8 @@ goal2 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: true,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                      )
 
 goal1.user = user2
@@ -225,7 +228,8 @@ goal1 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: false,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -234,7 +238,8 @@ goal2 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: true,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                       )
 goal3 = Goal.new(category: random_category,
                         sub_category: random_subcategory,
@@ -242,7 +247,8 @@ goal3 = Goal.new(category: random_category,
                         offline: false,
                         online: true,
                         matched: true,
-                        deadline: Date.today + rand(1..365)
+                        deadline: Date.today + rand(1..365),
+                        status: "completed"
                         )
 
 goal1.user = user3
@@ -270,7 +276,8 @@ goal1 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: false,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -279,8 +286,8 @@ goal2 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: true,
-                      deadline: Date.today + rand(1..365)
-
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                       )
 
 goal1.user = user4
@@ -297,15 +304,16 @@ match1.goal = Goal.where(user_id: user1.id, matched: true).first
 puts "user1 added to match1"
 match1.matched_goal = Goal.find_by(user_id: user2.id, matched: true)
 puts "user2 added to match1"
+
 match1.save
 
 match11 = Match.new(status: "in progres")
 match11.goal = Goal.where(user_id: user1.id, matched: true).last
 puts "user1 added to match1"
 match11.matched_goal = Goal.where(user_id: user3.id, matched: true).last
+match11.status = 'completed'
 puts "user2 added to match1"
 match11.save
-
 
 puts "match1 is created"
 

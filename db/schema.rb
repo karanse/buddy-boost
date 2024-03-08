@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_231707) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_204121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_231707) do
     t.date "deadline"
     t.string "sub_category"
     t.boolean "matched", default: false
+    t.string "status", default: "not_started"
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
@@ -62,13 +63,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_231707) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "matched_goal_id"
+    t.string "cancel_reason"
     t.index ["goal_id"], name: "index_matches_on_goal_id"
     t.index ["matched_goal_id"], name: "index_matches_on_matched_goal_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.text "description"
-    t.string "status", default: "f"
+    t.string "status"
     t.bigint "match_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
