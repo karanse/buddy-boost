@@ -12,6 +12,8 @@ class Goal < ApplicationRecord
     'Goal Setting and Achievement' => ['SMART Goals', 'Action Planning', 'Progress Monitoring', 'Motivation Techniques', 'Celebrating Successes']
   }
 
+  GOAL_STATUSES = ["not started", "in progress", "completed", "cancelled"]
+
   belongs_to :user
   has_one :match
 

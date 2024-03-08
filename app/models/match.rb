@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
-  STATUSES = ["in progress", "completed", "cancelled"]
+  MATCH_STATUSES = ["in progress", "completed", "cancelled"]
 
   belongs_to :goal
   belongs_to :matched_goal, class_name: 'Goal'
@@ -9,5 +9,4 @@ class Match < ApplicationRecord
     id = matched_goal.user.id == current_user.id ? goal.id : matched_goal.id
     Goal.find(id)
   end
-  
 end

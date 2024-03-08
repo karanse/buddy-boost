@@ -113,7 +113,6 @@ tasks = [
   'Stay balanced and prioritize well-being.'
 ]
 
-
 user1 = User.create!(first_name: 'sema',
                      last_name: 'karan',
                      email: 'hello.sema@gmail.com',
@@ -122,10 +121,8 @@ user1 = User.create!(first_name: 'sema',
 
 # Select a random category
 random_category = categories.keys.sample
-
 # Retrieve the hash of subcategories and descriptions corresponding to the random category
 subcategories_with_descriptions = categories[random_category]
-
 # Select a random subcategory and its description from the hash
 random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
 
