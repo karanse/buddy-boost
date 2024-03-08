@@ -15,7 +15,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     @goal.user = current_user
     if @goal.save
-      redirect_to goals_path(@goal)
+      redirect_to profile_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
 private
 
   def goal_params
-    params.require(:goal).permit(:category, :description)
+    params.require(:goal).permit(:category, :description, :deadline)
   end
 
 end
