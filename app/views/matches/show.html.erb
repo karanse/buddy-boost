@@ -64,6 +64,7 @@
       <div class="alert alert-primary">Some progress stats X%</div>
        <div>
         <%# tasks#index placeholder - please put inside this div  %>
+        <%= link_to "See your tasks", match_tasks_path(@match) %>
       </div>
       <div>
         <%# tasks#new placeholder - please put inside div  %>
@@ -76,7 +77,8 @@
       <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
       <div class="alert alert-primary">Some progress stats X%</div>
        <div>
-        <%# tasks#index placeholder - please put inside this div  %>
+          <%# tasks#index placeholder - please put inside this div  %>
+          <%= link_to "See your tasks", match_tasks_path(@match) %>
       </div>
       <div>
         <%# tasks#new placeholder - please put inside div  %>
