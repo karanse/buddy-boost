@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   end
 
   # def match_params
-  #   # params.require(:match).permit(:status, :matched_goal_id, :goal_id)
+    # params.require(:match).permit(:status, :matched_goal_id, :goal_id)
   # end
 
 end
