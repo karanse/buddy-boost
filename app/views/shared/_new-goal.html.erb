@@ -1,10 +1,13 @@
 <div class="d-flex flex-column align-items-center">
   <div class="mt-4 listing-form" data-controller="filter-subcategory">
     <%= simple_form_for(@goal) do |f| %>
+
       <%= f.input :category, as: :select, collection: Goal::CATEGORIES,
-                   input_html: { "data-action" => "change->filter-subcategory#showValues" }%>
+                   input_html: { data: {action: "change->filter-subcategory#showValues"} }%>
+
       <%= f.input :sub_category, as: :select, collection: Goal::CATEGORIES.values,
-                  input_html: { "data-filter-subcategory-target" => "subcategory" }   %>
+                  input_html: { data: {filter_subcategory_target: "subcategory"} }   %>
+
       <%= f.input :description, placeholder: "Type your 1-2 sentences goal..." %>
       <%= f.input :deadline  %>
       <%= f.input :offline %>
