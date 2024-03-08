@@ -16,11 +16,11 @@ class MatchesController < ApplicationController
   end
 
   def edit
-    @match = Match.find(params[:id])
+    find_match()
   end
 
   def update
-    @match = Match.find(params[:id])
+    find_match()
     @match.update(match_params)
     redirect_to profile_path(current_user)
   end
@@ -29,6 +29,11 @@ class MatchesController < ApplicationController
 
   def match_params
     params.require(:match).permit(:status)
+  end
+
+  def find_match
+    id = params[:id]
+    @match = Match.find(params[:id])
   end
 
 end
