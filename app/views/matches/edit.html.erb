@@ -1,14 +1,13 @@
-<h2 class="my-5">End your buddy match</h2>
+<h2 class="my-5">Update the status of your buddy match</h2>
 
-<%# FORM HERE %>
+<%# FORM %>
 
 <div class="d-flex flex-column align-items-center">
   <div class="mt-4 listing-form">
 
       <%= simple_form_for @match do |f| %>
         <%= f.input :status, as: :select, collection: Match::STATUSES, :selected => "cancelled", html_input: "required" %>
-        <%= f.submit label: "End buddy relationship" class: "btn btn-primary my-4"%>
-        <%# NOTE: CHECK HOW TO EDIT BUTTON TEXT %>
+        <%= f.submit class: "btn btn-primary my-4"%>
     <% end %>
 
   </div>
