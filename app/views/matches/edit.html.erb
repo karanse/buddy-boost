@@ -1,0 +1,13 @@
+<h2 class="my-5">End your buddy match</h2>
+
+<%# FORM HERE %>
+
+<div class="d-flex flex-column align-items-center">
+  <div class="mt-4 listing-form">
+    <%= form_with model: @match do |f| %>
+        <%= f.input :status, as: :boolean %>
+        <%= f.submit class: "btn btn-primary my-4"%>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

@@ -14,4 +14,21 @@ class MatchesController < ApplicationController
   def show
     @match = Match.find(params[:id])
   end
+
+  def edit
+    @match = Match.find(params[:id])
+  end
+
+  def update
+    @match = Match.find(params[:id])
+    @match.update(match_params)
+    redirect_to profile_path(current_user)
+  end
+
+  private
+
+  def match_params
+    params.require(:match).permit(:status)
+  end
+
 end
