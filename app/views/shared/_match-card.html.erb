@@ -1,0 +1,28 @@
+<div class="card d-flex flex-row card w-100 my-2 white-background-shadow align-items-center">
+
+  <div class="ps-3 text-center">
+    <% if current_user.photo.attached? %>
+      <%= image_tag(current_user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;") %>
+    <% else %>
+       <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;" %>
+    <% end %>
+  </div>
+
+  <div class="px-3 text-center">
+    <% if match.other(current_user).user.photo.attached? %>
+      <%= image_tag(match.other(current_user).user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;") %>
+    <% else %>
+       <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;" %>
+    <% end %>
+  </div>
+
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title">
+      <%= "#{match.matched_goal.user.first_name}'s & #{match.goal.user.first_name}'s Buddy dashboard" %>
+    </h5>
+    <p class="card-text">
+      You can track your and your buddies' <strong><%= match.goal.category %> goal progress </strong> in this dashboard.
+    </p>
+    <span><%= link_to "Go to dashboard", match, class: "btn btn-primary align-self-end" %></span>
+  </div>
+</div>

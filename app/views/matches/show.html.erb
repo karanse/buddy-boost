@@ -1,1 +1,89 @@
-<h2>Buddy Dashboard show page</h2>
+<div class="row justify-content-center" >
+
+  <div class="my-5 text-center">
+    <h2><%= "Buddy Dashboard of #{@match.goal.user.first_name.capitalize} & #{@match.matched_goal.user.first_name.capitalize} 🚀" %></h2>
+  </div>
+
+  <%# container for all dashboard content %>
+
+  <div class="row d-flex justify-content-center" id="buddy-dash">
+
+    <%# first column: avatars %>
+
+    <div class="col-3 blue-background d-flex flex-column justify-content-between">
+      <div class="d-flex justify-content-center my-4">
+        <div id="profile-avatar" class="px-3">
+          <% if current_user.photo.attached? %>
+            <%= image_tag(current_user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;") %>
+          <% else %>
+            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;" %>
+          <% end %>
+        </div>
+        <div id="profile-avatar" class="px-3">
+          <% if @match.other(current_user).user.photo.attached? %>
+            <%= image_tag(@match.other(current_user).user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;") %>
+          <% else %>
+            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="d-flex flex-column w-100">
+        <%= link_to "Chat", "#", class: "btn white-background-shadow-blue-hover mb-2" %>
+        <%= link_to "Complete goal", "#", class: "btn white-background-shadow-blue-hover" %>
+
+        <!-- Button trigger modal to update match status -->
+        <button type="button" class="btn my-3" data-toggle="modal" data-target="#updateMatchModalCenter">
+          Update match status <i class="fas fa-pencil-alt ms-3"></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="updateMatchModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateMatchModalTitle">Update match status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= render "shared/edit-match-form" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    <%# modals  %>
+
+    <%# second column: buddy 1  %>
+
+    <div class="col-4 gray-background mx-3">
+      <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
+      <div class="alert alert-primary">Some progress stats X%</div>
+       <div>
+        <%# tasks#index placeholder - please put inside this div  %>
+        <%= link_to "See your tasks", match_tasks_path(@match) %>
+      </div>
+      <div>
+        <%# tasks#new placeholder - please put inside div  %>
+      </div>
+    </div>
+
+    <%# third column: buddy 2  %>
+
+    <div class="col-4 gray-background">
+      <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
+      <div class="alert alert-primary">Some progress stats X%</div>
+       <div>
+          <%# tasks#index placeholder - please put inside this div  %>
+          <%= link_to "See your tasks", match_tasks_path(@match) %>
+      </div>
+      <div>
+        <%# tasks#new placeholder - please put inside div  %>
+      </div>
+    </div>
+
+  </div>
+</div>

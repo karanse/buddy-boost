@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
     <%= javascript_importmap_tags %>
 
@@ -16,10 +17,11 @@
 
     <link rel="icon" type="image/png" sizes="32x32" href="<%= image_path 'icons/favicon-32x32.png' %>">
     <link rel="icon" type="image/png" sizes="16x16" href="<%= image_path 'icons/favicon-16x16.png' %>">
-    <link rel="manifest" href="/site.webmanifest">
+
   </head>
 
   <body>
+    <%= render "shared/flashes" %>
     <%# navbar here %>
     <%= render "shared/navbar" %>
 

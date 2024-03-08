@@ -3,17 +3,18 @@
   <div class="col-md-7 mt-5">
   <h2>Hi <%= current_user.first_name.capitalize %>! 👋</h2>
 
-<%# 1. PROFILE  %>
+<%# ---------------- 1. PROFILE ---------------- %>
 
     <div id="profile-information" class="w-100 my-3" >
       <div>
+
         <%# avatar  %>
         <div id="profile-avatar" class="px-3 text-center">
 
           <% if current_user.photo.attached? %>
             <%= image_tag(current_user.photo, class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;") %>
           <% else %>
-            <%= image_tag "avatar_default.svg", class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;" %>
+            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;" %>
           <% end %>
 
           <div id="add-avatar-button">
@@ -36,25 +37,47 @@
                 <i class="fas fa-pencil-alt ms-3"></i>
             <% end %>
           </li>
-
         </div>
+
       </div>
     </div>
 
-<%# 2. DASHBOARDS %>
+<%# ---------------- 2. DASHBOARDS ---------------- %>
+
     <div id="profile-dashboard-link" class="my-3 gray-background">
+
       <h5>Dashboards</h5>
-      <p>Placeholder for: go to my buddy dashboard(s) (for each match: matches#show)</p>
+      <p>Help your buddy and yourself - the sky is the limit, you can do this! 💪</p>
+
+        <div class="d-flex justify-content-between align-items-start">
+          <div class="list-card-container list-index">
+            <% @matches.each do |match| %>
+              <%= render "shared/match-card", match: match %>
+            <% end %>
+        </div>
+      </div>
+
     </div>
 
-<%# 3. GOALS  %>
+<%# ---------------- 3. GOALS ---------------- %>
+
     <div id="profile-goals" class="my-3 gray-background">
+
       <h5>Your goals</h5>
-      <p>You can create as many goals as you want but you can be matched only for 3 goals at a time. We want you to stay focused! 💪</p>
+      <p>You can create as many goals as you want but you can be matched only for 3 goals at a time. We want you to stay focused! 🚀</p>
+
+    <%# -- GOALS INDEX -- %>
+      <div class="">
+        <div class="list-card-container d-flex flex-column align-items-center list-index">
+            <% @goals.each do |goal| %>
+              <%= render "shared/goal-card", goal: goal %>
+            <% end %>
+        </div>
+      </div>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#newGoalModalCenter">
-        Add goal
+      <button type="button" class="btn mt-2 w-100 white-background-shadow-blue-hover newgoal" data-toggle="modal" data-target="#newGoalModalCenter">
+        <i class="fa-solid fa-plus"></i> Create new goal
       </button>
 
       <!-- Modal -->
@@ -62,7 +85,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Add your goal</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">Create new goal</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -74,14 +97,6 @@
         </div>
       </div>
 
-    <%# -- GOALS INDEX -- %>
-      <div class="">
-        <div class="list-card-container d-flex flex-column align-items-center list-index">
-            <% @goals.each do |goal| %>
-              <%= render "shared/goal-card", goal: goal %>
-            <% end %>
-        </div>
-      </div>
 
     </div>
   </div>
