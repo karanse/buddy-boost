@@ -30,9 +30,32 @@
       <div class="d-flex flex-column w-100">
         <%= link_to "Chat", "#", class: "btn white-background-shadow-blue-hover mb-2" %>
         <%= link_to "Complete goal", "#", class: "btn white-background-shadow-blue-hover" %>
-        <%= link_to "Update your match status",edit_match_path, class: "btn my-3" %>
+
+        <!-- Button trigger modal to update match status -->
+        <button type="button" class="btn my-3" data-toggle="modal" data-target="#updateMatchModalCenter">
+          Update match status <i class="fas fa-pencil-alt ms-3"></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="updateMatchModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update match status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= render "shared/edit-match-form" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
-    </div>
+
+    <%# modals  %>
 
     <%# second column: buddy 1  %>
 

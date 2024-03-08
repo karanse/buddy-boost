@@ -1,0 +1,10 @@
+<div class="d-flex flex-column align-items-center">
+
+  <div class="mt-4 listing-form">
+      <%= simple_form_for @match do |f| %>
+        <%= f.input :status, as: :select, collection: Match::STATUSES, :selected => "cancelled", html_input: "required" %>
+        <%= f.submit class: "btn btn-primary my-4"%>
+    <% end %>
+  </div>
+  
+</div>
