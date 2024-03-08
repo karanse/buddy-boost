@@ -1,15 +1,15 @@
 <div class="row justify-content-center" >
 
-  <div class="col-md-7 my-5">
+  <div class="my-5 text-center">
     <h2><%= "Buddy Dashboard of #{@match.goal.user.first_name.capitalize} & #{@match.matched_goal.user.first_name.capitalize} 🚀" %></h2>
   </div>
 
   <%# container for all dashboard content %>
-  
+
   <div class="row d-flex justify-content-center" id="buddy-dash">
 
     <%# first column: avatars %>
-    
+
     <div class="col-3 blue-background d-flex flex-column justify-content-between">
       <div class="d-flex justify-content-center my-4">
         <div id="profile-avatar" class="px-3">
@@ -26,15 +26,16 @@
             <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;" %>
           <% end %>
         </div>
-      </div>  
+      </div>
       <div class="d-flex flex-column w-100">
         <%= link_to "Chat", "#", class: "btn white-background-shadow-blue-hover mb-2" %>
         <%= link_to "Complete goal", "#", class: "btn white-background-shadow-blue-hover" %>
+        <%= link_to "Update your match status",edit_match_path, class: "btn my-3" %>
       </div>
     </div>
 
     <%# second column: buddy 1  %>
-    
+
     <div class="col-4 gray-background mx-3">
       <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
       <div class="alert alert-primary">Some progress stats X%</div>
@@ -42,7 +43,7 @@
     </div>
 
     <%# third column: buddy 2  %>
-    
+
     <div class="col-4 gray-background">
       <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
       <div class="alert alert-primary">Some progress stats X%</div>
