@@ -17,6 +17,11 @@ class PagesController < ApplicationController
     # @match = Match.find(params[:id]) >> did not work
   end
 
+  def match
+    # user1 = current_user
+
+  end
+
   private
 
   def goal_params
