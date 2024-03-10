@@ -68,6 +68,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "faker"
 gem "bootstrap", "~> 5.2"
 gem "simple_form"
 gem "sassc-rails"
@@ -77,4 +78,3 @@ gem "devise"
 gem "geocoder"
 gem "pg_search"
 gem "pundit"
-
