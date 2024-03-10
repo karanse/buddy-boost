@@ -124,6 +124,8 @@ GEM
     error_highlight (0.6.0)
     erubi (1.12.0)
     execjs (2.9.1)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     geocoder (1.8.2)
     globalid (1.2.1)
@@ -319,6 +321,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   error_highlight (>= 0.4.0)
+  faker
   geocoder
   importmap-rails
   jbuilder

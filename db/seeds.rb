@@ -1,4 +1,6 @@
 require 'date'
+require 'faker'
+require "open-uri"
 
 puts "Cleaning the db.."
 Task.destroy_all
@@ -403,4 +405,83 @@ task6.save
 # task12.save
 
 puts "tasks created"
+
+# add 1 user and 1 goal for every category
+puts "1 user 1 goal per category is creating..."
+categories.keys.each do |goal|
+  first_name = Faker::Name.first_name
+  user1 = User.create!(first_name: first_name,
+                      last_name: Faker::Name.last_name,
+                      email: "hello.#{first_name}@gmail.com",
+                      password: "1234test"
+                     )
+
+  subcategories_with_descriptions = categories[goal]
+  random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
+  goal1 = Goal.new(category: goal,
+                      sub_category: random_subcategory,
+                      description: random_description,
+                      offline: false,
+                      online: true,
+                      matched: false,
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
+                      )
+  goal1.user = user1
+  goal1.save
+
+  first_name = Faker::Name.first_name
+  user2 = User.create!(first_name: first_name,
+                      last_name: Faker::Name.last_name,
+                      email: "hello.#{first_name}@gmail.com",
+                      password: "1234test"
+                     )
+
+  subcategories_with_descriptions = categories[goal]
+  random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
+  goal2 = Goal.new(category: goal,
+                      sub_category: random_subcategory,
+                      description: random_description,
+                      offline: false,
+                      online: true,
+                      matched: false,
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
+                      )
+  goal2.user = user2
+  goal1.save
+
+end
+
+puts "1 user 1 goal per category created!"
+
+# Adding random users and unmatched goals for testing match functionality
+puts "raandom new users and goals creating..."
+
+10.times do
+  first_name = Faker::Name.first_name
+  user = User.create!(first_name: first_name,
+                      last_name: Faker::Name.last_name,
+                      email: "hello.#{first_name}@gmail.com",
+                      password: "1234test"
+                     )
+  4.times do
+    random_category = categories.keys.sample
+    subcategories_with_descriptions = categories[random_category]
+    random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
+    goal = Goal.new(category: random_category,
+                   sub_category: random_subcategory,
+                   description: random_description,
+                   offline: false,
+                   online: true,
+                   matched: false,
+                   deadline: Date.today + rand(1..365),
+                   status: "not started"
+                   )
+    goal.user = user
+    goal.save
+  end
+end
+
+puts "10 users and 4 goals for each created!"
 puts "Seeding is done!"
