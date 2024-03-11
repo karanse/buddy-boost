@@ -25,6 +25,10 @@ class Goal < ApplicationRecord
     self.update(matched: true)
   end
 
+  def set_unmatched
+    self.update(matched: false)
+  end
+
   # instance method to update goal status based on match status
   def set_status(status)
     self.update(status: status)
