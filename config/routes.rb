@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root "pages#home"
   get '/legal', to: "pages#legal"
   get '/profile', to: "pages#profile"
+  get  '/my-achievements', to: "pages#my_achievements"
 
   resources :goals, only: [:create, :show, :index] do
     resources :matches, only: [:new, :create]
@@ -21,5 +22,6 @@ Rails.application.routes.draw do
   end
 
   resources :tasks, only: [:edit, :update]
+  resources :goals, only: [:edit, :update]
 
 end

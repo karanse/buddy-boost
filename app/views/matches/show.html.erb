@@ -28,6 +28,7 @@
         </div>
       </div>
       <div class="d-flex flex-column w-100">
+
         <%# if chatroom of the match is nil, then create a new chatroom %>
         <% if @chatroom.nil?  %>
           <%= simple_form_for @chat, url: match_chatrooms_path(@match) do |f| %>
@@ -41,10 +42,9 @@
         <% end %>
 
         <%= link_to "Complete goal", "#", class: "btn white-background-shadow-blue-hover" %>
-
         <!-- Button trigger modal to update match status -->
-        <button type="button" class="btn my-3" data-toggle="modal" data-target="#updateMatchModalCenter">
-          Update match status <i class="fas fa-pencil-alt ms-3"></i>
+        <button type="button" class="btn white-background-shadow-blue-hover" data-toggle="modal" data-target="#updateMatchModalCenter">
+          End buddy match
         </button>
 
         <!-- Modal -->
@@ -52,7 +52,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="updateMatchModalTitle">Update match status</h5>
+                <h5 class="modal-title" id="updateMatchModalTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -74,7 +74,6 @@
       <p><strong><%= current_user.first_name.capitalize %>'s Goal:</strong> <%= @match.goal.description %></p>
       <div class="alert alert-primary">Some progress stats X%</div>
       <div>
-        <%# tasks#index placeholder - please put inside this div  %>
         <%# second column: buddy 1 tasks %>
           <p><strong><%= current_user.first_name.capitalize %>'s</strong> Tasks</p>
             <% @my_tasks.each do |task| %>
@@ -117,9 +116,7 @@
       <p><strong><%= @match.other(current_user).user.first_name.capitalize %>:</strong> <%= @match.other(current_user).description %></p>
       <div class="alert alert-primary">Some progress stats X%</div>
        <div>
-          <%# tasks#index placeholder - please put inside this div  %>
           <%# third column: buddy 2 tasks  %>
-
             <p><strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> Tasks</p>
             <div>
               <% @buddy_tasks.each do |task| %>
