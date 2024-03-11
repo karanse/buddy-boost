@@ -5,7 +5,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     console.log("Match-goal controller connected");
-    console.log(document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
   }
 
   match(event) {
@@ -13,13 +12,12 @@ export default class extends Controller {
     event.preventDefault()
     console.log(this.element)
      // Access the value of data-your-controller-goal-id-value attribute
-
+    //  console.log(this.element.getElementById("match_goal"))
     // Send an AJAX request to Rails backend to perform the matching logic
     fetch(this.element.action, {
       method: "POST",
       headers: {
         "Accept": "application/json"
-        // "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       },
       body: new FormData(this.element)
     })

@@ -27,24 +27,23 @@ class MatchesController < ApplicationController
 
   def create
     # Perform the matching logic here
-    # Get the goal category
-    # clicked_goal_category = Goal.find(id: goal_id).category
+    # Get the goal category user clicked on frontend w/ params[:match][:goal]
+    clicked_goal_category = Goal.find(params[:match][:goal].to_i).category
+
     # Find the first unmtached goal with the same category to make the match
-    # matched_goal_id = Goal.where(status: 'not started').find_by(category: clicked_goal_category).id
-
+    matched_goal_id = Goal.where(status: 'not started')
+                          .where.not(id: params[:match][:goal].to_i)
+                          .find_by(category: clicked_goal_category).id
+    # create the match as we now goal and matched_goal
     @match = Match.new(match_params)
-    @match.goal = Goal.find(params[:match][:goal])
-    @goal = @match.goal
-
-    # get the goal_id from params after user clic and assign it to goal_id
-
-    # @match.goal_id = goal_id
-    # @match.matched_goal_id = matched_goal_id
-
+    @match.goal = Goal.find(params[:match][:goal].to_i)
+    # @goal = @match.goal
+    @match.matched_goal = Goal.find(matched_goal_id)
     # Create a new record in the matches table
+    # Respond with appropriate JSON data
     respond_to do |format|
       if @match.save
-        format.html {redirect_to profile_path}
+        format.html { redirect_to profile_path }
         format.json
       else
         format.html {redirect_to profile_path}
@@ -52,7 +51,7 @@ class MatchesController < ApplicationController
       end
     end
 
-     # Respond with appropriate JSON data
+
   end
 
   private
