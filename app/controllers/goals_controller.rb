@@ -6,11 +6,6 @@ class GoalsController < ApplicationController
     @goal = Goal.new
   end
 
-  # def show
-  #   @goal = Goal.find(params[:id])
-  # end
-
-
   def create
     @goal = Goal.new(goal_params)
     @goal.user = current_user
@@ -19,6 +14,14 @@ class GoalsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @goal = Goal.find(params[:id])
+  end
+
+  def update
+    # code
   end
 
 private
