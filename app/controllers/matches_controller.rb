@@ -47,11 +47,17 @@ class MatchesController < ApplicationController
     # Perform the matching logic here
     # Get the goal category user clicked on frontend w/ params[:match][:goal]
     clicked_goal_category = Goal.find(params[:match][:goal].to_i).category
+    clicked_goal_subcategory = Goal.find(params[:match][:goal].to_i).sub_category
 
     # Find the first unmtached goal with the same category to make the match
-    matched_goal_id = Goal.where(status: 'not started')
-                          .where.not(user: current_user)
-                          .find_by(category: clicked_goal_category).id
+    goal_id_sampled_by_subcategory = Goal.where(status: 'not started', matched: false)
+                                         .where.not(user: current_user)
+                                         .where(sub_category: clicked_goal_subcategory).sample.id
+    goal_id_sampled_by_category = Goal.where(status: 'not started', matched: false)
+                                      .where.not(user: current_user)
+                                      .where(category: clicked_goal_category).sample.id
+
+    matched_goal_id = goal_id_sampled_by_subcategory.nil? ? goal_id_sampled_by_category : goal_id_sampled_by_subcategory
 
     # create the match as we now goal and matched_goal
     @match = Match.new
@@ -72,7 +78,6 @@ class MatchesController < ApplicationController
     @match.goal.set_matched
     @match.matched_goal.set_status('in progress')
     @match.matched_goal.set_matched
-
   end
 
   private
