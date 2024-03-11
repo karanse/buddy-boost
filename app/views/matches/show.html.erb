@@ -28,7 +28,13 @@
         </div>
       </div>
       <div class="d-flex flex-column w-100">
-        <%= link_to "Chat", "#", class: "btn white-background-shadow-blue-hover mb-2" %>
+        <%# if chatroom of the match is nil, then create a new chatroom %>
+        <% if @chatroom.nil?  %>
+          <% chatrooms.create %>
+        <% else %>
+         <%= link_to "Chat", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2" %>
+        <% end %>
+
         <%= link_to "Complete goal", "#", class: "btn white-background-shadow-blue-hover" %>
 
         <!-- Button trigger modal to update match status -->
