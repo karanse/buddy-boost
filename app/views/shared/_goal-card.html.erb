@@ -6,8 +6,10 @@
         <%# edit goal modal  %>
         <%= render "shared/edit-goal-modal", goal: goal %>
         <%# delete goal button  %>
-        <%= link_to "delete", delete_goal_path(goal),
-            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        <%= link_to delete_goal_path(goal),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+          <i data-feather="trash-2" class="trash-icon"></i>
+        <% end %>
         </h5>
         <p class="card-text"><%= goal.description %></p>
         <p><strong>Deadline: <%= goal.deadline %></strong></p>
