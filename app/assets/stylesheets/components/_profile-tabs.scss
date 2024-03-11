@@ -1,13 +1,3 @@
-// #profile-tabs {
-//   min-width: 25%;
-//   padding: 0 20px;
-// }
-
-// .profile-tab > a {
-//   color: $buddy-dark-blue !important;
-//   font-weight: bold;
-// }
-
-// #profile-content {
-//   flex-grow: 1;
-// }
+.fade:not(.show) {
+  display: none;
+}

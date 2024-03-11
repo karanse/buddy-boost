@@ -1,5 +1,9 @@
-#profile a {
+#profile-page a {
   text-decoration: none;
+}
+
+#all-tab-content {
+  min-height: 70vh;
 }
 
 .fa-pencil-alt {
@@ -10,7 +14,7 @@
   color: $buddy-dark-blue;
 }
 
-#profile li {
+#profile-page li {
   list-style: none;
 }
 
@@ -30,3 +34,4 @@
     background-color: $buddy-dark-blue;
   }
 }
+
