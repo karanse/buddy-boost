@@ -15,6 +15,7 @@ class PagesController < ApplicationController
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
                     .where(status: 'in progres')
     # @match = Match.find(params[:id]) >> did not work
+    @match = Match.new
   end
 
   def match

@@ -11,11 +11,14 @@ Rails.application.routes.draw do
   get '/profile', to: "pages#profile"
 
   resources :goals, only: [:create, :show, :index] do
-    resources :matches, only: [:new, :create]
+    resources :matches, only: [:new]
   end
-  resources :matches, only: [:show, :edit, :update, :index] do
+  resources :matches, only: [:show, :edit, :update, :index, :create] do
     resources :tasks, only: [:new, :create, :index]
   end
 
   resources :tasks, only: [:edit, :update]
+
+
+  # post '/api/matches/create', to: "matches#create"
 end

@@ -7,8 +7,11 @@
         <p><strong>Deadline: <%= goal.deadline %></strong></p>
       </div>
       <div>
-        <a href="#" class="btn btn-success mb-3 match-button" data-action="click->match-goal#match">Match me!</a>
+      <%= simple_form_for @match, data: {controller: "match-goal", action: "submit->match-goal#match" } do |f| %>
+        <%= f.input :goal, as: :hidden, input_html: { value: goal.id } %>
+        <%= f.submit "Match me!", class: "btn btn-success mb-3 match-button" %>
         <a class="mx-2 btn-outline-primary"><%= link_to "Edit goal", goals_path  %></a>
+      <% end %>
       </div>
     </div>
   </div>
