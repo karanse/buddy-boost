@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_204121) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "description"
-    t.string "status"
+    t.string "status", default: "f"
     t.bigint "match_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false

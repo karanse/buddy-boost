@@ -2,7 +2,7 @@
   <h2 class="mt-5 mb-3 d-flex justify-content-center text-start">Log in </h2>
   <div class="d-flex justify-content-center text-start">
 
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form", "data-turbo": "false" }) do |f| %>
       <div class="blue-background">
         <div class="form-inputs">
           <%= f.input :email,
