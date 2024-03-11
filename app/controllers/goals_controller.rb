@@ -24,7 +24,6 @@ class GoalsController < ApplicationController
     find_goal()
     @goal.update(goal_params)
     redirect_to profile_path
-    # code
   end
 
 private
