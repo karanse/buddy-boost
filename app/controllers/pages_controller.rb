@@ -13,8 +13,16 @@ class PagesController < ApplicationController
     @goal = Goal.new
     # for buddy dashboards overview - index
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
-                    .where(status: 'in progres')
+                    .where(status: 'in progress')
     # @match = Match.find(params[:id]) >> did not work
+  end
+
+  def my_achievements
+    @completed_goals = Goal.where(user: current_user, status: "completed")
+    @canceled_goals = Goal.where(user: current_user, status: "canceled")
+    all_matches = current_user.matches
+    @matched_buddies_total = all_matches.map { |match| match.matched_goal.user }.uniq.count
+
   end
 
   private

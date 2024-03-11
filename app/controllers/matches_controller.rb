@@ -13,6 +13,8 @@ class MatchesController < ApplicationController
     @my_tasks = Task.where(user: current_user).where(match: @match)
     @buddy_tasks = Task.where(match: @match).reject { |task| task.user == current_user }
     @task = Task.new
+    @chatroom = @match.chatroom
+    @chat = Chatroom.new
   end
 
   def edit
