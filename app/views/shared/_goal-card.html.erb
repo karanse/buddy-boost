@@ -2,10 +2,8 @@
   <div class="card w-100 mb-2 white-background-shadow" id="goal-card">
     <div class="card-body d-flex justify-content-between">
       <div class="pe-3">
-        <h5 class="card-title"><%="#{goal.category.capitalize} goal" %> <span id="edit-goal-pen" class="align-self-end">
-          <%= link_to goals_path do %>
-            <i class="fas fa-pencil-alt"></i>
-          <% end %> </span>
+        <h5 class="card-title d-flex align-items-center"><%="#{goal.category.capitalize} goal" %>
+          <%= render "shared/edit-goal-modal", goal: goal %>
         </h5>
         <p class="card-text"><%= goal.description %></p>
         <p><strong>Deadline: <%= goal.deadline %></strong></p>

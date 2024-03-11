@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
 
   resources :tasks, only: [:edit, :update]
+  resources :goals, only: [:edit, :update]
 end
