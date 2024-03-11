@@ -25,6 +25,8 @@ class MatchesController < ApplicationController
     find_match
     @match.update(match_params)
     redirect_to profile_path(current_user)
+
+    @match.set_status(status: params[:match][:status])
   end
 
   def create
@@ -36,22 +38,19 @@ class MatchesController < ApplicationController
     matched_goal_id = Goal.where(status: 'not started')
                           .where.not(user: current_user)
                           .find_by(category: clicked_goal_category).id
+
     # create the match as we now goal and matched_goal
     @match = Match.new
     @match.goal = Goal.find(params[:match][:goal].to_i)
     @goal = @match.goal
-    # @goal = @match.goal
     @match.matched_goal = Goal.find(matched_goal_id)
+
     # Create a new record in the matches table
     # Respond with appropriate JSON data
-
     respond_to do |format|
       if @match.save
-        format.html {redirect_to profile_path}
+        format.html { redirect_to profile_path }
         format.json
-      # else
-      #   format.html {redirect_to profile_path}
-      #   format.json
       end
     end
 

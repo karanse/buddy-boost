@@ -10,4 +10,8 @@ class Match < ApplicationRecord
     id = matched_goal.user.id == current_user.id ? goal.id : matched_goal.id
     Goal.find(id)
   end
+
+  def set_status(status)
+    self.update(status: status)
+  end
 end
