@@ -1,7 +1,7 @@
 <div class="row justify-content-center" >
 
   <div class="my-5 text-center">
-    <h2><%= "Buddy Dashboard of #{@match.goal.user.first_name.capitalize} & #{@match.matched_goal.user.first_name.capitalize} 🚀" %></h2>
+    <h2><%= "Buddy Dashboard of #{current_user.first_name.capitalize} & #{@match.other(current_user).user.first_name.capitalize} 🚀" %></h2>
   </div>
 
   <%# container for all dashboard content %>
@@ -60,30 +60,69 @@
     <%# second column: buddy 1  %>
 
     <div class="col-4 gray-background mx-3">
-      <p><strong><%= @match.goal.user.first_name.capitalize %>:</strong> <%= @match.goal.description %></p>
+      <p><strong><%= current_user.first_name.capitalize %>'s Goal:</strong> <%= @match.goal.description %></p>
       <div class="alert alert-primary">Some progress stats X%</div>
-       <div>
+      <div>
         <%# tasks#index placeholder - please put inside this div  %>
-        <%= link_to "See your tasks", match_tasks_path(@match) %>
+        <%# second column: buddy 1 tasks %>
+          <p><strong><%= current_user.first_name.capitalize %>'s</strong> Tasks</p>
+            <% @my_tasks.each do |task| %>
+              <ul class="list-group">
+                <%= render "shared/task-list", task: task %>
+              </ul>
+            <% end %>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn mt-2 w-100 white-background-shadow-blue-hover newgoal" data-toggle="modal" data-target="#newGoalModalCenter">
+            <i class="fa-solid fa-plus"></i> Create new task
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Create new task</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <%= render "shared/new-task" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%# </div> %>
       </div>
       <div>
-        <%# tasks#new placeholder - please put inside div  %>
+
       </div>
     </div>
 
     <%# third column: buddy 2  %>
 
     <div class="col-4 gray-background">
-      <p><strong><%= @match.matched_goal.user.first_name.capitalize %>:</strong> <%= @match.matched_goal.description %></p>
+      <p><strong><%= @match.other(current_user).user.first_name.capitalize %>:</strong> <%= @match.other(current_user).description %></p>
       <div class="alert alert-primary">Some progress stats X%</div>
        <div>
           <%# tasks#index placeholder - please put inside this div  %>
-          <%= link_to "See your tasks", match_tasks_path(@match) %>
+          <%# third column: buddy 2 tasks  %>
+
+            <p><strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> Tasks</p>
+            <div>
+              <% @buddy_tasks.each do |task| %>
+                <ul class="list-group">
+                  <%= render "shared/task-list", task: task %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
       </div>
       <div>
         <%# tasks#new placeholder - please put inside div  %>
       </div>
-    </div>
+
 
   </div>
 </div>

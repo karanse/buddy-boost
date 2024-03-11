@@ -1,4 +1,6 @@
 require 'date'
+require 'faker'
+require "open-uri"
 
 puts "Cleaning the db.."
 Task.destroy_all
@@ -113,7 +115,6 @@ tasks = [
   'Stay balanced and prioritize well-being.'
 ]
 
-
 user1 = User.create!(first_name: 'sema',
                      last_name: 'karan',
                      email: 'hello.sema@gmail.com',
@@ -122,10 +123,8 @@ user1 = User.create!(first_name: 'sema',
 
 # Select a random category
 random_category = categories.keys.sample
-
 # Retrieve the hash of subcategories and descriptions corresponding to the random category
 subcategories_with_descriptions = categories[random_category]
-
 # Select a random subcategory and its description from the hash
 random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
 
@@ -135,7 +134,8 @@ goal1 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: false,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -144,7 +144,8 @@ goal2 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: true,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                      )
 goal3 = Goal.new(category: random_category,
                       sub_category: random_subcategory,
@@ -152,7 +153,8 @@ goal3 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: false,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                       )
 goal4 = Goal.new(category: random_category,
                         sub_category: random_subcategory,
@@ -160,7 +162,8 @@ goal4 = Goal.new(category: random_category,
                         offline: false,
                         online: true,
                         matched: true,
-                        deadline: Date.today + rand(1..365)
+                        deadline: Date.today + rand(1..365),
+                        status: "completed"
                         )
 
 goal1.user = user1
@@ -190,7 +193,8 @@ goal1 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: false,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -199,7 +203,8 @@ goal2 = Goal.new(category: random_category,
                      offline: false,
                      online: true,
                      matched: true,
-                     deadline: Date.today + rand(1..365)
+                     deadline: Date.today + rand(1..365),
+                     status: "not started"
                      )
 
 goal1.user = user2
@@ -225,7 +230,8 @@ goal1 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: false,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -234,7 +240,8 @@ goal2 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: true,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                       )
 goal3 = Goal.new(category: random_category,
                         sub_category: random_subcategory,
@@ -242,7 +249,8 @@ goal3 = Goal.new(category: random_category,
                         offline: false,
                         online: true,
                         matched: true,
-                        deadline: Date.today + rand(1..365)
+                        deadline: Date.today + rand(1..365),
+                        status: "completed"
                         )
 
 goal1.user = user3
@@ -270,7 +278,8 @@ goal1 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: false,
-                      deadline: Date.today + rand(1..365)
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                     )
 
 goal2 = Goal.new(category: random_category,
@@ -279,8 +288,8 @@ goal2 = Goal.new(category: random_category,
                       offline: false,
                       online: true,
                       matched: true,
-                      deadline: Date.today + rand(1..365)
-
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
                       )
 
 goal1.user = user4
@@ -297,15 +306,16 @@ match1.goal = Goal.where(user_id: user1.id, matched: true).first
 puts "user1 added to match1"
 match1.matched_goal = Goal.find_by(user_id: user2.id, matched: true)
 puts "user2 added to match1"
+
 match1.save
 
 match11 = Match.new(status: "in progres")
 match11.goal = Goal.where(user_id: user1.id, matched: true).last
 puts "user1 added to match1"
 match11.matched_goal = Goal.where(user_id: user3.id, matched: true).last
+match11.status = 'completed'
 puts "user2 added to match1"
 match11.save
-
 
 puts "match1 is created"
 
@@ -395,4 +405,83 @@ task6.save
 # task12.save
 
 puts "tasks created"
+
+# add 1 user and 1 goal for every category
+puts "1 user 1 goal per category is creating..."
+categories.keys.each do |goal|
+  first_name = Faker::Name.first_name
+  user1 = User.create!(first_name: first_name,
+                      last_name: Faker::Name.last_name,
+                      email: "hello.#{first_name}@gmail.com",
+                      password: "1234test"
+                     )
+
+  subcategories_with_descriptions = categories[goal]
+  random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
+  goal1 = Goal.new(category: goal,
+                      sub_category: random_subcategory,
+                      description: random_description,
+                      offline: false,
+                      online: true,
+                      matched: false,
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
+                      )
+  goal1.user = user1
+  goal1.save
+
+  first_name = Faker::Name.first_name
+  user2 = User.create!(first_name: first_name,
+                      last_name: Faker::Name.last_name,
+                      email: "hello.#{first_name}@gmail.com",
+                      password: "1234test"
+                     )
+
+  subcategories_with_descriptions = categories[goal]
+  random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
+  goal2 = Goal.new(category: goal,
+                      sub_category: random_subcategory,
+                      description: random_description,
+                      offline: false,
+                      online: true,
+                      matched: false,
+                      deadline: Date.today + rand(1..365),
+                      status: "not started"
+                      )
+  goal2.user = user2
+  goal1.save
+
+end
+
+puts "1 user 1 goal per category created!"
+
+# Adding random users and unmatched goals for testing match functionality
+puts "raandom new users and goals creating..."
+
+10.times do
+  first_name = Faker::Name.first_name
+  user = User.create!(first_name: first_name,
+                      last_name: Faker::Name.last_name,
+                      email: "hello.#{first_name}@gmail.com",
+                      password: "1234test"
+                     )
+  4.times do
+    random_category = categories.keys.sample
+    subcategories_with_descriptions = categories[random_category]
+    random_subcategory, random_description = subcategories_with_descriptions.to_a.sample
+    goal = Goal.new(category: random_category,
+                   sub_category: random_subcategory,
+                   description: random_description,
+                   offline: false,
+                   online: true,
+                   matched: false,
+                   deadline: Date.today + rand(1..365),
+                   status: "not started"
+                   )
+    goal.user = user
+    goal.save
+  end
+end
+
+puts "10 users and 4 goals for each created!"
 puts "Seeding is done!"
