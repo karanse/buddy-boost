@@ -26,6 +26,12 @@ class GoalsController < ApplicationController
     redirect_to profile_path
   end
 
+  def destroy
+    find_goal()
+    @goal.destroy
+    redirect_to profile_path, status: :see_other
+  end
+
 private
 
   def find_goal

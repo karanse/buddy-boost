@@ -19,4 +19,6 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:edit, :update]
   resources :goals, only: [:edit, :update]
+  resources :goals, only: :destroy, as: :delete_goal
+
 end
