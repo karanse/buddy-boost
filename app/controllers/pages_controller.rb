@@ -14,7 +14,12 @@ class PagesController < ApplicationController
     # for buddy dashboards overview - index
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
                     .where(status: 'in progress')
-    # @match = Match.find(params[:id]) >> did not work
+    @match = Match.new
+  end
+
+  def match
+    # user1 = current_user
+
   end
 
   def my_achievements
