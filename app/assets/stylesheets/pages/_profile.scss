@@ -47,3 +47,13 @@
     color: $buddy-dark-blue;
   }
 }
+
+.trash-icon {
+  color: rgba(212, 213, 215, 0.9);
+  width: 20px;
+  padding-left: 5px;
+}
+
+.trash-icon:hover {
+  color: $buddy-dark-blue;
+}
