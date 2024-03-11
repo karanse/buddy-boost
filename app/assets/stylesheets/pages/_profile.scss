@@ -35,10 +35,13 @@
   }
 }
 
-#edit-goal-pen {
-  margin-left: 10px;
+.btn-edit-goal {
+  padding: 0;
+  margin-left: 5px;
+
   & .fa-pencil-alt {
     color: rgba(212, 213, 215, 0.9);
+    font-size: smaller;
   }
   & .fa-pencil-alt:hover {
     color: $buddy-dark-blue;
