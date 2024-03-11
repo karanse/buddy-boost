@@ -301,7 +301,7 @@ puts "user4 is created"
 
 puts "creating match data..."
 
-match1 = Match.new(status: "in progres")
+match1 = Match.new(status: "in progress")
 match1.goal = Goal.where(user_id: user1.id, matched: true).first
 puts "user1 added to match1"
 match1.matched_goal = Goal.find_by(user_id: user2.id, matched: true)
@@ -309,7 +309,7 @@ puts "user2 added to match1"
 
 match1.save
 
-match11 = Match.new(status: "in progres")
+match11 = Match.new(status: "in progress")
 match11.goal = Goal.where(user_id: user1.id, matched: true).last
 puts "user1 added to match1"
 match11.matched_goal = Goal.where(user_id: user3.id, matched: true).last
