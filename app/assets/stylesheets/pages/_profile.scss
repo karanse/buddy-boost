@@ -1,5 +1,9 @@
-#profile a {
+#profile-page a {
   text-decoration: none;
+}
+
+#all-tab-content {
+  min-height: 70vh;
 }
 
 .fa-pencil-alt {
@@ -10,7 +14,7 @@
   color: $buddy-dark-blue;
 }
 
-#profile li {
+#profile-page li {
   list-style: none;
 }
 
@@ -28,5 +32,15 @@
   color: $buddy-dark-blue;
   &:hover {
     background-color: $buddy-dark-blue;
+  }
+}
+
+#edit-goal-pen {
+  margin-left: 10px;
+  & .fa-pencil-alt {
+    color: rgba(212, 213, 215, 0.9);
+  }
+  & .fa-pencil-alt:hover {
+    color: $buddy-dark-blue;
   }
 }
