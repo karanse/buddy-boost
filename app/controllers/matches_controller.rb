@@ -4,7 +4,7 @@ class MatchesController < ApplicationController
   def index
     # matches only belongs to the current logged in user
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
-                    .where(status: 'in progres')
+                    .where(status: 'in progress')
   end
 
   def show
@@ -32,10 +32,10 @@ class MatchesController < ApplicationController
 
     # Find the first unmtached goal with the same category to make the match
     matched_goal_id = Goal.where(status: 'not started')
-                          .where.not(id: params[:match][:goal].to_i)
+                          .where.not(user: current_user)
                           .find_by(category: clicked_goal_category).id
     # create the match as we now goal and matched_goal
-    @match = Match.new(match_params)
+    @match = Match.new
     @match.goal = Goal.find(params[:match][:goal].to_i)
     @goal = @match.goal
     # @goal = @match.goal
@@ -45,11 +45,11 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @match.save
-        format.html { redirect_to profile_path }
-        format.json
-      else
         format.html {redirect_to profile_path}
         format.json
+      # else
+      #   format.html {redirect_to profile_path}
+      #   format.json
       end
     end
 
