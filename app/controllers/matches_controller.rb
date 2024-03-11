@@ -26,7 +26,17 @@ class MatchesController < ApplicationController
     @match.update(match_params)
     redirect_to profile_path(current_user)
 
-    @match.set_status(status: params[:match][:status])
+    # update match status based on user selection (completed or cancelled)
+    @match.set_status(params[:match][:status], params[:match][:cancel_reason])
+
+    # update goal status depending on match ending status
+    if params[:match][:status] == 'completed'
+      @match.goal.set_status('completed')
+      @match.matched_goal.set_status('completed')
+    else
+      @match.goal.set_status('not started')
+      @match.matched_goal.set_status('not started')
+    end
   end
 
   def create
@@ -52,6 +62,10 @@ class MatchesController < ApplicationController
         format.html { redirect_to profile_path }
         format.json
       end
+    @match.goal.set_status("in progress")
+    @match.goal.set_matched
+    @match.matched_goal.set_status("in progress")
+    @match.matched_goal.set_matched
     end
 
 

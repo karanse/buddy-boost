@@ -12,13 +12,21 @@ class Goal < ApplicationRecord
     'Goal Setting and Achievement' => ['SMART Goals', 'Action Planning', 'Progress Monitoring', 'Motivation Techniques', 'Celebrating Successes']
   }
 
-  GOAL_STATUSES = ["not started", "in progress", "completed", "canceled"]
+  GOAL_STATUSES = ["not started", "in progress", "completed", "cancelled"]
 
   belongs_to :user
   has_one :match
 
   has_many :tasks, through: :matches
   validates :category, :description, presence: true
+
+  # instance method to update matched=true when the goal is matched
+  def set_matched
+    self.update(matched: true)
+  end
+
+  # instance method to update goal status based on match status
+  def set_status(status)
+    self.update(status: status)
+  end
 end
-
-

@@ -11,7 +11,7 @@ class Match < ApplicationRecord
     Goal.find(id)
   end
 
-  def set_status(status)
-    self.update(status: status)
+  def set_status(status, cancel_reason)
+    self.update(status: status, cancel_reason: cancel_reason)
   end
 end
