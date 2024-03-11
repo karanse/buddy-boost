@@ -10,7 +10,7 @@ export default class extends Controller {
   match(event) {
     console.log("Match me button clicked");
     event.preventDefault()
-    console.log(this.element)
+    console.log(this.element.action)
      // Access the value of data-your-controller-goal-id-value attribute
     //  console.log(this.element.getElementById("match_goal"))
     // Send an AJAX request to Rails backend to perform the matching logic

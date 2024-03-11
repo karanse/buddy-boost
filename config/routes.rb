@@ -10,9 +10,8 @@ Rails.application.routes.draw do
   get '/legal', to: "pages#legal"
   get '/profile', to: "pages#profile"
 
-  resources :goals, only: [:create, :show, :index] do
-    resources :matches, only: [:new]
-  end
+  resources :goals, only: [:create, :show, :index]
+
   resources :matches, only: [:show, :edit, :update, :index, :create] do
     resources :tasks, only: [:new, :create, :index]
   end

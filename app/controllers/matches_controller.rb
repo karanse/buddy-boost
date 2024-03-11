@@ -37,10 +37,12 @@ class MatchesController < ApplicationController
     # create the match as we now goal and matched_goal
     @match = Match.new(match_params)
     @match.goal = Goal.find(params[:match][:goal].to_i)
+    @goal = @match.goal
     # @goal = @match.goal
     @match.matched_goal = Goal.find(matched_goal_id)
     # Create a new record in the matches table
     # Respond with appropriate JSON data
+
     respond_to do |format|
       if @match.save
         format.html { redirect_to profile_path }
@@ -50,6 +52,7 @@ class MatchesController < ApplicationController
         format.json
       end
     end
+
 
 
   end
