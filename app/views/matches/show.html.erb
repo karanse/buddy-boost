@@ -30,9 +30,14 @@
       <div class="d-flex flex-column w-100">
         <%# if chatroom of the match is nil, then create a new chatroom %>
         <% if @chatroom.nil?  %>
-          <% chatrooms.create %>
+          <%= simple_form_for @chat, url: match_chatrooms_path(@match) do |f| %>
+            <%= f.input :match_id, as: :hidden, input_html: { value: @match.id } %>
+            <%= f.input :sender_id, as: :hidden, input_html: { value: current_user.id } %>
+            <%= f.input :receiver_id, as: :hidden, input_html: { value: @match.matched_goal.user.id } %>
+            <%= f.button :submit, "Chat", class: "btn white-background-shadow-blue-hover mb-2" %>
+          <% end %>
         <% else %>
-         <%= link_to "Chat", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2" %>
+          <%= link_to "Chat", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2" %>
         <% end %>
 
         <%= link_to "Complete goal", "#", class: "btn white-background-shadow-blue-hover" %>

@@ -16,6 +16,7 @@
 </div>
 
 <%= simple_form_for [@chatroom, @message],
+  url: match_chatroom_messages_path(@chatroom.match, @chatroom),
   html: {class: "d-flex"} do |f|
 %>
   <%= f.input :content,
@@ -25,3 +26,4 @@
   %>
   <%= f.submit "Send", class: "btn btn-primary mb-3" %>
 <% end %>
+
