@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :tasks
   has_many :matches, through: :goals
   validates :first_name, :last_name, presence: true
+  has_many :sender_chatrooms, class_name: 'Chatroom', foreign_key: 'sender_id'
+  has_many :receiver_chatrooms, class_name: 'Chatroom', foreign_key: 'receiver_id'
 end

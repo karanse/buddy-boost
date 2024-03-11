@@ -16,8 +16,12 @@ Rails.application.routes.draw do
   end
   resources :matches, only: [:show, :edit, :update, :index] do
     resources :tasks, only: [:new, :create, :index]
+    resources :chatrooms, only: [:show, :create] do
+      resources :messages, only: :create
+    end
   end
 
   resources :tasks, only: [:edit, :update]
   resources :goals, only: [:edit, :update]
+
 end
