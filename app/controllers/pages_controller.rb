@@ -17,6 +17,14 @@ class PagesController < ApplicationController
     # @match = Match.find(params[:id]) >> did not work
   end
 
+  def my_achievements
+    @completed_goals = Goal.where(user: current_user, status: "completed")
+    @canceled_goals = Goal.where(user: current_user, status: "canceled")
+    all_matches = current_user.matches
+    @matched_buddies_total = all_matches.map { |match| match.matched_goal.user }.uniq.count
+
+  end
+
   private
 
   def goal_params
