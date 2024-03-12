@@ -1,27 +1,30 @@
-<div class="container chatroom"
-  data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+<h2 style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100px;">
+  Chat with your buddy!
+</h2>
 
-  <h2 style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100px;">
-    Chat with your buddy!
-  </h2>
+<div class="white-background-shadow" >
+  <div class="container chatroom" style=""
+    data-controller="chatroom-subscription"
+    data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
 
-<div class="messages" data-chatroom-subscription-target="messages">
-  <% @chatroom.messages.each do |message| %>
-    <%= render "messages/message", message: message %>
+
+  <div class="messages" data-chatroom-subscription-target="messages">
+    <% @chatroom.messages.each do |message| %>
+        <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
+
+  </div>
+
+  <%= simple_form_for [@chatroom, @message],
+    url: match_chatroom_messages_path(@chatroom.match, @chatroom),
+    html: { data: { controller: "chatroom-subscription", action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
+  %>
+    <%= f.input :content,
+      label: false,
+      placeholder: "What do you want to say? #{@chatroom.name}",
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
   <% end %>
 </div>
-
-</div>
-
-<%= simple_form_for [@chatroom, @message],
-  url: match_chatroom_messages_path(@chatroom.match, @chatroom),
-  html: { data: { controller: "chatroom-subscription", action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
-%>
-  <%= f.input :content,
-    label: false,
-    placeholder: "What do you want to say? #{@chatroom.name}",
-    wrapper_html: {class: "flex-grow-1"}
-  %>
-  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-<% end %>
