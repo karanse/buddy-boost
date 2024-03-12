@@ -15,18 +15,12 @@ class PagesController < ApplicationController
     @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id))
                     .where(status: 'in progress')
     @match = Match.new
-  end
 
-  def match
-    # user1 = current_user
-
-  end
-
-  def my_achievements
     @completed_goals = Goal.where(user: current_user, status: "completed")
     @canceled_goals = Goal.where(user: current_user, status: "canceled")
-    all_matches = current_user.matches
-    @matched_buddies_total = all_matches.map { |match| match.matched_goal.user }.uniq.count
+    all_goals = current_user.goals.where(status: "in progress", matched: true)
+    @matched_buddies_total = all_goals.map { |goal| goal.match.matched_goal.user}.uniq.count
+    # @matched_buddies_total = all_goals.map { |goal| goal.match}.count
     @sign_in_log = SignInLog.where(user: current_user)
     @last_seven_days = []
     for i in (0..30).to_a
@@ -35,6 +29,9 @@ class PagesController < ApplicationController
         signed_in: SignInLog.where(user: current_user, created_at: ((Date.today-i).beginning_of_day..(Date.today-i).end_of_day)).exists?
       }
     end
+  end
+
+  def match
   end
 
   private

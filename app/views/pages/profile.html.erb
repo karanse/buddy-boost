@@ -27,8 +27,18 @@
           <%# <p>Help your buddy and yourself - the sky is the limit, you can do this! 💪</p> %>
             <div class="d-flex justify-content-between align-items-start">
               <div class="list-card-container list-index">
-                <% @matches.each do |match| %>
-                  <%= render "shared/match-card", match: match %>
+                <% if @matches =! 0 %>
+                  <% @matches.each do |match| %>
+                    <%= render "shared/match-card", match: match %>
+                  <% end %>
+                <% else %>
+                  <h5 class="my-4">No matches yet... your buddy is a few clicks away!</h5>
+                  <ol id="no-matches-text" class="">
+                    <li>Go to the goals tab</li>
+                    <li>Create a goal (if you haven't done already)</li>
+                    <li>Click the match button</li>
+                    <li>Reach your goals together! 🎉</li>
+                  </ol>
                 <% end %>
             </div>
           </div>
@@ -55,13 +65,13 @@
 
       </div>
 
-      <%# -------------- ACHIEVEMENTS (EMPTY) --------------  %>
+      <%# -------------- ACHIEVEMENTS --------------  %>
       <div class="tab-pane fade" id="achievements" role="tabpanel" aria-labelledby="achievements-tab">
 
         <div class="my-3 gray-background">
-          <h3>Your achievements</h3>
-          <p>Check out your achievements here. Celebrate success! 🎉</p>
+          <%= render "achievements" %>
         </div>
+
       </div>
 
     </div>
