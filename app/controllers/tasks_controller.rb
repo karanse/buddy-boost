@@ -8,6 +8,19 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  # def show
+  #   @match = Match.find(params[:match_id])
+  #   @my_tasks = Task.where(user: current_user).where(match_id: params[:match_id])
+  #   @buddy_tasks = Task.where(match_id: params[:match_id]).reject { |task| task.user == current_user }
+  #   @task = Task.new
+
+  #   # Calculate progress percentage - current user
+  #   my_total_tasks = @my_tasks.count
+  #   my_completed_tasks = @my_tasks.where(status: true).count
+  #   # @my_progress = my_total_tasks > 0 ? (my_completed_tasks.to_f / my_total_tasks) * 100 : 0
+  #   @my_progress = 100
+  # end
+
   def create
     @match = Match.find(params[:match_id]) # Find the match associated with the task
     @task = Task.new(task_params)
