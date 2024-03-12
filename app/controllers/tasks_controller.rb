@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to match_path(@match)
     else
-      render :new, status: :unprocessable_entity
+      render match_path(@match), status: :unprocessable_entity
     end
   end
 
@@ -28,7 +28,7 @@ class TasksController < ApplicationController
     @task = find_task()
     if @task.update(description: task_params[:status])
 
-      redirect_to match_tasks_path
+      redirect_to match_path(@match)
     else
       render json: { errors: user.errors }, status: 500
     end
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
     find_task()
     @task.destroy
     @match = Match.find(params[:match_id])
-    redirect_to match_path(@match), status: :see_other
+    redirect_to match_tasks_path(@match), status: :see_other
   end
 
   private
@@ -47,6 +47,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:status)
+    params.require(:task).permit(:description, :status)
   end
 end
