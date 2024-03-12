@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root "pages#home"
   get '/legal', to: "pages#legal"
   get '/profile', to: "pages#profile"
-  get  '/my-achievements', to: "pages#my_achievements"
+  # get  '/my-achievements', to: "pages#my_achievements"
 
   resources :goals, only: [:create, :show, :index]
 
