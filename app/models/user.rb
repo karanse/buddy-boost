@@ -9,5 +9,6 @@ class User < ApplicationRecord
   has_many :goals
   has_many :tasks
   has_many :matches, through: :goals
+  has_many :sign_in_logs
   validates :first_name, :last_name, presence: true
 end

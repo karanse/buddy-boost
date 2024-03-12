@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
-  MATCH_STATUSES = ["in progress", "completed", "cancelled"]
+  MATCH_STATUSES = ["in progress", "completed", "canceled"]
 
   belongs_to :goal
   belongs_to :matched_goal, class_name: 'Goal'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_08_204121) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_11_162800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_204121) do
     t.index ["matched_goal_id"], name: "index_matches_on_matched_goal_id"
   end
 
+  create_table "sign_in_logs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sign_in_logs_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.text "description"
     t.string "status", default: "f"
@@ -98,6 +105,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_204121) do
   add_foreign_key "goals", "users"
   add_foreign_key "matches", "goals"
   add_foreign_key "matches", "goals", column: "matched_goal_id"
+  add_foreign_key "sign_in_logs", "users"
   add_foreign_key "tasks", "matches"
   add_foreign_key "tasks", "users"
 end

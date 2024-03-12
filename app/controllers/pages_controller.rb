@@ -22,7 +22,14 @@ class PagesController < ApplicationController
     @canceled_goals = Goal.where(user: current_user, status: "canceled")
     all_matches = current_user.matches
     @matched_buddies_total = all_matches.map { |match| match.matched_goal.user }.uniq.count
-
+    @sign_in_log = SignInLog.where(user: current_user)
+    @last_seven_days = []
+    for i in (0..30).to_a
+      @last_seven_days << {
+        date: "#{(Date.today-i).to_s}",
+        signed_in: SignInLog.where(user: current_user, created_at: ((Date.today-i).beginning_of_day..(Date.today-i).end_of_day)).exists?
+      }
+    end
   end
 
   private
