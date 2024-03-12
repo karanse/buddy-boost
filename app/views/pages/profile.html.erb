@@ -27,7 +27,7 @@
           <%# <p>Help your buddy and yourself - the sky is the limit, you can do this! 💪</p> %>
             <div class="d-flex justify-content-between align-items-start">
               <div class="list-card-container list-index">
-                <% if @matches =! 0 %>
+                <% if @matches.empty? == false %>
                   <% @matches.each do |match| %>
                     <%= render "shared/match-card", match: match %>
                   <% end %>
