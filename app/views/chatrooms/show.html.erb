@@ -1,29 +1,35 @@
-<div class="container chatroom">
-  <h1>#<%= @chatroom.name %></h1>
+<h2 style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100px;">
+  Chat with your buddy!🗨️
+</h2>
 
-  <div class="messages">
+<div class="white-background-shadow" style="background-color: white; width:1000px; margin: 0 auto; background-color: white" >
+  <div class="container chatroom" style=""
+    data-controller="chatroom-subscription"
+    data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+    data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
+
+
+  <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
-      <div id="message-<%= message.id %>">
-        <small>
-          <strong><%= message.user.first_name%></strong>
-          <strong><%= message.user.last_name%></strong>
-          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-        </small>
-        <p><%= message.content %></p>
+      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+        <%= render "messages/message", message: message %>
+        </div>
       </div>
     <% end %>
   </div>
-</div>
 
-<%= simple_form_for [@chatroom, @message],
-  url: match_chatroom_messages_path(@chatroom.match, @chatroom),
-  html: {class: "d-flex"} do |f|
-%>
-  <%= f.input :content,
-    label: false,
-    placeholder: "Message ##{@chatroom.name}",
-    wrapper_html: {class: "flex-grow-1"}
+  </div>
+
+  <%= simple_form_for [@chatroom, @message],
+    url: match_chatroom_messages_path(@chatroom.match, @chatroom),
+    html: { data: { controller: "chatroom-subscription", action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
   %>
-  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-<% end %>
-
+    <%= f.input :content,
+      label: false,
+      placeholder: "What do you want to say? #{@chatroom.name}",
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+  <% end %>
+</div>
