@@ -51,13 +51,15 @@
     Sign-ins for the last 30 days
   </h5>
 
-  <div style="width: 165px; flex-wrap: wrap; display: flex; justify-content:space-evenly;" class="p-1">
-    <% for day in @last_seven_days %>
-        <% if day[:signed_in]%>
-          <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #6587EB;"></div>
-        <% else %>
-          <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #BDD1FB;"></div>
-        <% end %>
-    <% end %>
+  <div class="d-flex justify-content-center">
+    <div id="signin-chart">
+      <% for day in @last_seven_days %>
+          <% if day[:signed_in]%>
+            <div style="margin-bottom: 20px; margin-right: 20px; height: 25px; width: 25px; background-color: #6587EB;"></div>
+          <% else %>
+            <div style="margin-bottom: 20px; margin-right: 20px; height: 25px; width: 25px; background-color: #BDD1FB;"></div>
+          <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
