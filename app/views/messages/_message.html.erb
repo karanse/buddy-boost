@@ -1,0 +1,8 @@
+<div id="message-<%= message.id %>" style="padding: 3px;" data-user-id="<%= message.user.id %>">
+  <small>
+    <strong><%= message.user.first_name %></strong>
+    <strong><%= message.user.last_name %></strong>
+    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+  </small>
+  <p><%= message.content %></p>
+</div>
