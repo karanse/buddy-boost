@@ -18,9 +18,11 @@ class GoalsController < ApplicationController
 
   def edit
     find_goal()
+    raise
   end
 
   def update
+    raise
     find_goal()
     @goal.update(goal_params)
     redirect_to profile_path

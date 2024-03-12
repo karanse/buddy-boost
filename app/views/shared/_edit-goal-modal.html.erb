@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-edit-goal align-self-end" data-toggle="modal" data-target="#editGoalModalCenter">
+<button type="button" class="btn btn-edit-goal align-self-end" data-toggle="modal" data-target="#editGoalModalCenter-<%=goal.id%>">
   <i class="fas fa-pencil-alt"></i>
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="editGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="editGoalModalCenter" aria-hidden="true">
+<div class="modal fade" id="editGoalModalCenter-<%=goal.id%>" tabindex="-1" role="dialog" aria-labelledby="editGoalModalCenter--<%=goal.id%>" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
