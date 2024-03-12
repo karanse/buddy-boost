@@ -24,7 +24,7 @@ class PagesController < ApplicationController
 
   def my_achievements
     @completed_goals = Goal.where(user: current_user, status: "completed")
-    @canceled_goals = Goal.where(user: current_user, status: "canceled")
+    @canceled_goals = Goal.where(user: current_user, status: "cancelled")
     all_goals = current_user.goals.where(status: "in progress", matched: true)
     @matched_buddies_total = all_goals.map { |goal| goal.match.matched_goal.user}.uniq.count
     # @matched_buddies_total = all_goals.map { |goal| goal.match}.count
