@@ -14,7 +14,7 @@
 
 <%= simple_form_for [@chatroom, @message],
   url: match_chatroom_messages_path(@chatroom.match, @chatroom),
-  html: {class: "d-flex"} do |f|
+  html: { data: { controller: "chatroom-subscription", action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
 %>
   <%= f.input :content,
     label: false,
