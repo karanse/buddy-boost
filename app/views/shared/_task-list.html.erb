@@ -1,12 +1,16 @@
 <li class="list-group-item d-flex justify-content-between align-items-center">
   <div class="custom-control custom-checkbox">
-    <form action="<%= task_path(task)%>" data-controller="check-task">
-      <input type="checkbox" class="custom-control-input" id="task_<%= task.id%>" data-action="change->check-task#toggle">
-      <label class="custom-control-label" for="item1"><small><%= task.description %></small></label>
-      <%# delete goal button  %>
-      <%= link_to delete_task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-        <i data-feather="trash-2" class="trash-icon"></i>
-      <% end %>
-    </form>
+    <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
+      <div class="d-flex align-items-top">
+        <small><%= f.input :status, as: :boolean, label: false, input_html: { onchange: 'this.form.submit()', id: "task_#{task.id}" } %></small>
+        <label class="form-check-label" for="task_<%= task.id %>">
+          <small><%= task.description %></small>
+        </label>
+        <%= link_to delete_task_path(task),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+          <i data-feather="trash-2" class="trash-icon"></i>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </li>

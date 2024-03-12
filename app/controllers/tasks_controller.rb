@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to match_path(@match)
     else
-      render match_path(@match), status: :unprocessable_entity
+      render new, status: :unprocessable_entity
     end
   end
 
@@ -25,13 +25,28 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = find_task()
-    if @task.update(description: task_params[:status])
+  #  raise
+    @task = Task.find(params[:id].to_i)
+    status = params[:task][:status] == "1"
+    @task.update(status: status)
+    redirect_to match_path(@task.match)
 
-      redirect_to match_path(@match)
-    else
-      render json: { errors: user.errors }, status: 500
-    end
+    # @task.update(status: params[:status])
+    # if @task.update(params[:status])
+    #   redirect_to match_path(@task.match)
+    # else
+    #   render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    # end
+
+    # respond_to do |format|
+    #   if  @task.update(params[:status])
+    #     format.html { redirect_to match_path(@task.match) }
+    #     format.json
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def destroy

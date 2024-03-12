@@ -6,26 +6,29 @@ export default class extends Controller {
     console.log("connected")
   }
 
+
   toggle(event) {
+
+    const status = event.target.checked; // Get the checked status of the checkbox
+
     console.log(event.target)
     console.log(this.element.action)
-    console.log(event.target.value)
+    console.log(status)
 
-
-    fetch(this.element.action, {
+    fetch(this.element.action, { // Send PATCH request to the correct route
       method: "PATCH",
       headers: {
+        "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: {task: {'status': event.target.value}}
+      body: JSON.stringify({ status: event.target.checked }) // Send the updated status
     })
     .then(response => response.json())
     .then((data) => {
-      console.log(data)
-      // window.location.reload()
+      console.log(data);
     })
-    .catch(error => {
-      console.error("Error:", error);
-    });
+    // .catch(error => {
+    //   console.error("Error:", error);
+    // });
   }
 }
