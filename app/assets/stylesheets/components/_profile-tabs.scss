@@ -1,0 +1,8 @@
+.fade:not(.show) {
+  display: none;
+}
+
+#myTab > li > button {
+  width: 100%;
+  text-align: start;
+}

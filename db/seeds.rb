@@ -301,7 +301,7 @@ puts "user4 is created"
 
 puts "creating match data..."
 
-match1 = Match.new(status: "in progres")
+match1 = Match.new(status: "in progress")
 match1.goal = Goal.where(user_id: user1.id, matched: true).first
 puts "user1 added to match1"
 match1.matched_goal = Goal.find_by(user_id: user2.id, matched: true)
@@ -309,7 +309,7 @@ puts "user2 added to match1"
 
 match1.save
 
-match11 = Match.new(status: "in progres")
+match11 = Match.new(status: "in progress")
 match11.goal = Goal.where(user_id: user1.id, matched: true).last
 puts "user1 added to match1"
 match11.matched_goal = Goal.where(user_id: user3.id, matched: true).last
@@ -326,22 +326,7 @@ match2.save
 
 puts "match2 is created"
 
-# match3 = Match.new(status: "completed")
-# match3.user = user3
-# match3.goal = user3.goals.first
-# match3.save
-
-# puts "match3 is created"
-
-# match4 = Match.new(status: "not started")
-# match4.user = user4
-# match4.goal = user4.goals.first
-# match4.save
-
-# puts "match4 is created"
-
 puts "creating sample tasks for each match..."
-
 
 sample_task = tasks.sample
 task1 = Task.new(description: sample_task, status: [true, false].sample)
@@ -378,37 +363,11 @@ task4.save
 task5.save
 task6.save
 
-# task7 = Task.new(description: sample_task, status: [true, false].sample)
-# task8 = Task.new(description: sample_task, status: [true, false].sample)
-# task9 = Task.new(description: sample_task, status: [true, false].sample)
-# task7.match = match3
-# task8.match = match3
-# task9.match = match3
-# task7.user = user3
-# task8.user = user3
-# task9.user = user3
-# task7.save
-# task8.save
-# task9.save
-
-# task10 = Task.new(description: sample_task, status: [true, false].sample)
-# task11 = Task.new(description: sample_task, status: [true, false].sample)
-# task12 = Task.new(description: sample_task, status: [true, false].sample)
-# task10.match = match4
-# task11.match = match4
-# task12.match = match4
-# task10.user = user4
-# task11.user = user4
-# task12.user = user4
-# task10.save
-# task11.save
-# task12.save
-
 puts "tasks created"
 
 # add 1 user and 1 goal for every category
 puts "1 user 1 goal per category is creating..."
-categories.keys.each do |goal|
+categories.each_key do |goal|
   first_name = Faker::Name.first_name
   user1 = User.create!(first_name: first_name,
                       last_name: Faker::Name.last_name,
@@ -450,7 +409,6 @@ categories.keys.each do |goal|
                       )
   goal2.user = user2
   goal1.save
-
 end
 
 puts "1 user 1 goal per category created!"
@@ -485,3 +443,6 @@ end
 
 puts "10 users and 4 goals for each created!"
 puts "Seeding is done!"
+
+Chatroom.create!(name: 'hello', sender_id: user1, receiver_id: user3)
+Chatroom.create!(name: 'hello2', sender_id: user1, receiver_id: user2)

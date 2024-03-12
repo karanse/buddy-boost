@@ -1,103 +1,70 @@
-<div class="row justify-content-center" id="profile">
+<div class="" id="profile-page">
 
-  <div class="col-md-7 mt-5">
-  <h2>Hi <%= current_user.first_name.capitalize %>! 👋</h2>
+  <div class="d-flex justify-content-center w-100 mt-3">
 
-<%# ---------------- 1. PROFILE ---------------- %>
+  <%# ---------------- 0. TAB MENU ---------------- %>
 
-    <div id="profile-information" class="w-100 my-3" >
-      <div>
-
-        <%# avatar  %>
-        <div id="profile-avatar" class="px-3 text-center">
-
-          <% if current_user.photo.attached? %>
-            <%= image_tag(current_user.photo, class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;") %>
-          <% else %>
-            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;" %>
-          <% end %>
-
-          <div id="add-avatar-button">
-            <%= link_to edit_user_registration_path do %>
-                <i class="fas fa-pencil-alt ms-3"></i>
-            <% end %>
-          </div>
-        </div>
-
-        <%# profile info block + edit options %>
-        <div id="profile-info" class="d-flex flex-column align-items-center">
-          <li class="d-flex justify-content-between">
-            <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
-          </li>
-          <li class="d-flex justify-content-between">
-            <div><%= current_user.email %></div>
-          </li>
-          <li class="mt-2 align-self-end" id="btn-new-password">
-            <%= link_to edit_user_registration_path do %>
-                <i class="fas fa-pencil-alt ms-3"></i>
-            <% end %>
-          </li>
-        </div>
-
-      </div>
+    <div class="align-self-start mb-5 me-4 mt-3 blue-background">
+      <h2 class="mb-4">Hi <%= current_user.first_name.capitalize %>! 👋</h2>
+      <%= render "shared/profile-tabs" %>
     </div>
 
-<%# ---------------- 2. DASHBOARDS ---------------- %>
+  <%# ---------------- ALL TAB CONTENT - start ---------------- %>
 
-    <div id="profile-dashboard-link" class="my-3 gray-background">
+    <div id="all-tab-content" class="w-75">
 
-      <h5>Dashboards</h5>
-      <p>Help your buddy and yourself - the sky is the limit, you can do this! 💪</p>
+      <%# ---------------- 1. PROFILE ---------------- %>
 
-        <div class="d-flex justify-content-between align-items-start">
-          <div class="list-card-container list-index">
-            <% @matches.each do |match| %>
-              <%= render "shared/match-card", match: match %>
-            <% end %>
-        </div>
+      <div class="tab-pane fade show active" id="profile-content" role="tabpanel" aria-labelledby="profile-tab">
+        <%= render "shared/profile-card" %>
       </div>
 
-    </div>
+      <%# ---------------- 2. DASHBOARDS ---------------- %>
 
-<%# ---------------- 3. GOALS ---------------- %>
-
-    <div id="profile-goals" class="my-3 gray-background">
-
-      <h5>Your goals</h5>
-      <p>You can create as many goals as you want but you can be matched only for 3 goals at a time. We want you to stay focused! 🚀</p>
-
-    <%# -- GOALS INDEX -- %>
-      <div class="">
-        <div class="list-card-container d-flex flex-column align-items-center list-index">
-            <% @goals.each do |goal| %>
-              <%= render "shared/goal-card", goal: goal %>
-            <% end %>
-        </div>
-      </div>
-
-      <!-- Button trigger modal -->
-      <button type="button" class="btn mt-2 w-100 white-background-shadow-blue-hover newgoal" data-toggle="modal" data-target="#newGoalModalCenter">
-        <i class="fa-solid fa-plus"></i> Create new goal
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Create new goal</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= render "shared/new-goal" %>
+      <div class="tab-pane fade" id="matches" role="tabpanel" aria-labelledby="match-tab">
+        <div id="profile-dashboard-link" class="my-3 gray-background match-card">
+          <%# <h3>Dashboards</h3> %>
+          <%# <p>Help your buddy and yourself - the sky is the limit, you can do this! 💪</p> %>
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="list-card-container list-index">
+                <% @matches.each do |match| %>
+                  <%= render "shared/match-card", match: match %>
+                <% end %>
             </div>
           </div>
         </div>
       </div>
 
+      <%# ---------------- 3. GOALS ---------------- %>
+
+      <div class="tab-pane fade" id="goals" role="tabpanel" aria-labelledby="goals-tab">
+
+        <div id="profile-goals" class="my-3 gray-background">
+          <%# <h3>Your goals</h3> %>
+
+          <%# -- GOALS INDEX -- %>
+          <div class="list-card-container d-flex flex-column align-items-center list-index">
+              <% @goals.each do |goal| %>
+                <%= render "shared/goal-card", goal: goal %>
+              <% end %>
+          </div>
+          <!-- ADD GOAL BUTTON & MODAL FORM TO ADD GOAL -->
+          <div>
+            <%= render "shared/add-goal-modal" %>
+          </div>
+
+      </div>
+
+      <%# -------------- ACHIEVEMENTS (EMPTY) --------------  %>
+      <div class="tab-pane fade" id="achievements" role="tabpanel" aria-labelledby="achievements-tab">
+
+        <div class="my-3 gray-background">
+          <h3>Your achievements</h3>
+          <p>Check out your achievements here. Celebrate success! 🎉</p>
+        </div>
+      </div>
 
     </div>
+    <%# ---------------- ALL TAB CONTENT - end ---------------- %>
   </div>
 </div>

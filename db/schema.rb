@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_11_162800) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_11_144009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_162800) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "sender_id", null: false
+    t.bigint "receiver_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "match_id"
+    t.index ["receiver_id"], name: "index_chatrooms_on_receiver_id"
+    t.index ["sender_id"], name: "index_chatrooms_on_sender_id"
+  end
+
   create_table "goals", force: :cascade do |t|
     t.string "category"
     t.text "description"
@@ -58,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_162800) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "in progress"
     t.bigint "goal_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,16 +79,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_162800) do
     t.index ["matched_goal_id"], name: "index_matches_on_matched_goal_id"
   end
 
-  create_table "sign_in_logs", force: :cascade do |t|
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sign_in_logs_on_user_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.text "description"
-    t.string "status", default: "f"
+    t.string "status"
     t.bigint "match_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -102,10 +116,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_162800) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chatrooms", "matches"
+  add_foreign_key "chatrooms", "users", column: "receiver_id"
+  add_foreign_key "chatrooms", "users", column: "sender_id"
   add_foreign_key "goals", "users"
   add_foreign_key "matches", "goals"
   add_foreign_key "matches", "goals", column: "matched_goal_id"
-  add_foreign_key "sign_in_logs", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "tasks", "matches"
   add_foreign_key "tasks", "users"
 end
