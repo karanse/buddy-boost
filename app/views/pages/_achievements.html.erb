@@ -1,36 +1,64 @@
-<h3>Your achievements</h3>
-<p>Check out your achievements here. Celebrate success! 🎉</p>
+<div class="white-background-shadow mb-4 p-3">
+  <h5 class="mb-3">
+    <i class="fa-solid fa-cake-candles achievements-icon"></i>
+    Your goal stats
+  </h5>
 
-<h5>Your goal stats</h5>
-
-<% if @completed_goals == 0 %>
-  <p> Completed goals: 0 - so far!</li>
-<% else  %>
-  <p>Completed goals: <%= @completed_goals.count %></p>
-<% end %>
-
-<% if @cancelled_goals == nil %>
-  <p>Dropped goals: none. Well done!</p>
-<% else %>
-  <p>Dropped goals: <%= @canceled_goals.count %></p>
-<% end %>
-
-<h5>Your buddy stats</h5>
-<% if @matched_buddies_total == nil %>
-  <p>Total buddies: 0. Create a goal, click the match button & find a buddy! </p>
-<% else %>
-  <p>Total buddies: <%= @matched_buddies_total %>. You're a true buddy wizard!</p>
-<% end %>
-
-<h5>Sign-ins for the last 30 days</h5>
-<div style="width: 165px; flex-wrap: wrap; display: flex; justify-content:space-evenly;">
-
-<%# code  %>
-  <% for day in @last_seven_days %>
-      <% if day[:signed_in]%>
-        <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #6587EB;"></div>
+  <div class="achievements-section">
+    <div class="blue-background achievements-card">
+      <% if @completed_goals == 0 || nil %>
+        <h5><strong>Completed goals:</strong> 0.</h5>
+        <p>... so far! Let's do this!</p>
+      <% else  %>
+        <h5><strong>Completed goals:</strong> <%= @completed_goals.count %>.</h5>
+        <p>You're on a roll!</p>
+      <% end %>
+    </div>
+    <div class="blue-background achievements-card">
+      <% if @cancelled_goals == 0 %>
+        <h5><strong>Dropped goals:</strong> 0.</h5>
+        <p>You're doing great - keep it going!</p>
       <% else %>
-        <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #BDD1FB;"></div>
+        <h5><strong>Dropped goals:</strong> <%= @canceled_goals.count %>.</h5>
+        <p>Let's keep the count as low as possible.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="white-background-shadow mb-4 p-3">
+  <h5 class="mb-3">
+    <i class="fa-solid fa-user achievements-icon"></i>
+    Your buddy stats
+  </h5>
+
+  <div class="achievements-section">
+    <div class="blue-background achievements-card">
+      <% if @matched_buddies_total == 0 %>
+        <h5><strong>Total buddies:</strong> 0.</h5>
+        <p>Create a goal, click the match button & find a buddy!</p>
+      <% else %>
+        <p><strong>Total buddies:</strong> <%= @matched_buddies_total %>. <br> <br> You're a true buddy wizard!</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<div class="white-background-shadow p-3">
+  <h5 class="mb-3">
+    <i class="fa-solid fa-calendar-days achievements-icon"></i>
+    Sign-ins for the last 30 days
+  </h5>
+
+  <div style="width: 165px; flex-wrap: wrap; display: flex; justify-content:space-evenly;" class="p-1">
+  <%# code  %>
+    <% for day in @last_seven_days %>
+        <% if day[:signed_in]%>
+          <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #6587EB;"></div>
+        <% else %>
+          <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #BDD1FB;"></div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
