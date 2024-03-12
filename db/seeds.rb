@@ -3,6 +3,8 @@ require 'faker'
 require "open-uri"
 
 puts "Cleaning the db.."
+Chatroom.destroy_all
+SignInLog.destroy_all
 Task.destroy_all
 Match.destroy_all
 Goal.destroy_all
