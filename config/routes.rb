@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tasks, only: [:edit, :update]
+  resources :tasks, only: [:edit, :update, :destroy]
   resources :goals, only: [:edit, :update]
   resources :goals, only: :destroy, as: :delete_goal
+  resources :tasks, only: :destroy, as: :delete_task
 
 end

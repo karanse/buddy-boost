@@ -2,9 +2,12 @@
   <div class="custom-control custom-checkbox">
     <form action="<%= task_path(task)%>" data-controller="check-task">
       <input type="checkbox" class="custom-control-input" id="item1" data-action="change->check-task#toggle">
-    </form>
 
     <label class="custom-control-label" for="item1"><small><%= task.description %></small></label>
-     <a class="btn btn-light btn-sm float-right delete-item"><i class="fas fa-times"></i></a>
+    <%# delete goal button  %>
+    <%= link_to delete_task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+      <i data-feather="trash-2" class="trash-icon"></i>
+    <% end %>
+    </form>
   </div>
 </li>

@@ -19,11 +19,11 @@ export default class extends Controller {
       },
       body: {task: {'status': event.target.value}}
     })
-    // .then(response => response.json())
-    // .then((data) => {
-    //   console.log(data)
-    //   // window.location.reload()
-    // })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data)
+      // window.location.reload()
+    })
     .catch(error => {
       console.error("Error:", error);
     });

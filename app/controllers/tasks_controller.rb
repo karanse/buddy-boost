@@ -21,12 +21,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-     @task = Task.find(params[:id])
+    find_task()
   end
 
   def update
-
-    @task = Task.find(params[:id])
+    @task = find_task()
     if @task.update(description: task_params[:status])
 
       redirect_to match_tasks_path
@@ -35,7 +34,17 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    find_task()
+    @task.destroy
+    @match = Match.find(params[:match_id])
+    redirect_to match_path(@match), status: :see_other
+  end
+
   private
+  def find_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:status)
