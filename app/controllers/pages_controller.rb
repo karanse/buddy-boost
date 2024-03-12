@@ -31,7 +31,6 @@ class PagesController < ApplicationController
   end
 
   def match
-    # user1 = current_user
   end
 
   private
