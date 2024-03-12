@@ -25,14 +25,19 @@ class TasksController < ApplicationController
   end
 
   def update
+
     @task = Task.find(params[:id])
-    @task.update(task_params)
-    redirect_to match_tasks_paths
+    if @task.update(description: task_params[:status])
+
+      redirect_to match_tasks_path
+    else
+      render json: { errors: user.errors }, status: 500
+    end
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:description, :status)
+    params.require(:task).permit(:status)
   end
 end
