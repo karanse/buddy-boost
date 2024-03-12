@@ -52,13 +52,12 @@
   </h5>
 
   <div style="width: 165px; flex-wrap: wrap; display: flex; justify-content:space-evenly;" class="p-1">
-  <%# code  %>
     <% for day in @last_seven_days %>
         <% if day[:signed_in]%>
           <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #6587EB;"></div>
         <% else %>
           <div style="margin-bottom: 10px; margin-right: 10px; height: 10px; width: 10px; background-color: #BDD1FB;"></div>
-      <% end %>
+        <% end %>
     <% end %>
   </div>
 </div>
