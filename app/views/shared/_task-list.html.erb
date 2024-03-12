@@ -1,5 +1,6 @@
 <li class="list-group-item d-flex justify-content-between align-items-center">
   <div class="custom-control custom-checkbox">
+  <% if task.user == current_user %>
     <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
       <div class="d-flex align-items-top">
         <small><%= f.input :status, as: :boolean, label: false, input_html: { onchange: 'this.form.submit()', id: "task_#{task.id}" } %></small>
@@ -12,5 +13,16 @@
         <% end %>
       </div>
     <% end %>
+  <% else %>
+   <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
+      <div class="d-flex align-items-top">
+        <small><%= f.input :status, as: :boolean, label: false%></small>
+        <label class="form-check-label" for="task_<%= task.id %>">
+          <small><%= task.description %></small>
+        </label>
+      </div>
+    <% end %>
+  <% end %>
+
   </div>
 </li>
