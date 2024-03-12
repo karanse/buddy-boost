@@ -25,7 +25,7 @@ class MatchesController < ApplicationController
 
   def update
     find_match
-    @match.update(match_params)
+    # @match.update(match_params)
     redirect_to profile_path(current_user)
 
     # update match status based on user selection (completed or cancelled)
@@ -52,12 +52,12 @@ class MatchesController < ApplicationController
     # Find the first unmtached goal with the same category to make the match
     goal_id_sampled_by_subcategory = Goal.where(status: 'not started', matched: false)
                                          .where.not(user: current_user)
-                                         .where(sub_category: clicked_goal_subcategory).sample.id
+                                         .where(sub_category: clicked_goal_subcategory)
     goal_id_sampled_by_category = Goal.where(status: 'not started', matched: false)
                                       .where.not(user: current_user)
-                                      .where(category: clicked_goal_category).sample.id
+                                      .where(category: clicked_goal_category)
 
-    matched_goal_id = goal_id_sampled_by_subcategory.nil? ? goal_id_sampled_by_category : goal_id_sampled_by_subcategory
+    matched_goal_id = goal_id_sampled_by_subcategory.empty? ? goal_id_sampled_by_category.sample.id : goal_id_sampled_by_subcategory.sample.id
 
     # create the match as we now goal and matched_goal
     @match = Match.new
@@ -73,17 +73,19 @@ class MatchesController < ApplicationController
         format.json
       end
     end
+
     # Update the goal status and matched=true after match is created!
     @match.goal.set_status('in progress')
     @match.goal.set_matched
     @match.matched_goal.set_status('in progress')
     @match.matched_goal.set_matched
+
   end
 
   private
 
   def match_params
-    params.require(:match).permit(:status)
+    params.require(:match).permit(:status, :cancel_reason)
   end
 
   def find_match
