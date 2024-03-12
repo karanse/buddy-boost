@@ -6,17 +6,17 @@
 <% if @completed_goals == 0 %>
   <p> Completed goals: 0 - so far!</li>
 <% else  %>
-  <p>Completed goals: <%= @completed_goals.count %></p>
+  <p>Completed goals: <%= @completed_goals.count %>.</p>
 <% end %>
 
-<% if @cancelled_goals == nil %>
+<% if @cancelled_goals == 0 %>
   <p>Dropped goals: none. Well done!</p>
 <% else %>
-  <p>Dropped goals: <%= @canceled_goals.count %></p>
+  <p>Dropped goals: <%= @canceled_goals.count %>. Well done!</p>
 <% end %>
 
 <h5>Your buddy stats</h5>
-<% if @matched_buddies_total == nil %>
+<% if @matched_buddies_total == 0 %>
   <p>Total buddies: 0. Create a goal, click the match button & find a buddy! </p>
 <% else %>
   <p>Total buddies: <%= @matched_buddies_total %>. You're a true buddy wizard!</p>
@@ -24,7 +24,6 @@
 
 <h5>Sign-ins for the last 30 days</h5>
 <div style="width: 165px; flex-wrap: wrap; display: flex; justify-content:space-evenly;">
-
 <%# code  %>
   <% for day in @last_seven_days %>
       <% if day[:signed_in]%>
