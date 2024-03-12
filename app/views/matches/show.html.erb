@@ -74,6 +74,8 @@
       <small><i>Category: <%=  @current_user_goal.category %></i></small>
       <br>
       <small><i>Subcategory: <%= @current_user_goal.sub_category %></i></small>
+      <br>
+      <small><i>Deadline: <%= @current_user_goal.deadline %></i></small>
       <div class="alert alert-primary">Some progress stats X%</div>
       <div>
         <%# second column: buddy 1 tasks %>
@@ -119,6 +121,8 @@
      <small><i>Category: <%= @match.other(current_user).category %></i></small>
      <br>
      <small><i>Subcategory: <%= @match.other(current_user).sub_category %></i></small>
+     <br>
+     <small><i>Deadline: <%= @match.other(current_user).deadline %></i></small>
       <div class="alert alert-primary">Some progress stats X%</div>
        <div>
           <%# third column: buddy 2 tasks  %>
