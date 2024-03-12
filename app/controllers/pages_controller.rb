@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     @goals = Goal.where(user: current_user)
     @goal = Goal.new
     # for buddy dashboards overview - index
-    @matches = Match.where('goal_id IN (?) OR matched_goal_id IN (?) AND status = (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id),'in progress')
+    @matches_current = Match.where('(goal_id IN (?) OR matched_goal_id IN (?)) AND status = (?)', current_user.goals.pluck(:id), current_user.goals.pluck(:id),'in progress')
                     # .where(status: 'in progress')
     @match = Match.new
 
@@ -21,8 +21,8 @@ class PagesController < ApplicationController
 
     # all_goals = current_user.goals.where(status: "in progress", matched: true)
     # @matched_buddies_total = all_goals.map { |goal| goal.match.matched_goal.user}.uniq.count
-    @matches = current_user.matches
-    @goal_ids = @matches.map { |match| match.goal_id } + @matches.map { |match| match.matched_goal_id }
+    @matches_all = current_user.matches
+    @goal_ids = @matches_all.map { |match| match.goal_id } + @matches_all.map { |match| match.matched_goal_id }
     @buddy_goals = @goal_ids.map { |id| Goal.find(id) }.reject { |goal| goal.user == current_user }
     @matched_buddies_total     = @buddy_goals.map { |goal| goal.user }.uniq.count
 
