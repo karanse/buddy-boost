@@ -57,3 +57,39 @@
 .trash-icon:hover {
   color: $buddy-dark-blue;
 }
+
+.achievements-section {
+  display: flex;
+}
+
+.achievements-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  margin: 0 20px 0 0;
+
+  p, h6 {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.achievements-icon {
+  color: $buddy-light-blue;
+  background-color: $buddy-medium-blue;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+#no-matches-text > {
+  & li {
+    list-style:decimal;
+  }
+}
