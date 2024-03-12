@@ -23,7 +23,7 @@ class PagesController < ApplicationController
     # @matched_buddies_total = all_goals.map { |goal| goal.match}.count
     @sign_in_log = SignInLog.where(user: current_user)
     @last_seven_days = []
-    for i in (0..30).to_a
+    for i in (1..30).to_a
       @last_seven_days << {
         date: "#{(Date.today-i).to_s}",
         signed_in: SignInLog.where(user: current_user, created_at: ((Date.today-i).beginning_of_day..(Date.today-i).end_of_day)).exists?
