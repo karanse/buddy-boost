@@ -37,7 +37,7 @@ class MatchesController < ApplicationController
   def update
     find_match
     # @match.update(match_params)
-    redirect_to profile_path(current_user)
+    redirect_to profile_path(current_user), notice: "Goal successfully created"
 
     # update match status based on user selection (completed or cancelled)
     @match.set_status(params[:match][:status], params[:match][:cancel_reason])
@@ -80,8 +80,13 @@ class MatchesController < ApplicationController
     # Respond with appropriate JSON data
     respond_to do |format|
       if @match.save
-        format.html { redirect_to profile_path }
+        format.html {
+          redirect_to profile_path, info: "Successfully matched, please go to dashboards!"
+        }
         format.json
+      else format.html {
+        redirect_to profile_path, info: "Sorry no matches yet!"
+      }
       end
     end
 

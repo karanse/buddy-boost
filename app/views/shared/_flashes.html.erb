@@ -12,3 +12,13 @@
     </button>
   </div>
 <% end %>
+<% if info %>
+<div data-controller="backdrop-alert">
+  <div class="flash-alert-backdrop" role="alert" data-backdrop-alert-target="backdrop"></div>
+  <div class="alert alert-info alert-dismissible fade show flash-alert-info" role="alert">
+    <%= info %>
+    <button type="button" class="btn-close" data-action="click->backdrop-alert#toggle" data-bs-dismiss="alert" aria-label="Close">
+    </button>
+  </div>
+</div>
+<% end %>
