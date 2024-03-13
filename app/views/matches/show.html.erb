@@ -81,20 +81,23 @@
   <div class="col-4 gray-background mx-3 mt-3 mb-5 column-dash">
 
     <%# ----------------- goal information ---------------------  %>
-    <div class="">
-      <p><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
-
-      <small>
-        <ul class="list-group list-group-flush" >
-          <li class="list-group-item"><strong>Category:</strong> <%=  @current_user_goal.category %></li>
-          <li class="list-group-item"><strong>Subcategory: </strong><%= @current_user_goal.sub_category %></li>
-          <li class="list-group-item"><strong>Deadline:</strong> <%= @current_user_goal.deadline %></li>
-        </ul>
-      </small>
+    <div>
+      <div class="white-background-dash mb-3">
+        <p class="m-0"><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
+      </div>
+      <div class="mt-3">
+        <small>
+          <ul class="list-group list-group-flush" >
+            <li class="list-group-item"><strong>Category:</strong> <%=  @current_user_goal.category %></li>
+            <li class="list-group-item"><strong>Subcategory: </strong><%= @current_user_goal.sub_category %></li>
+            <li class="list-group-item"><strong>Deadline:</strong> <%= @current_user_goal.deadline %></li>
+          </ul>
+        </small>
+      </div>
     </div>
 
     <%# ---------------- TASKS ------------------- %>
-    <div>
+    <div class="white-background mt-5">
       <p class="my-3"><strong><%= current_user.first_name.capitalize %>'s tasks</strong></p>
 
       <div class="alert alert-primary mb-3 p-2">
