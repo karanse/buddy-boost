@@ -446,5 +446,3 @@ end
 puts "10 users and 4 goals for each created!"
 puts "Seeding is done!"
 
-Chatroom.create!(name: 'hello', sender_id: user1, receiver_id: user3)
-Chatroom.create!(name: 'hello2', sender_id: user1, receiver_id: user2)

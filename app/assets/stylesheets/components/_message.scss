@@ -13,6 +13,7 @@
   word-wrap: break-word;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .sender-style {
@@ -21,4 +22,24 @@
 
 .receiver-style {
   background-color: rgba(173, 216, 230, 0.486);
+}
+
+.name-padding {
+  padding-left: 10px;
+}
+
+.white-background-shadow {
+  background-color: white;
+  width:1000px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.messages {
+  height: 60vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: bottom;
 }

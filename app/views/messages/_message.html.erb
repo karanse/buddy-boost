@@ -1,8 +1,21 @@
 <div id="message-<%= message.id %>" style="padding: 3px;" data-user-id="<%= message.user.id %>">
   <small>
-    <strong><%= message.user.first_name %></strong>
+  <% if current_user.id === @chatroom.sender.id %>
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag(current_user.photo.key, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
+    <% else %>
+      <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;" %>
+    <% end %>
+  <% else %>
+     <% if @chatroom.match.other(current_user).user.photo.attached? %>
+      <%= cl_image_tag(@chatroom.match.other(current_user).user.photo.key, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 50px; height: 50px; object-fit: cover;") %>
+    <% else %>
+       <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "width: 100px; height: 100px; object-fit: cover;" %>
+    <% end %>
+  <% end %>
+    <strong class="name-padding"><%= message.user.first_name %></strong>
     <strong><%= message.user.last_name %></strong>
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
-  <p><%= message.content %></p>
+  <p style="padding:5px;"><%= message.content %></p>
 </div>
