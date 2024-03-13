@@ -76,19 +76,42 @@ class MatchesController < ApplicationController
     @goal = @match.goal
     @match.matched_goal = Goal.find(matched_goal_id)
 
+    # check how many in progress matches the user have
+    @matches_current_number = Match.where('(goal_id IN (?) OR matched_goal_id IN (?)) AND status = (?)',
+                                   current_user.goals.pluck(:id),
+                                   current_user.goals.pluck(:id), 'in progress').count
+
     # Create a new record in the matches table
-    # Respond with appropriate JSON data
     respond_to do |format|
-      if @match.save
-        format.html {
-          redirect_to profile_path, info: "Successfully matched, please go to dashboards!"
+      if @matches_current_number > 3
+        format.html { redirect_to profile_path,
+          info: "You already have 3 buddies, we want you to focus first on them!
+                 You can see all your matches on your dashboards"
         }
-        format.json
-      else format.html {
-        redirect_to profile_path, info: "Sorry no matches yet!"
-      }
+      else
+        if @match.save
+          format.html { redirect_to profile_path,
+                        info: "Successfully matched with #{@match.matched_goal.user.first_name},
+                               please go to dashboards!"
+                      }
+        else
+          format.html { redirect_to profile_path, info: 'Sorry no matches yet!' }
+        end
       end
     end
+
+
+    # # Create a new record in the matches table
+    # respond_to do |format|
+    #   if @match.save
+    #     format.html { redirect_to profile_path,
+    #                   info: "Successfully matched with #{@match.matched_goal.user.first_name},
+    #                          please go to dashboards!"
+    #                 }
+    #   else
+    #     format.html { redirect_to profile_path, info: 'Sorry no matches yet!' }
+    #   end
+    # end
 
     # Update the goal status and matched=true after match is created!
     @match.goal.set_status('in progress')
