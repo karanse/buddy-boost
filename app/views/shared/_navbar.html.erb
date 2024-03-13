@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-solid fa-user-group"></i></a>
-    <a class="navbar-brand" href="/profile">BuddyBoost</a>
+    <a class="navbar-brand" href="/"><i class="fa-solid fa-user-group me-3"></i>BuddyBoost</a>
+    <%# <a class="navbar-brand" href="/">BuddyBoost</a> %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -23,15 +23,13 @@
                     <%= image_tag current_user.photo,
                       id: "navbarDropdown",
                       class: "avatar-bordered-small dropdown-toggle",
-                      alt: "avatar",
-                      style: "object-fit: cover;"%>
+                      alt: "avatar"%>
                       <%# # data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% else %>
                     <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7",
                       id: "navbarDropdown",
                       class: "avatar-bordered-small dropdown-toggle",
-                      alt: "avatar",
-                      style: "object-fit: cover;"%>
+                      alt: "avatar"%>
                       <%# # data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
               </a>

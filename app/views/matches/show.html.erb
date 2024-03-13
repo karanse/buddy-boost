@@ -14,16 +14,16 @@
       <div class="d-flex justify-content-center my-4">
         <div id="profile-avatar" class="px-3">
           <% if current_user.photo.attached? %>
-            <%= image_tag(current_user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;") %>
+            <%= image_tag(current_user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar") %>
           <% else %>
-            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;" %>
+            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar" %>
           <% end %>
         </div>
         <div id="profile-avatar" class="px-3">
           <% if @match.other(current_user).user.photo.attached? %>
-            <%= image_tag(@match.other(current_user).user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;") %>
+            <%= image_tag(@match.other(current_user).user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar") %>
           <% else %>
-            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;" %>
+            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar" %>
           <% end %>
         </div>
       </div>
@@ -74,7 +74,9 @@
       <small><i>Category: <%=  @current_user_goal.category %></i></small>
       <br>
       <small><i>Subcategory: <%= @current_user_goal.sub_category %></i></small>
-      <div class="alert alert-primary">Some progress stats X%</div>
+      <br>
+      <small><i>Deadline: <%= @current_user_goal.deadline %></i></small>
+      <div class="alert alert-primary">Progress: <%= @my_progress.round(2)%>%</div>
       <div>
         <%# second column: buddy 1 tasks %>
           <p><strong><%= current_user.first_name.capitalize %>'s</strong> Tasks</p>
@@ -119,7 +121,9 @@
      <small><i>Category: <%= @match.other(current_user).category %></i></small>
      <br>
      <small><i>Subcategory: <%= @match.other(current_user).sub_category %></i></small>
-      <div class="alert alert-primary">Some progress stats X%</div>
+     <br>
+     <small><i>Deadline: <%= @match.other(current_user).deadline %></i></small>
+      <div class="alert alert-primary">Progress: <%= @buddy_progress.round(2)%>%</div>
        <div>
           <%# third column: buddy 2 tasks  %>
             <p><strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> Tasks</p>

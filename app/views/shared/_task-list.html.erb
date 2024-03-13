@@ -1,7 +1,28 @@
 <li class="list-group-item d-flex justify-content-between align-items-center">
   <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="item1">
-    <label class="custom-control-label" for="item1"><small><%= task.description %></small></label>
-     <a class="btn btn-light btn-sm float-right delete-item"><i class="fas fa-times"></i></a>
+  <% if task.user == current_user %>
+    <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
+      <div class="d-flex align-items-top">
+        <small><%= f.input :status, as: :boolean, label: false, input_html: { onchange: 'this.form.submit()', id: "task_#{task.id}" } %></small>
+        <label class="form-check-label" for="task_<%= task.id %>">
+          <small><%= task.description %></small>
+        </label>
+        <%= link_to delete_task_path(task),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+          <i data-feather="trash-2" class="trash-icon"></i>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+   <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
+      <div class="d-flex align-items-top">
+        <small><%= f.input :status, as: :boolean, label: false%></small>
+        <label class="form-check-label" for="task_<%= task.id %>">
+          <small><%= task.description %></small>
+        </label>
+      </div>
+    <% end %>
+  <% end %>
+
   </div>
 </li>
