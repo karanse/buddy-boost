@@ -12,18 +12,6 @@
   box-shadow: 0px 0px 10px rgba(15, 14, 14, 0.4);
 }
 
-.white-background-shadow-blue-hover {
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  border: transparent;
-  box-shadow: 0px 0px 10px rgba(15, 14, 14, 0.4);
-  &:hover {
-    background-color: $buddy-dark-blue;
-    color: white;
-  }
-}
-
 .gray-background {
   background-color: rgba(212, 213, 215, 0.4);
   padding: 20px;

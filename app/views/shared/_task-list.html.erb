@@ -1,27 +1,32 @@
-<li class="list-group-item d-flex justify-content-between align-items-center">
+<li class="list-group-item list-group-flush list-group-item-light mb-1 task-list-item">
   <div class="custom-control custom-checkbox">
-  <% if task.user == current_user %>
-    <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
-      <div class="d-flex align-items-top">
-        <small><%= f.input :status, as: :boolean, label: false, input_html: { onchange: 'this.form.submit()', id: "task_#{task.id}" } %></small>
-        <label class="form-check-label" for="task_<%= task.id %>">
-          <small><%= task.description %></small>
-        </label>
-        <%= link_to delete_task_path(task),
-              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-          <i data-feather="trash-2" class="trash-icon"></i>
-        <% end %>
-      </div>
+
+    <% if task.user == current_user %>
+
+      <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
+        <div class="d-flex align-items-start justify-content-between">
+          <small><%= f.input :status, as: :boolean, label: false, input_html: { onchange: 'this.form.submit()', id: "task_#{task.id}" } %></small>
+          <label class="form-check-label" for="task_<%= task.id %>">
+            <small><%= task.description %></small>
+          </label>
+          <%= link_to delete_task_path(task),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+            <i data-feather="trash-2" class="trash-icon"></i>
+          <% end %>
+        </div>
     <% end %>
+
   <% else %>
+
    <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
-      <div class="d-flex align-items-top">
-        <small><%= f.input :status, as: :boolean, label: false%></small>
-        <label class="form-check-label" for="task_<%= task.id %>">
-          <small><%= task.description %></small>
-        </label>
-      </div>
-    <% end %>
+    <div class="d-flex align-items-top">
+      <small><%= f.input :status, as: :boolean, label: false%></small>
+      <label class="form-check-label" for="task_<%= task.id %>">
+        <small><%= task.description %></small>
+      </label>
+    </div>
+  <% end %>
+
   <% end %>
 
   </div>
