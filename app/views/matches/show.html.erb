@@ -85,7 +85,7 @@
       <div class="white-background-dash">
         <p class=><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
         <div class="progress" style="height: 30px;">
-          <div class="progress-bar p-3" role="progressbar" aria-valuenow="<%= @my_progress.round(2) %>" aria-valuemin="0" aria-valuemax="100"> <%= @my_progress.round(2) %>% </div>
+          <div class="progress-bar p-3" role="progressbar" style="width : <%=@my_progress.round(2)%>%" aria-valuenow="<%= @my_progress.round(2) %>" aria-valuemin="0" aria-valuemax="100"> <%= @my_progress.round(2) %>% </div>
         </div>
       </div>
       <div class="mt-3">
@@ -148,7 +148,7 @@
       <div class="white-background-dash mb-3">
         <p class=""><strong><%= @match.other(current_user).user.first_name.capitalize %>'s goal:</strong> <%= @match.other(current_user).description %> </p>
         <div class="progress" style="height: 30px;">
-          <div class="progress-bar p-3" role="progressbar" aria-valuenow="<%= @buddy_progress.round(2)%>" aria-valuemin="0" aria-valuemax="100"> <%= @buddy_progress.round(2)%>% </div>
+          <div class="progress-bar p-3" role="progressbar" style="width : <%=@buddy_progress.round(2)%>%" aria-valuenow="<%= @buddy_progress.round(2)%>" aria-valuemin="0" aria-valuemax="100"> <%= @buddy_progress.round(2)%>% </div>
         </div>
       </div>
       <div class="mt-3">
