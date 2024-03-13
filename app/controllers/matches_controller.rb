@@ -61,21 +61,6 @@ class MatchesController < ApplicationController
                                     current_user.goals.pluck(:id),
                                     current_user.goals.pluck(:id), 'in progress').count
 
-      # Perform the matching logic here
-      # Get the goal category user clicked on frontend w/ params[:match][:goal]
-      clicked_goal_category = Goal.find(params[:match][:goal].to_i).category
-      clicked_goal_subcategory = Goal.find(params[:match][:goal].to_i).sub_category
-
-      # Find the first unmatched goal with the same category to make the match
-      goal_id_sampled_by_subcategory = Goal.where(status: 'not started', matched: false)
-                                           .where.not(user: current_user)
-                                           .where(sub_category: clicked_goal_subcategory)
-      goal_id_sampled_by_category = Goal.where(status: 'not started', matched: false)
-                                        .where.not(user: current_user)
-                                        .where(category: clicked_goal_category)
-
-      matched_goal_id = goal_id_sampled_by_subcategory.empty? ? goal_id_sampled_by_category.sample.id : goal_id_sampled_by_subcategory.sample.id
-
       # Create a new record in the matches table or notify the user if the limit is reached
       if matches_current_number >= 3
         format.html{ redirect_to profile_path, info: "You already have 3 buddies.
@@ -84,96 +69,42 @@ class MatchesController < ApplicationController
                    }
 
       else
-        # create the match as we now goal and matched_goal
-        @match = Match.new
-        @match.goal = Goal.find(params[:match][:goal].to_i)
-        @goal = @match.goal
-        @match.matched_goal = Goal.find(matched_goal_id)
+        # Perform the matching logic here
+        # Get the goal category user clicked on frontend w/ params[:match][:goal]
+        clicked_goal_category = Goal.find(params[:match][:goal].to_i).category
+        clicked_goal_subcategory = Goal.find(params[:match][:goal].to_i).sub_category
 
-        if @match.save
+        # Find the first unmatched goal with the same category to make the match
+        goal_id_sampled_by_subcategory = Goal.where(status: 'not started', matched: false)
+                                             .where.not(user: current_user)
+                                             .where(sub_category: clicked_goal_subcategory)
+        goal_id_sampled_by_category = Goal.where(status: 'not started', matched: false)
+                                          .where.not(user: current_user)
+                                          .where(category: clicked_goal_category)
+
+        if goal_id_sampled_by_category.empty? && goal_id_sampled_by_subcategory.empty?
+          format.html { redirect_to profile_path,
+                        info: 'Sorry, no matches yet! There is no available goal
+                               similar to your category' }
+        else
+          matched_goal_id = goal_id_sampled_by_subcategory.empty? ? goal_id_sampled_by_category.sample.id : goal_id_sampled_by_subcategory.sample.id
+          # create the match as we now goal and matched_goal
+          @match = Match.new
+          @match.goal = Goal.find(params[:match][:goal].to_i)
+          @goal = @match.goal
+          @match.matched_goal = Goal.find(matched_goal_id)
+          @match.save
           # Update the goal status and matched=true after match is created!
           @match.goal.set_status('in progress')
           @match.goal.set_matched
           @match.matched_goal.set_status('in progress')
           @match.matched_goal.set_matched
           format.html { redirect_to profile_path, info: "Successfully matched with
-                 #{@match.matched_goal.user.first_name}, please go to your dashboard!" }
-        else
-          format.html { redirect_to profile_path, info: 'Sorry, no matches yet!' }
+                       #{@match.matched_goal.user.first_name}, please go to your dashboard!"
+                      }
         end
       end
     end
-
-    # ---------------
-    # check how many in progress matches the user have
-    # @matches_current_number = Match.where('(goal_id IN (?) OR matched_goal_id IN (?)) AND status = (?)',
-    #                                current_user.goals.pluck(:id),
-    #                                current_user.goals.pluck(:id), 'in progress').count
-
-    #                                    # Create a new record in the matches table
-    # respond_to do |format|
-    #   if @matches_current_number >= 3
-    #     format.html {redirect_to profile_path, info: "you already have 3 buddies"}
-    #     return
-    #   end
-    # end
-    # # Perform the matching logic here
-    # # Get the goal category user clicked on frontend w/ params[:match][:goal]
-    # clicked_goal_category = Goal.find(params[:match][:goal].to_i).category
-    # clicked_goal_subcategory = Goal.find(params[:match][:goal].to_i).sub_category
-
-    # # Find the first unmtached goal with the same category to make the match
-    # goal_id_sampled_by_subcategory = Goal.where(status: 'not started', matched: false)
-    #                                      .where.not(user: current_user)
-    #                                      .where(sub_category: clicked_goal_subcategory)
-    # goal_id_sampled_by_category = Goal.where(status: 'not started', matched: false)
-    #                                   .where.not(user: current_user)
-    #                                   .where(category: clicked_goal_category)
-
-    # matched_goal_id = goal_id_sampled_by_subcategory.empty? ? goal_id_sampled_by_category.sample.id : goal_id_sampled_by_subcategory.sample.id
-
-    # # create the match as we now goal and matched_goal
-    # @match = Match.new
-    # @match.goal = Goal.find(params[:match][:goal].to_i)
-    # @goal = @match.goal
-    # @match.matched_goal = Goal.find(matched_goal_id)
-
-    # # Create a new record in the matches table
-    # respond_to do |format|
-    #   # if @matches_current_number >= 3
-    #   #   # raise
-    #   #   # flash[:notice] = "You already have 3 buddies, we want you to focus first on them!
-    #   #   # You can see all your matches on your dashboards"
-    #   #   format.html {redirect_to profile_path, info: "you already have 3 buddies"}
-
-    #   if @match.save
-    #     format.html { redirect_to profile_path,
-    #                   info: "Successfully matched with #{@match.matched_goal.user.first_name},
-    #                           please go to dashboards!"
-    #                 }
-    #   else
-    #     format.html { redirect_to profile_path, info: 'Sorry no matches yet!' }
-    #   end
-    # end
-
-    # # # Create a new record in the matches table
-    # # respond_to do |format|
-    # #   if @match.save
-    # #     format.html { redirect_to profile_path,
-    # #                   info: "Successfully matched with #{@match.matched_goal.user.first_name},
-    # #                          please go to dashboards!"
-    # #                 }
-    # #   else
-    # #     format.html { redirect_to profile_path, info: 'Sorry no matches yet!' }
-    # #   end
-    # # end
-
-    # # Update the goal status and matched=true after match is created!
-    # @match.goal.set_status('in progress')
-    # @match.goal.set_matched
-    # @match.matched_goal.set_status('in progress')
-    # @match.matched_goal.set_matched
-
   end
 
   private
