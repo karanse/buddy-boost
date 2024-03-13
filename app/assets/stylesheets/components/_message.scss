@@ -9,7 +9,7 @@
   max-width: 400px;
   border-radius: 10px;
   padding: 8px;
-  min-height: 80px;
+  min-height: 60px;
   word-wrap: break-word;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -21,7 +21,7 @@
 }
 
 .receiver-style {
-  background-color: rgba(173, 216, 230, 0.486);
+  background-color: rgba(168, 215, 230, 0.486);
 }
 
 .name-padding {
@@ -36,7 +36,7 @@
 }
 
 .messages {
-  height: 60vh;
+  height: 70vh;
   overflow-x: hidden;
   overflow-y: scroll;
   display: flex;
