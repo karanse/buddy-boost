@@ -5,3 +5,14 @@ height: 200px
   border-top: 3px solid #bbb;
   border-top-color: #BDD1FB;
 }
+
+#values .card {
+  width: 30%;
+  & h4 {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  & p {
+    text-align: center;
+  }
+}
