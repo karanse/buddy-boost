@@ -11,7 +11,7 @@
 
       <h4><%= "Buddy Dashboard of #{current_user.first_name.capitalize} & #{@match.other(current_user).user.first_name.capitalize}" %>  </h4>
 
-      <div class="d-flex justify-content-center my-4">
+      <div class="d-flex justify-content-center my-4 flex-wrap">
         <div id="profile-avatar" class="px-3">
           <% if current_user.photo.attached? %>
             <%= image_tag(current_user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;") %>
