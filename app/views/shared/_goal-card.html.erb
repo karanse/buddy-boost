@@ -15,7 +15,7 @@
         <p><strong>Deadline: <%= goal.deadline %></strong></p>
       </div>
       <div class="d-flex flex-column justify-content-start">
-        <%= simple_form_for @match, data: {controller: "match-goal", action: "submit->match-goal#match" } do |f| %>
+        <%= simple_form_for @match do |f| %>
           <%= f.input :goal, as: :hidden, input_html: { value: goal.id } %>
           <%= f.submit "Match me!", class: "btn btn-primary match-button" %>
         <% end %>

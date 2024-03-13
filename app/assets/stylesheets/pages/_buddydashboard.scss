@@ -1,3 +1,47 @@
 #buddy-dash {
-  min-height: 70vh;
+  width: 100%;
+}
+
+.column-dash {
+  min-height: 80vh;
+}
+
+.list-group {
+  border-radius: 10px;
+}
+
+.white-background-dash {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+  justify-content: space-between;
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+.card-dash {
+  padding: 10px;
+}
+
+.white-background-dash-noflex {
+  background-color: rgba($color: #ffffff, $alpha: 0.6);
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent;
+  min-height: 120px ;
+
+  p {
+    padding: 0;
+    margin: 0 0 10px 0;
+  }
+}
+
+.task-list-scrollable {
+  max-height: 160px;
+  overflow: scroll;
 }

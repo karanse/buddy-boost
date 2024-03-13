@@ -1,145 +1,184 @@
-<div class="row justify-content-center" >
+<%# container for all dashboard content %>
+<div class="row d-flex justify-content-center w-100 mt-2" id="buddy-dash">
 
-  <div class="my-5 text-center">
-    <h2><%= "Buddy Dashboard of #{current_user.first_name.capitalize} & #{@match.other(current_user).user.first_name.capitalize} 🚀" %></h2>
-  </div>
+  <%# ---------------- FIRST COLUMN ------------ %>
 
-  <%# container for all dashboard content %>
+  <div class="col-3 blue-background d-flex flex-column justify-content-between mt-3 column-dash">
 
-  <div class="row d-flex justify-content-center" id="buddy-dash">
+    <%# ---------------- 1. HEADING & AVATARS -------------------- %>
 
-    <%# first column: avatars %>
+    <div class="text-center mt-3">
 
-    <div class="col-3 blue-background d-flex flex-column justify-content-between">
-      <div class="d-flex justify-content-center my-4">
+      <h4><%= "Buddy Dashboard of #{current_user.first_name.capitalize} & #{@match.other(current_user).user.first_name.capitalize}" %>  </h4>
+
+      <div class="d-flex justify-content-center my-4 flex-wrap">
         <div id="profile-avatar" class="px-3">
           <% if current_user.photo.attached? %>
-            <%= image_tag(current_user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;") %>
+            <%= image_tag(current_user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar") %>
           <% else %>
-            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;" %>
+            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar" %>
           <% end %>
         </div>
         <div id="profile-avatar" class="px-3">
           <% if @match.other(current_user).user.photo.attached? %>
-            <%= image_tag(@match.other(current_user).user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;") %>
+            <%= image_tag(@match.other(current_user).user.photo, class: "avatar-bordered-medium-shadow", alt: "avatar") %>
           <% else %>
-            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar", style: "object-fit: cover;" %>
+            <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{@match.other(current_user).user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-medium-shadow", alt: "avatar" %>
           <% end %>
         </div>
       </div>
-      <div class="d-flex flex-column">
 
-        <%# if chatroom of the match is nil, then create a new chatroom %>
-        <% if @chatroom.nil?  %>
-          <%= simple_form_for @chat, url: match_chatrooms_path(@match) do |f| %>
-            <%= f.input :match_id, as: :hidden, input_html: { value: @match.id } %>
-            <%= f.input :sender_id, as: :hidden, input_html: { value: current_user.id } %>
-            <%= f.input :receiver_id, as: :hidden, input_html: { value: @match.matched_goal.user.id } %>
-            <%= f.button :submit, "Go to buddy chat", class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
-          <% end %>
-        <% else %>
-          <%= link_to "Go to buddy chat", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
+    </div>
+
+    <%# ------------------ 2. BUTTONS ------------------------  %>
+    <div class="d-flex flex-column">
+
+      <%# <!-- Chat button --> %>
+      <%# if chatroom of the match is nil, then create a new chatroom %>
+
+      <% if @chatroom.nil?  %>
+        <%= simple_form_for @chat, url: match_chatrooms_path(@match) do |f| %>
+          <%= f.input :match_id, as: :hidden, input_html: { value: @match.id } %>
+          <%= f.input :sender_id, as: :hidden, input_html: { value: current_user.id } %>
+          <%= f.input :receiver_id, as: :hidden, input_html: { value: @match.matched_goal.user.id } %>
+          <%= f.button :submit, "Go to buddy chat", class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
         <% end %>
+      <% else %>
+        <%= link_to "Go to buddy chat", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
+      <% end %>
 
-        <!-- Button trigger modal to update match status -->
-        <button type="button" class="btn white-background-shadow-blue-hover" data-toggle="modal" data-target="#updateMatchModalCenter">
-          End buddy match
-        </button>
+      <!-- Button trigger modal to update match status -->
 
-        <!-- Modal -->
-        <div class="modal fade" id="updateMatchModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="updateMatchModalTitle"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <%= render "shared/edit-match-form" %>
-              </div>
+      <button type="button" class="btn white-background-shadow-blue-hover" data-toggle="modal" data-target="#updateMatchModalCenter">
+        End buddy match
+      </button>
+
+      <!-- Modal to update match status -->
+
+      <div class="modal fade" id="updateMatchModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="updateMatchModalTitle"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render "shared/edit-match-form" %>
             </div>
           </div>
         </div>
+      </div>
+
+    </div>
+
+  <%# end column 1  %>
+  </div>
+
+  <%# ---------------- SECOND COLUMN: BUDDY 1 (CURRENT_USER) ------------ %>
+
+  <div class="col-4 gray-background mx-3 mt-3 column-dash">
+
+    <%# ----------------- goal information ---------------------  %>
+    <div>
+      <div class="white-background-dash">
+        <p class=><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
+        <div class="progress" style="height: 30px;">
+          <div class="progress-bar p-3" role="progressbar" style="width : <%=@my_progress.round(2)%>%" aria-valuenow="<%= @my_progress.round(2) %>" aria-valuemin="0" aria-valuemax="100"> <%= @my_progress.round(2) %>% </div>
         </div>
       </div>
-
-    <%# modals  %>
-
-    <%# second column: buddy 1  %>
-
-    <div class="col-4 gray-background mx-3">
-      <p><strong><%= current_user.first_name.capitalize %>'s Goal:</strong> <%= @current_user_goal.description %></p>
-      <small><i>Category: <%=  @current_user_goal.category %></i></small>
-      <br>
-      <small><i>Subcategory: <%= @current_user_goal.sub_category %></i></small>
-      <br>
-      <small><i>Deadline: <%= @current_user_goal.deadline %></i></small>
-      <div class="alert alert-primary">Progress: <%= @my_progress.round(2)%>%</div>
-      <div>
-        <%# second column: buddy 1 tasks %>
-          <p><strong><%= current_user.first_name.capitalize %>'s</strong> Tasks</p>
-            <% @my_tasks.each do |task| %>
-              <ul class="list-group">
-                <%= render "shared/task-list", task: task %>
-              </ul>
-            <% end %>
-
-          <!-- Button trigger modal -->
-          <button type="button" class="btn mt-2 w-100 white-background-shadow-blue-hover newgoal" data-toggle="modal" data-target="#newGoalModalCenter">
-            <i class="fa-solid fa-plus"></i> Create new task
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Create new task</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <%= render "shared/new-task" %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <%# </div> %>
-      </div>
-      <div>
-
+      <div class="mt-3">
+        <small>
+          <ul class="list-group list-group-flush" >
+            <li class="list-group-item"><strong>Category:</strong> <%=  @current_user_goal.category %></li>
+            <li class="list-group-item"><strong>Subcategory: </strong><%= @current_user_goal.sub_category %></li>
+            <li class="list-group-item"><strong>Deadline:</strong> <%= @current_user_goal.deadline %></li>
+          </ul>
+        </small>
       </div>
     </div>
 
-    <%# third column: buddy 2  %>
+    <%# ---------------- TASKS ------------------- %>
+    <div class="white-background-dash-noflex mt-3">
 
-    <div class="col-4 gray-background">
-      <p><strong><%= @match.other(current_user).user.first_name.capitalize %>'s Goal: </strong> <%= @match.other(current_user).description %></p>
-     <small><i>Category: <%= @match.other(current_user).category %></i></small>
-     <br>
-     <small><i>Subcategory: <%= @match.other(current_user).sub_category %></i></small>
-     <br>
-     <small><i>Deadline: <%= @match.other(current_user).deadline %></i></small>
-      <div class="alert alert-primary">Progress: <%= @buddy_progress.round(2)%>%</div>
-       <div>
-          <%# third column: buddy 2 tasks  %>
-            <p><strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> Tasks</p>
-            <div>
-              <% @buddy_tasks.each do |task| %>
-                <ul class="list-group">
-                  <%= render "shared/task-list", task: task %>
-                </ul>
-              <% end %>
+      <p><strong><%= current_user.first_name.capitalize %>'s</strong> tasks</p>
+      <div>
+        <ul class="list-group list-group-flush task-list-scrollable">
+          <% @my_tasks.each do |task| %>
+              <%= render "shared/task-list", task: task %>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Button trigger modal -->
+      <div class="d-flex align-items-center justify-content-center">
+        <button type="button" class="btn create-task-button mt-2" data-toggle="modal" data-target="#newTaskModalCenter">
+          <i class="fa-solid fa-plus"></i> Add new task
+        </button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="newTaskModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Create new task</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render "shared/new-task" %>
             </div>
           </div>
-      </div>
-      <div>
-        <%# tasks#new placeholder - please put inside div  %>
+        </div>
       </div>
 
+    </div>
+  <%# end column  %>
+  </div>
+
+  <%# ---------------- THIRD COLUMN: BUDDY ------------ %>
+
+  <div class="col-4 gray-background mt-3 column-dash">
+
+    <%# ----------------- goal information ---------------------  %>
+    <div>
+      <div class="white-background-dash mb-3">
+        <p class=""><strong><%= @match.other(current_user).user.first_name.capitalize %>'s goal:</strong> <%= @match.other(current_user).description %> </p>
+        <div class="progress" style="height: 30px;">
+          <div class="progress-bar p-3" role="progressbar" style="width : <%=@buddy_progress.round(2)%>%" aria-valuenow="<%= @buddy_progress.round(2)%>" aria-valuemin="0" aria-valuemax="100"> <%= @buddy_progress.round(2)%>% </div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <small>
+          <ul class="list-group list-group-flush" >
+            <li class="list-group-item"><strong>Category:</strong> <%= @match.other(current_user).category %> </li>
+            <li class="list-group-item"><strong>Subcategory: </strong><%= @match.other(current_user).sub_category %> </li>
+            <li class="list-group-item"><strong>Deadline:</strong> <%= @match.other(current_user).deadline %> </li>
+          </ul>
+        </small>
+      </div>
+    </div>
+
+    <%# ---------------- TASKS ------------------- %>
+
+    <div class="white-background-dash-noflex mt-3">
+      <p class=""> <strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> tasks </p>
+
+      <div>
+        <% @buddy_tasks.each do |task| %>
+          <ul class="list-group">
+            <%= render "shared/task-list", task: task %>
+          </ul>
+        <% end %>
+      </div>
+
+    </div>
 
   </div>
+
+  <%# end column 3  %>
+
 </div>

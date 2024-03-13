@@ -22,12 +22,11 @@
   </head>
 
   <body>
-    <%= render "shared/flashes" %>
     <%# navbar here %>
     <%= render "shared/navbar" %>
      <%= render "shared/banner" if current_page?(root_path) %>
 
-
+    <%= render "shared/flashes" %>
     <div class="container">
       <%= yield %>
     </div>

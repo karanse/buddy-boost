@@ -12,9 +12,8 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @current_user_goal = Match.find(params[:id]).goal.user == current_user ? Match.find(params[:id]).goal : Match.find(params[:id]).matched_goal
      # for buddy dashboard tasks
-    @my_tasks = Task.where(user: current_user).where(match: @match)
-    # @buddy_tasks = Task.where(match: @match).reject { |task| task.user == current_user }
-    @buddy_tasks = Task.where(match: @match).where.not(user: current_user)
+    @my_tasks = Task.where(user: current_user).where(match: @match).order(created_at: :asc)
+    @buddy_tasks = Task.where(match: @match).where.not(user: current_user).order(created_at: :asc)
     @task = Task.new
 
     # Calculate progress percentage - current user
@@ -38,7 +37,7 @@ class MatchesController < ApplicationController
   def update
     find_match
     # @match.update(match_params)
-    redirect_to profile_path(current_user)
+    redirect_to profile_path(current_user), notice: "Goal successfully created"
 
     # update match status based on user selection (completed or cancelled)
     @match.set_status(params[:match][:status], params[:match][:cancel_reason])
@@ -81,8 +80,13 @@ class MatchesController < ApplicationController
     # Respond with appropriate JSON data
     respond_to do |format|
       if @match.save
-        format.html { redirect_to profile_path }
+        format.html {
+          redirect_to profile_path, info: "Successfully matched, please go to dashboards!"
+        }
         format.json
+      else format.html {
+        redirect_to profile_path, info: "Sorry no matches yet!"
+      }
       end
     end
 
