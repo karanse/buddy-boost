@@ -78,7 +78,7 @@
 
   <%# ---------------- SECOND COLUMN: BUDDY 1 (CURRENT_USER) ------------ %>
 
-  <div class="col-4 gray-background mx-3 mt-3 mb-5 column-dash">
+  <div class="col-4 gray-background mx-3 mt-3 column-dash">
 
     <%# ----------------- goal information ---------------------  %>
     <div>
@@ -86,6 +86,9 @@
         <p class=><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
         <div class="alert alert-primary mb-3 p-1 text-center w-100">
           Goal progress: <%= @my_progress.round(2) %>%
+        </div>
+        <div class="progress">
+          <%= @my_progress.round(2) %>%
         </div>
       </div>
       <div class="mt-3">
@@ -141,7 +144,7 @@
 
   <%# ---------------- THIRD COLUMN: BUDDY ------------ %>
 
-  <div class="col-4 gray-background mt-3 mb-5 column-dash">
+  <div class="col-4 gray-background mt-3 column-dash">
 
     <%# ----------------- goal information ---------------------  %>
     <div>
