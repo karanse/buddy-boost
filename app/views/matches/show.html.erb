@@ -112,12 +112,14 @@
       </div>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn mt-2 w-100 white-background-shadow-blue-hover newgoal" data-toggle="modal" data-target="#newGoalModalCenter">
-        <i class="fa-solid fa-plus"></i> Create new task
-      </button>
+      <div class="d-flex align-items-center justify-content-center">
+        <button type="button" class="btn create-task-button" data-toggle="modal" data-target="#newTaskModalCenter">
+          <i class="fa-solid fa-plus"></i> Add new task
+        </button>
+      </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="newTaskModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -139,7 +141,7 @@
 
   <%# ---------------- THIRD COLUMN: BUDDY ------------ %>
 
-  <div class="col-4 gray-background mx-3 mt-3 mb-5 column-dash">
+  <div class="col-4 gray-background mt-3 mb-5 column-dash">
 
     <%# ----------------- goal information ---------------------  %>
     <div>

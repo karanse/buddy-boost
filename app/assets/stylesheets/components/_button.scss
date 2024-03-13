@@ -1,3 +1,26 @@
 .match-button:hover {
   box-shadow: 0 0 20px rgba(195, 195, 192, 0.9);
 }
+
+.white-background-shadow-blue-hover {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent;
+  box-shadow: 0px 0px 10px rgba(15, 14, 14, 0.4);
+  &:hover {
+    background-color: $buddy-dark-blue;
+    color: white;
+  }
+}
+
+.create-task-button {
+  padding: 5px;
+  border-radius: 10px;
+  border: transparent;
+  font-size: smaller;
+  box-shadow: 0px 0px 5px rgba(15, 14, 14, 0.1);
+  &:hover {
+    background-color: white;
+  }
+}
