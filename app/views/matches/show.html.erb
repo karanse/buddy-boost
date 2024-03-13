@@ -1,5 +1,5 @@
 <%# container for all dashboard content %>
-<div class="row d-flex justify-content-center w-100 mt-3" id="buddy-dash">
+<div class="row d-flex justify-content-center w-100 mt-2" id="buddy-dash">
 
   <%# ---------------- FIRST COLUMN ------------ %>
 
@@ -107,16 +107,16 @@
 
       <p><strong><%= current_user.first_name.capitalize %>'s</strong> tasks</p>
       <div>
-        <% @my_tasks.each do |task| %>
-          <ul class="list-group">
-            <%= render "shared/task-list", task: task %>
-          </ul>
-        <% end %>
+        <ul class="list-group list-group-flush task-list-scrollable">
+          <% @my_tasks.each do |task| %>
+              <%= render "shared/task-list", task: task %>
+          <% end %>
+        </ul>
       </div>
 
       <!-- Button trigger modal -->
       <div class="d-flex align-items-center justify-content-center">
-        <button type="button" class="btn create-task-button" data-toggle="modal" data-target="#newTaskModalCenter">
+        <button type="button" class="btn create-task-button mt-2" data-toggle="modal" data-target="#newTaskModalCenter">
           <i class="fa-solid fa-plus"></i> Add new task
         </button>
       </div>
