@@ -3,9 +3,9 @@
   <%# avatar  %>
   <div id="profile-avatar" class="px-3 text-center">
     <% if current_user.photo.attached? %>
-      <%= image_tag(current_user.photo, class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;") %>
+      <%= image_tag(current_user.photo, class: "avatar-bordered-large-shadow", alt: "avatar") %>
     <% else %>
-      <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-large-shadow", alt: "avatar", style: "width: 150px; height: 150px; object-fit: cover;" %>
+      <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7", class: "avatar-bordered-large-shadow", alt: "avatar" %>
     <% end %>
     <div id="add-avatar-button">
       <%= link_to edit_user_registration_path do %>
