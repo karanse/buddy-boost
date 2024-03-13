@@ -83,7 +83,10 @@
     <%# ----------------- goal information ---------------------  %>
     <div>
       <div class="white-background-dash mb-3">
-        <p class="m-0"><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
+        <p class=><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
+        <div class="alert alert-primary mb-3 p-1 text-center w-100">
+          Goal progress: <%= @my_progress.round(2) %>%
+        </div>
       </div>
       <div class="mt-3">
         <small>
@@ -97,13 +100,9 @@
     </div>
 
     <%# ---------------- TASKS ------------------- %>
-    <div class="mt-5">
-      <p class="my-3"><strong><%= current_user.first_name.capitalize %>'s tasks</strong></p>
+    <div class="white-background-dash-noflex mt-3">
 
-      <div class="alert alert-primary mb-3 p-1 text-center">
-        Progress: <%= @my_progress.round(2) %>
-      </div>
-
+      <p><strong><%= current_user.first_name.capitalize %>'s</strong> tasks</p>
       <div>
         <% @my_tasks.each do |task| %>
           <ul class="list-group">
@@ -133,8 +132,8 @@
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
   <%# end column  %>
   </div>
 
@@ -145,7 +144,10 @@
     <%# ----------------- goal information ---------------------  %>
     <div>
       <div class="white-background-dash mb-3">
-        <p class="m-0"><strong><%= @match.other(current_user).user.first_name.capitalize %>'s goal:</strong> <%= @match.other(current_user).description %> </p>
+        <p class=""><strong><%= @match.other(current_user).user.first_name.capitalize %>'s goal:</strong> <%= @match.other(current_user).description %> </p>
+        <div class="alert alert-primary mb-3 p-1 text-center w-100">
+          Goal progress: <%= @buddy_progress.round(2)%>%
+        </div>
       </div>
       <div class="mt-3">
         <small>
@@ -160,11 +162,9 @@
 
     <%# ---------------- TASKS ------------------- %>
 
-    <div class="mt-5">
-      <p><strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> Tasks</p>
-      <div class="alert alert-primary">
-        Progress: <%= @buddy_progress.round(2)%>%
-      </div>
+    <div class="white-background-dash-noflex mt-3">
+      <p class=""> <strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> tasks </p>
+
       <div>
         <% @buddy_tasks.each do |task| %>
           <ul class="list-group">
@@ -172,9 +172,11 @@
           </ul>
         <% end %>
       </div>
+
     </div>
 
   </div>
+
   <%# end column 3  %>
 
 </div>

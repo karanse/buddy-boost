@@ -9,3 +9,35 @@
 .list-group {
   border-radius: 10px;
 }
+
+.white-background-dash {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  justify-content: space-between;
+
+  .alert {
+    width: 100%;
+  }
+}
+
+.card-dash {
+  padding: 10px;
+}
+
+.white-background-dash-noflex {
+  background-color: rgba($color: #ffffff, $alpha: 0.6);
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent;
+  min-height: 120px ;
+
+  p {
+    padding: 0;
+    margin: 0 0 10px 0;
+  }
+}
