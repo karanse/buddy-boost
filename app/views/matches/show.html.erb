@@ -3,7 +3,7 @@
 
   <%# ---------------- FIRST COLUMN ------------ %>
 
-  <div class="col-3 blue-background d-flex flex-column justify-content-between mt-3">
+  <div class="col-3 blue-background d-flex flex-column justify-content-between mt-3 column-dash">
 
     <%# ---------------- 1. HEADING & AVATARS -------------------- %>
 
@@ -78,52 +78,55 @@
 
   <%# ---------------- SECOND COLUMN: BUDDY 1 (CURRENT_USER) ------------ %>
 
-  <div class="col-4 gray-background mx-3 mt-3">
+  <div class="col-4 gray-background mx-3 mt-3 mb-5 column-dash">
 
     <%# ----------------- goal information ---------------------  %>
-    <p>
-      <strong><%= current_user.first_name.capitalize %>'s Goal:</strong> <%= @current_user_goal.description %>
-    </p>
+    <div class="">
+      <p><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
 
-    <small><i>Category: <%=  @current_user_goal.category %></i></small>
-
-    <br>
-
-    <small><i>Subcategory: <%= @current_user_goal.sub_category %></i></small>
-
-    <br>
-
-    <small><i>Deadline: <%= @current_user_goal.deadline %></i></small>
-
-    <div class="alert alert-primary">
-      Progress: <%= @my_progress.round(2)%>%
+      <small>
+        <ul class="list-group list-group-flush" >
+          <li class="list-group-item"><strong>Category:</strong> <%=  @current_user_goal.category %></li>
+          <li class="list-group-item"><strong>Subcategory: </strong><%= @current_user_goal.sub_category %></li>
+          <li class="list-group-item"><strong>Deadline:</strong> <%= @current_user_goal.deadline %></li>
+        </ul>
+      </small>
     </div>
 
     <%# ---------------- TASKS ------------------- %>
-    <p><strong><%= current_user.first_name.capitalize %>'s</strong> Tasks</p>
-      <% @my_tasks.each do |task| %>
-        <ul class="list-group">
-          <%= render "shared/task-list", task: task %>
-        </ul>
-      <% end %>
+    <div>
+      <p class="my-3"><strong><%= current_user.first_name.capitalize %>'s tasks</strong></p>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn mt-2 w-100 white-background-shadow-blue-hover newgoal" data-toggle="modal" data-target="#newGoalModalCenter">
-      <i class="fa-solid fa-plus"></i> Create new task
-    </button>
+      <div class="alert alert-primary mb-3 p-2">
+        Progress: <%= @my_progress.round(2) %>
+      </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Create new task</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%= render "shared/new-task" %>
+      <div>
+        <% @my_tasks.each do |task| %>
+          <ul class="list-group">
+            <%= render "shared/task-list", task: task %>
+          </ul>
+        <% end %>
+      </div>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn mt-2 w-100 white-background-shadow-blue-hover newgoal" data-toggle="modal" data-target="#newGoalModalCenter">
+        <i class="fa-solid fa-plus"></i> Create new task
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="newGoalModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Create new task</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render "shared/new-task" %>
+            </div>
           </div>
         </div>
       </div>
@@ -134,7 +137,7 @@
 
   <%# ---------------- THIRD COLUMN: BUDDY ------------ %>
 
-  <div class="col-4 gray-background mt-3">
+  <div class="col-4 gray-background mt-3 column-dash">
 
     <%# -------------- goal info ----------------------- %>
     <p><strong>
