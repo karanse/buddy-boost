@@ -10,7 +10,9 @@
       <%= f.input :sub_category, as: :select, collection: [],
                   input_html: { data: {filter_subcategory_target: "subcategory"} }   %>
 
-      <%= f.input :description, placeholder: "Type your 1-2 sentences goal..." %>
+      <%= f.input :description, required: true, placeholder: "Type your 1-2 sentences goal..." %>
+      <%= f.error_notification message: "test" %>
+      <%= f.full_error :confirmation_token %>
       <%= f.input :deadline  %>
       <%= f.input :offline %>
       <%= f.input :online %>

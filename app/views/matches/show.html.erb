@@ -1,5 +1,5 @@
 <%# container for all dashboard content %>
-<div class="row d-flex justify-content-center w-100 mt-3" id="buddy-dash">
+<div class="row d-flex justify-content-center w-100 mt-2" id="buddy-dash">
 
   <%# ---------------- FIRST COLUMN ------------ %>
 
@@ -78,14 +78,14 @@
 
   <%# ---------------- SECOND COLUMN: BUDDY 1 (CURRENT_USER) ------------ %>
 
-  <div class="col-4 gray-background mx-3 mt-3 mb-5 column-dash">
+  <div class="col-4 gray-background mx-3 mt-3 column-dash">
 
     <%# ----------------- goal information ---------------------  %>
     <div>
-      <div class="white-background-dash mb-3">
+      <div class="white-background-dash">
         <p class=><strong><%= current_user.first_name.capitalize %>'s goal:</strong> <%= @current_user_goal.description %> </p>
-        <div class="alert alert-primary mb-3 p-1 text-center w-100">
-          Goal progress: <%= @my_progress.round(2) %>%
+        <div class="progress" style="height: 30px;">
+          <div class="progress-bar p-3" role="progressbar" style="width : <%=@my_progress.round(2)%>%" aria-valuenow="<%= @my_progress.round(2) %>" aria-valuemin="0" aria-valuemax="100"> <%= @my_progress.round(2) %>% </div>
         </div>
       </div>
       <div class="mt-3">
@@ -104,16 +104,16 @@
 
       <p><strong><%= current_user.first_name.capitalize %>'s</strong> tasks</p>
       <div>
-        <% @my_tasks.each do |task| %>
-          <ul class="list-group">
-            <%= render "shared/task-list", task: task %>
-          </ul>
-        <% end %>
+        <ul class="list-group list-group-flush task-list-scrollable">
+          <% @my_tasks.each do |task| %>
+              <%= render "shared/task-list", task: task %>
+          <% end %>
+        </ul>
       </div>
 
       <!-- Button trigger modal -->
       <div class="d-flex align-items-center justify-content-center">
-        <button type="button" class="btn create-task-button" data-toggle="modal" data-target="#newTaskModalCenter">
+        <button type="button" class="btn create-task-button mt-2" data-toggle="modal" data-target="#newTaskModalCenter">
           <i class="fa-solid fa-plus"></i> Add new task
         </button>
       </div>
@@ -141,14 +141,14 @@
 
   <%# ---------------- THIRD COLUMN: BUDDY ------------ %>
 
-  <div class="col-4 gray-background mt-3 mb-5 column-dash">
+  <div class="col-4 gray-background mt-3 column-dash">
 
     <%# ----------------- goal information ---------------------  %>
     <div>
       <div class="white-background-dash mb-3">
         <p class=""><strong><%= @match.other(current_user).user.first_name.capitalize %>'s goal:</strong> <%= @match.other(current_user).description %> </p>
-        <div class="alert alert-primary mb-3 p-1 text-center w-100">
-          Goal progress: <%= @buddy_progress.round(2)%>%
+        <div class="progress" style="height: 30px;">
+          <div class="progress-bar p-3" role="progressbar" style="width : <%=@buddy_progress.round(2)%>%" aria-valuenow="<%= @buddy_progress.round(2)%>" aria-valuemin="0" aria-valuemax="100"> <%= @buddy_progress.round(2)%>% </div>
         </div>
       </div>
       <div class="mt-3">

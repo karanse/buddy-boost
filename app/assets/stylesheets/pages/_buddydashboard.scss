@@ -1,9 +1,9 @@
 #buddy-dash {
-  height: 80vh;
+  width: 100%;
 }
 
 .column-dash {
-  height: 80vh;
+  min-height: 80vh;
 }
 
 .list-group {
@@ -17,11 +17,10 @@
   border: transparent;
   display: flex;
   flex-direction: column;
-  min-height: 180px;
+  min-height: 160px;
   justify-content: space-between;
-
-  .alert {
-    width: 100%;
+  & p {
+    margin-bottom: 0;
   }
 }
 
@@ -40,4 +39,9 @@
     padding: 0;
     margin: 0 0 10px 0;
   }
+}
+
+.task-list-scrollable {
+  max-height: 160px;
+  overflow: scroll;
 }
