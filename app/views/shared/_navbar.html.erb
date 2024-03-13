@@ -23,15 +23,13 @@
                     <%= image_tag current_user.photo,
                       id: "navbarDropdown",
                       class: "avatar-bordered-small dropdown-toggle",
-                      alt: "avatar",
-                      style: "width: 50px; height: 50px; object-fit: cover;"%>
+                      alt: "avatar"%>
                       <%# # data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% else %>
                     <%= image_tag "https://api.dicebear.com/7.x/thumbs/svg?seed=#{current_user.email}&backgroundColor=0a5b83&shapeColor=69d2e7",
                       id: "navbarDropdown",
                       class: "avatar-bordered-small dropdown-toggle",
-                      alt: "avatar",
-                      style: "width: 50px; height: 50px; object-fit: cover;"%>
+                      alt: "avatar"%>
                       <%# # data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                   <% end %>
               </a>
