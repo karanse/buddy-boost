@@ -6,3 +6,50 @@
   color: #4B45E6;
   background-color: #B1FBEE;
 }
+.flash-alert-info {
+  color: #4B45E6;
+  background-color: #B1FBEE;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000;
+  padding: 70px;
+  max-width: 80%;
+}
+
+.flash-alert-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+
+
+
+
+
+// .flash-alert-info {
+//   color: #4B45E6;
+//   background-color: #B1FBEE;
+//   text-align: center;
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+// .flash-alert-backdrop {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   z-index: 9999;
+// }
