@@ -445,3 +445,4 @@ end
 
 puts "10 users and 4 goals for each created!"
 puts "Seeding is done!"
+

@@ -1,7 +1,38 @@
-.card-img-top {
-height: 200px
+#values .card {
+  width: 30%;
+  & h4 {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  & p {
+    text-align: center;
+  }
+  & .card-img-top {
+    height: 200px
+  }
 }
-.solid {
-  border-top: 3px solid #bbb;
-  border-top-color: #BDD1FB;
+
+#how-it-works {
+  & h2, h4, p {
+    text-align: center;
+  }
+  & h4 {
+    padding-top: 20px;
+  }
+  & .card {
+    width: 30%;
+    margin: 1rem;
+  }
+  & .card-img-top {
+    height: 140px
+  }
+}
+
+#home .card {
+  border: none;
+}
+
+#home h2 {
+  text-align: center;
+  word-spacing: 2px;
 }
