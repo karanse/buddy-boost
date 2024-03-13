@@ -12,9 +12,8 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @current_user_goal = Match.find(params[:id]).goal.user == current_user ? Match.find(params[:id]).goal : Match.find(params[:id]).matched_goal
      # for buddy dashboard tasks
-    @my_tasks = Task.where(user: current_user).where(match: @match)
-    # @buddy_tasks = Task.where(match: @match).reject { |task| task.user == current_user }
-    @buddy_tasks = Task.where(match: @match).where.not(user: current_user)
+    @my_tasks = Task.where(user: current_user).where(match: @match).order(created_at: :asc)
+    @buddy_tasks = Task.where(match: @match).where.not(user: current_user).order(created_at: :asc)
     @task = Task.new
 
     # Calculate progress percentage - current user
