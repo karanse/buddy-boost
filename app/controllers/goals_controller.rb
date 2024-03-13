@@ -13,7 +13,7 @@ class GoalsController < ApplicationController
       redirect_to profile_path, info: "Goal successfully created!"
 
     else
-      render :new, status: :unprocessable_entity
+      # render :new, status: :unprocessable_entity
     end
   end
 
