@@ -1,7 +1,7 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 100px 0;
   background-image: url('https://images.unsplash.com/photo-1528460033278-a6ba57020470?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 }
 
@@ -16,4 +16,13 @@
   font-size: 20px;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.banner img {
+  z-index: 1;
+}
+
+.banner-text-container {
+  width: 40%;
+  z-index: 2;
 }
