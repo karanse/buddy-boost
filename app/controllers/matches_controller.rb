@@ -83,23 +83,21 @@ class MatchesController < ApplicationController
 
     # Create a new record in the matches table
     respond_to do |format|
-      if @matches_current_number > 3
+      if @matches_current_number >= 3
+        # raise
+        flash[:notice] = "You already have 3 buddies, we want you to focus first on them!
+        You can see all your matches on your dashboards"
+        redirect_to profile_path
+
+      elsif @match.save
         format.html { redirect_to profile_path,
-          info: "You already have 3 buddies, we want you to focus first on them!
-                 You can see all your matches on your dashboards"
-        }
+                      info: "Successfully matched with #{@match.matched_goal.user.first_name},
+                              please go to dashboards!"
+                    }
       else
-        if @match.save
-          format.html { redirect_to profile_path,
-                        info: "Successfully matched with #{@match.matched_goal.user.first_name},
-                               please go to dashboards!"
-                      }
-        else
-          format.html { redirect_to profile_path, info: 'Sorry no matches yet!' }
-        end
+        format.html { redirect_to profile_path, info: 'Sorry no matches yet!' }
       end
     end
-
 
     # # Create a new record in the matches table
     # respond_to do |format|
