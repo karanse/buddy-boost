@@ -1,7 +1,7 @@
 <div id="profile-information" class="my-3" >
 
   <%# avatar  %>
-  <div id="profile-avatar" class="p-3 text-center">
+  <div id="profile-avatar" class="py-3 pt-4 text-center">
     <% if current_user.photo.attached? %>
       <%= image_tag(current_user.photo, class: "avatar-bordered-large-shadow", alt: "avatar") %>
     <% else %>
