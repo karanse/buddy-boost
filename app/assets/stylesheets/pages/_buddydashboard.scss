@@ -17,11 +17,10 @@
   border: transparent;
   display: flex;
   flex-direction: column;
-  min-height: 180px;
+  min-height: 160px;
   justify-content: space-between;
-
-  .alert {
-    width: 100%;
+  & p {
+    margin-bottom: 0;
   }
 }
 
