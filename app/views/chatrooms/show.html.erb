@@ -1,36 +1,39 @@
-<h2 style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100px;">
-  Chat with your buddy!🗨️
-</h2>
+<div class="">
+  <div>
+    <h3 class="my-4" style="display: flex; justify-content: center; align-items: center;">
+      Chat with your buddy!
+    </h3>
+  </div>
 
-<div class="white-background-shadow">
-  <div class="container chatroom" style=""
-    data-controller="chatroom-subscription"
-    data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
-    data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
+  <div class="white-background-shadow">
+    <div class="container chatroom"
+      data-controller="chatroom-subscription"
+      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+      data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
 
-
-  <div class="messages" data-chatroom-subscription-target="messages" style=" flex-grow: 1; overflow-y: auto; position: relative;">
-    <% @chatroom.messages.each do |message| %>
-      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-        <%= render "messages/message", message: message %>
-        </div>
+      <div class="messages" data-chatroom-subscription-target="messages" style=" flex-grow: 1; overflow-y: auto; position: relative;">
+        <% @chatroom.messages.each do |message| %>
+          <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+            <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+            <%= render "messages/message", message: message %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="pt-2">
-  <%= simple_form_for [@chatroom, @message],
-    url: match_chatroom_messages_path(@chatroom.match, @chatroom),
-    html: { data: { controller: "chatroom-subscription", action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
-  %>
-    <%= f.input :content,
-      label: false,
-      placeholder: "What do you want to say?",
-      wrapper_html: {class: "flex-grow-1"}
-    %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
+      <div class="pt-2">
+        <%= simple_form_for [@chatroom, @message],
+          url: match_chatroom_messages_path(@chatroom.match, @chatroom),
+          html: { data: { controller: "chatroom-subscription", action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex"} do |f|
+        %>
+          <%= f.input :content,
+            label: false,
+            placeholder: "What do you want to say?",
+            wrapper_html: {class: "flex-grow-1"}
+          %>
+          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
 </div>

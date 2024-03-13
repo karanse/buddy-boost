@@ -88,6 +88,13 @@
   margin-right: 10px;
 }
 
+#achievements-content {
+  width: fit-content;
+  & .white-background-shadow {
+    width: 100%;
+  }
+}
+
 #no-matches-text > {
   & li {
     list-style:decimal;
