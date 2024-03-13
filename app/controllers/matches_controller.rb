@@ -55,6 +55,18 @@ class MatchesController < ApplicationController
   end
 
   def create
+    # check how many in progress matches the user have
+    @matches_current_number = Match.where('(goal_id IN (?) OR matched_goal_id IN (?)) AND status = (?)',
+                                   current_user.goals.pluck(:id),
+                                   current_user.goals.pluck(:id), 'in progress').count
+
+                                       # Create a new record in the matches table
+    respond_to do |format|
+      if @matches_current_number >= 3
+        format.html {redirect_to profile_path, info: "you already have 3 buddies"}
+        return
+      end
+    end
     # Perform the matching logic here
     # Get the goal category user clicked on frontend w/ params[:match][:goal]
     clicked_goal_category = Goal.find(params[:match][:goal].to_i).category
@@ -76,20 +88,15 @@ class MatchesController < ApplicationController
     @goal = @match.goal
     @match.matched_goal = Goal.find(matched_goal_id)
 
-    # check how many in progress matches the user have
-    @matches_current_number = Match.where('(goal_id IN (?) OR matched_goal_id IN (?)) AND status = (?)',
-                                   current_user.goals.pluck(:id),
-                                   current_user.goals.pluck(:id), 'in progress').count
-
     # Create a new record in the matches table
     respond_to do |format|
-      if @matches_current_number >= 3
-        # raise
-        flash[:notice] = "You already have 3 buddies, we want you to focus first on them!
-        You can see all your matches on your dashboards"
-        redirect_to profile_path
+      # if @matches_current_number >= 3
+      #   # raise
+      #   # flash[:notice] = "You already have 3 buddies, we want you to focus first on them!
+      #   # You can see all your matches on your dashboards"
+      #   format.html {redirect_to profile_path, info: "you already have 3 buddies"}
 
-      elsif @match.save
+      if @match.save
         format.html { redirect_to profile_path,
                       info: "Successfully matched with #{@match.matched_goal.user.first_name},
                               please go to dashboards!"
