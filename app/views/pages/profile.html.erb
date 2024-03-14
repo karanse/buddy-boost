@@ -21,7 +21,7 @@
 
       <%# ---------------- 2. DASHBOARDS ---------------- %>
 
-      <div class="tab-pane fade" id="matches" role="tabpanel" aria-labelledby="match-tab">
+      <div class="tab-pane fade <%='active show' if params[:location] == 'dashboards'%>" id="matches" role="tabpanel" aria-labelledby="match-tab">
         <div id="profile-dashboard-link" class="my-3 gray-background match-card">
           <%# <h3>Dashboards</h3> %>
           <%# <p>Help your buddy and yourself - the sky is the limit, you can do this! 💪</p> %>

@@ -3,7 +3,7 @@
     <button class="nav-link <%='active' if params[:location].nil?%>" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile-content" type="button" role="tab" aria-controls="profile-content" aria-selected="true">Profile</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="match-tab" data-bs-toggle="pill" data-bs-target="#matches" type="button" role="tab" aria-controls="matches" aria-selected="false">
+    <button class="nav-link <%='active' if params[:location] == 'dashboards'%>" id="match-tab" data-bs-toggle="pill" data-bs-target="#matches" type="button" role="tab" aria-controls="matches" aria-selected="false">
       Dashboards
     </button>
   </li>
