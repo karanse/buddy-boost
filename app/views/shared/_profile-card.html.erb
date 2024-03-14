@@ -15,17 +15,12 @@
   </div>
 
   <%# profile info block + edit options %>
-  <div id="profile-info" class="d-flex flex-column align-items-center">
+  <div id="profile-info" class="d-flex flex-column align-items-center pb-4">
     <li class="d-flex justify-content-between">
       <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
     </li>
     <li class="d-flex justify-content-between">
       <div><%= current_user.email %></div>
-    </li>
-    <li class="mt-2 align-self-end" id="btn-new-password">
-      <%= link_to edit_user_registration_path do %>
-          <i class="fas fa-pencil-alt ms-3"></i>
-      <% end %>
     </li>
   </div>
 
