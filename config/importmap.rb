@@ -13,3 +13,5 @@ pin "@popperjs/core", to: "https://ga.jspm.io/npm:@popperjs/core@2.11.8/lib/inde
 pin "@rails/actioncable", to: "@rails--actioncable.js" # @7.1.3
 pin "@rails/actioncable", to: "actioncable.esm.js"
 pin_all_from "app/javascript/channels", under: "channels"
+pin "stimulus-confetti" # @1.0.1
+pin "canvas-confetti" # @1.9.2
