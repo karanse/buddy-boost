@@ -168,12 +168,19 @@
       <p class=""> <strong><%= @match.other(current_user).user.first_name.capitalize %>'s</strong> tasks </p>
 
       <div>
-        <% @buddy_tasks.each do |task| %>
-          <ul class="list-group">
-            <%= render "shared/task-list", task: task %>
-          </ul>
+        <% if @buddy_tasks.length == 0 %>
+          <div class="d-flex align-items-center justify-content-center">
+            <p class="mt-2"><small><%= @match.other(current_user).user.first_name.capitalize %> has not added any tasks yet.</small></p>
+          </div>
+        <% else %>
+          <% @buddy_tasks.each do |task| %>
+            <ul class="list-group">
+              <%= render "shared/task-list", task: task %>
+            </ul>
+          <% end %>
         <% end %>
       </div>
+
 
     </div>
 
