@@ -13,18 +13,8 @@
 }
 
 #how-it-works {
-  & h2, h4, p {
+  & h2, h5, p {
     text-align: center;
-  }
-  & h4 {
-    padding-top: 20px;
-  }
-  & .card {
-    width: 30%;
-    margin: 1rem;
-  }
-  & .card-img-top {
-    height: 140px
   }
 }
 
