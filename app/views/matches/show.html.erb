@@ -41,7 +41,7 @@
           <%= f.input :match_id, as: :hidden, input_html: { value: @match.id } %>
           <%= f.input :sender_id, as: :hidden, input_html: { value: current_user.id } %>
           <%= f.input :receiver_id, as: :hidden, input_html: { value: @match.matched_goal.user.id } %>
-          <%= f.button :submit, "Go to buddy chat", class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
+          <%= f.button :submit, "Chat with your buddy! 💬", class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
         <% end %>
       <% else %>
         <%= link_to "Chat with your buddy! 💬", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
