@@ -47,10 +47,11 @@
         <%= link_to "Chat with your buddy! 💬", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
       <% end %>
 
-        <%# complete button  %>
+      <%# complete button  %>
+
         <div>
           <%= simple_form_for @match do |f| %>
-            <%= f.input :status, label: false, field: false, :default => "completed", input_html: { style: "display: none" }%>
+            <%= f.input :status, label: false, field: false, input_html: { style: "display: none", value: "completed" }%>
             <%= f.button :submit, "Complete buddy match", class: "btn white-background-shadow-blue-hover w-100"%>
           <% end %>
         </div>
