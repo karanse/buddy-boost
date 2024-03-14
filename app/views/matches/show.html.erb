@@ -41,7 +41,7 @@
           <%= f.input :match_id, as: :hidden, input_html: { value: @match.id } %>
           <%= f.input :sender_id, as: :hidden, input_html: { value: current_user.id } %>
           <%= f.input :receiver_id, as: :hidden, input_html: { value: @match.matched_goal.user.id } %>
-          <%= f.button :submit, "Chat with your buddy! 💬", class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
+          <%= f.button :submit, "Chat with your buddy! 💬", class: "btn white-background-shadow-blue-hover text-center w-100" %>
 
         <% end %>
       <% else %>
@@ -49,17 +49,15 @@
       <% end %>
 
       <%# complete button  %>
-
       <%= simple_form_for @match do |f| %>
         <%= f.input :status, label: false, field: false, input_html: { style: "display: none", value: "completed" }%>
         <%= f.button :submit, "Complete buddy match", class: "btn white-background-shadow-blue-hover w-100"%>
       <% end %>
 
       <!-- Button trigger modal to update match status -->
-
-        <button type="button" class="btn op-white-background-shadow-blue-hover mt-4 p-0" data-toggle="modal" data-target="#updateMatchModalCenter">
-          <small class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-xmark me-2"></i> cancel buddy match</small>
-        </button>
+      <button type="button" class="btn op-white-background-shadow-blue-hover mt-3 p-0" data-toggle="modal" data-target="#updateMatchModalCenter">
+        <small class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-xmark me-2"></i> cancel buddy match</small>
+      </button>
 
         <!-- Modal to update match status -->
         <div class="modal fade" id="updateMatchModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus" aria-hidden="true">
