@@ -11,6 +11,6 @@
     <button class="nav-link <%='active' if params[:location] == 'goals'%>" id="goals-tab" data-bs-toggle="pill" data-bs-target="#goals" type="button" role="tab" aria-controls="goals" aria-selected="false">Goals</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="achievements-tab" data-bs-toggle="pill" data-bs-target="#achievements" type="button" role="tab" aria-controls="achievements" aria-selected="false">Achievements</button>
+    <button class="nav-link <%='active' if params[:location] == 'achievements'%>" id="achievements-tab" data-bs-toggle="pill" data-bs-target="#achievements" type="button" role="tab" aria-controls="achievements" aria-selected="false">Achievements</button>
   </li>
 </ul>
