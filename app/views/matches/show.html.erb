@@ -170,7 +170,7 @@
       <div>
         <% if @buddy_tasks.length == 0 %>
           <div class="d-flex align-items-center justify-content-center">
-            <p class="mt-2"><small><%= @match.other(current_user).user.first_name.capitalize %> has not added any tasks yet.</small></p>
+            <p class="mt-2"><small><%= @match.other(current_user).user.first_name.capitalize %> hasn't added any tasks yet.</small></p>
           </div>
         <% else %>
           <% @buddy_tasks.each do |task| %>
