@@ -100,7 +100,7 @@ class MatchesController < ApplicationController
           @match.matched_goal.set_status('in progress')
           @match.matched_goal.set_matched
           format.html { redirect_to profile_path, info: "Successfully matched with
-                       #{@match.matched_goal.user.first_name}, please go to your buddy dashboard to start supporting each other!"
+                       #{@match.matched_goal.user.first_name}. Go to your buddy dashboard to start your journeys together!"
                       }
         end
       end
