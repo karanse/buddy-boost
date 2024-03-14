@@ -1,11 +1,9 @@
-<div class="d-flex flex-column align-items-center justify-content-center">
-
+<div class="">
   <div class="mt-4 listing-form">
-      <%= simple_form_for @match do |f| %>
-        <%= f.input :status, label: "Complete or cancel your buddy match", as: :select, collection: Match::MATCH_STATUSES.reject { |category| category == "in progress" }, :selected => "completed", html_input: "required" %>
-        <%= f.input :cancel_reason, label: "Why are you ending your buddy relationship?", as: :text %>
-        <%= f.submit class: "btn btn-primary my-4"%>
+    <%= simple_form_for @match do |f| %>
+      <%= f.input :status, label: "Complete or cancel your buddy match", as: :select, collection: Match::MATCH_STATUSES.reject { |category| category == "in progress" }, :selected => "completed", html_input: "required" %>
+      <%= f.input :cancel_reason, label: "Let us know why you're changing the status", as: :text, placeholder: "For example: I reached my goal! or: My buddy doesn't respond." %>
+      <%= f.submit class: "btn btn-primary mt-1 mb-4"%>
     <% end %>
   </div>
-
 </div>

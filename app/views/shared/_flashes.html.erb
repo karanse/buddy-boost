@@ -1,12 +1,12 @@
 <% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1 flash-alert-login" role="alert">
+  <div class="alert alert-light alert-dismissible fade show m-1 flash-alert-login" role="alert">
     <%= notice %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
     </button>
   </div>
 <% end %>
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible fade show m-1 flash-alert-login" role="alert">
+  <div class="alert alert-light alert-dismissible fade show m-1 flash-alert-login" role="alert">
     <%= alert %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
     </button>
@@ -15,7 +15,7 @@
 <% if info %>
 <div data-controller="backdrop-alert">
   <div class="flash-alert-backdrop" role="alert" data-backdrop-alert-target="backdrop"></div>
-  <div class="alert alert-info alert-dismissible fade show flash-alert-info" role="alert">
+  <div class="alert alert-light alert-dismissible fade show flash-alert-info" role="alert">
     <%= info %>
     <button type="button" class="btn-close" data-action="click->backdrop-alert#toggle" data-bs-dismiss="alert" aria-label="Close">
     </button>
