@@ -37,11 +37,11 @@ class MatchesController < ApplicationController
   def update
     find_match
     # @match.update(match_params)
-    redirect_to profile_path(current_user), notice: "Goal successfully created!"
+    # redirect_to profile_path(current_user), notice: "Goal successfully created!"
 
     # update match status based on user selection (completed or cancelled)
     @match.set_status(params[:match][:status], params[:match][:cancel_reason])
-
+    redirect_to profile_path(location: "achievements"), notice: "Goal successfully created!"
     # update goal status depending on match ending status
     if params[:match][:status] == 'completed'
       @match.goal.set_status('completed')
