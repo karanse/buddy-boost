@@ -52,10 +52,10 @@
       <%= simple_form_for @match, method: :put do |f| %>
         <%= f.input :status, label: false, field: false, input_html: { style: "display: none", value: "completed" }%>
         <%= f.button :submit, "Complete buddy match", class: "btn white-background-shadow-blue-hover w-100",
-        data: {controller: "confetti", action: "click->confetti#spray", confetti_animation_value: "school-pride",
-        confetti_duration_value: 2, confetti_follow_value: false}%>
+        data: {controller: "confetti", action: "mousedown->confetti#spray", confetti_animation_value: "school-pride",
+        confetti_duration_value: 3, confetti_follow_value: false }%>
       <% end %>
-
+ <%# %>
       <!-- Button trigger modal to update match status -->
       <button type="button" class="btn op-white-background-shadow-blue-hover mt-3 p-0" data-toggle="modal" data-target="#updateMatchModalCenter">
         <small class="d-flex align-items-center justify-content-center"><i class="fa-solid fa-xmark me-2"></i> cancel buddy match</small>

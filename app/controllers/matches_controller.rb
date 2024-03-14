@@ -35,7 +35,6 @@ class MatchesController < ApplicationController
   end
 
   def update
-
     find_match
     # @match.update(match_params)
     # redirect_to profile_path(current_user), notice: "Goal successfully created!"
