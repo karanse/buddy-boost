@@ -37,8 +37,8 @@ class MatchesController < ApplicationController
   def update
     find_match
     # @match.update(match_params)
-    redirect_to profile_path(current_user), notice: "Goal successfully created!"
-
+    # redirect_to profile_path(current_user), notice: "Goal successfully created!"
+    redirect_to profile_path(location: "achievements")
     # update match status based on user selection (completed or cancelled)
     @match.set_status(params[:match][:status], params[:match][:cancel_reason])
 
@@ -63,7 +63,7 @@ class MatchesController < ApplicationController
 
       # Create a new record in the matches table or notify the user if the limit is reached
       if matches_current_number >= 3
-        format.html{ redirect_to profile_path, info: "You already have 3 buddies.
+        format.html{ redirect_to profile_path(location: "dashboards"), info: "You already have 3 buddies.
                                   We want you to focus first on them!
                                   You can see all your matches on your dashboard."
                    }
@@ -83,7 +83,7 @@ class MatchesController < ApplicationController
                                           .where(category: clicked_goal_category)
 
         if goal_id_sampled_by_category.empty? && goal_id_sampled_by_subcategory.empty?
-          format.html { redirect_to profile_path,
+          format.html { redirect_to profile_path(location: "goals"),
                         info: 'No match yet! There is no available buddy at this moment with a similar goal. Match a different goal or try again later.' }
         else
           matched_goal_id = goal_id_sampled_by_subcategory.empty? ? goal_id_sampled_by_category.sample.id : goal_id_sampled_by_subcategory.sample.id
@@ -98,7 +98,7 @@ class MatchesController < ApplicationController
           @match.goal.set_matched
           @match.matched_goal.set_status('in progress')
           @match.matched_goal.set_matched
-          format.html { redirect_to profile_path, info: "Successfully matched with
+          format.html { redirect_to profile_path(location: "dashboards"), info: "Successfully matched with
                        #{@match.matched_goal.user.first_name}! Go to your buddy dashboard to support each other 💪"
                       }
         end

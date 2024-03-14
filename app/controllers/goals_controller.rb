@@ -10,8 +10,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     @goal.user = current_user
     if @goal.save
-      redirect_to profile_path, info: "Goal successfully created!"
-
+      redirect_to profile_path(location: "goals"), info: "Goal successfully created!"
     else
       # render :new, status: :unprocessable_entity
     end
@@ -30,7 +29,7 @@ class GoalsController < ApplicationController
   def destroy
     find_goal()
     @goal.destroy
-    redirect_to profile_path, status: :see_other
+    redirect_to profile_path(location: "goals"), status: :see_other
   end
 
 private
