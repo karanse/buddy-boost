@@ -44,7 +44,7 @@
           <%= f.button :submit, "Go to buddy chat", class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
         <% end %>
       <% else %>
-        <%= link_to "Go to buddy chat", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
+        <%= link_to "Chat with your buddy! 💬", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
       <% end %>
 
       <!-- Button trigger modal to update match status -->
