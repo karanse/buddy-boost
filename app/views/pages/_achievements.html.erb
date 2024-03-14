@@ -6,20 +6,20 @@
     </h5>
     <div class="achievements-section">
       <div class="blue-background achievements-card">
-        <% if @completed_goals == 0 || nil %>
-          <h5><strong>Completed goals:</strong> 0.</h5>
+        <% if @completed_goals == 0 %>
+          <h5> <i class="fa-solid fa-face-smile"> </i> <strong>Completed goals:</strong> 0</h5>
           <p>... so far! Let's do this!</p>
         <% else  %>
-          <h5><strong>Completed goals:</strong> <%= @completed_goals.count %></h5>
+          <h5><i class="fa-solid fa-face-smile"> </i> <strong>Completed goals:</strong> <%= @completed_goals.count %></h5>
           <p>Conquering the world, one goal at a time. </p>
         <% end %>
       </div>
       <div class="blue-background achievements-card">
         <% if @cancelled_goals == 0 %>
-          <h5><strong>Dropped goals:</strong> 0.</h5>
+          <h5> <i class="fa-solid fa-heart-crack"></i> <strong>Dropped goals:</strong> 0</h5>
           <p>You're doing great - keep it going!</p>
         <% else %>
-          <h5><strong>Dropped goals:</strong> <%= @canceled_goals.count %></h5>
+          <h5> <i class="fa-solid fa-heart-crack"></i> <strong>Dropped goals:</strong> <%= @canceled_goals.count %></h5>
           <p>Let's keep the count as low as possible.</p>
         <% end %>
       </div>
@@ -35,7 +35,7 @@
     <div class="achievements-section">
       <div class="blue-background achievements-card">
         <% if @matched_buddies_total == 0 %>
-          <h5><strong>Total buddies:</strong> 0.</h5>
+          <h5><i class="fa-solid fa-user-group"></i><strong>Total buddies:</strong> 0</h5>
           <p>Create a goal, click the match button & find a buddy!</p>
         <% else %>
           <h5><strong>Total buddies:</strong> <%= @matched_buddies_total %></h5>

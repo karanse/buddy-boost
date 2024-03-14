@@ -1,4 +1,4 @@
-<li class="list-group-item list-group-item-light mb-1 task-list-item">
+<li class="list-group-item list-group-item-light mb-1 task-list-item blue-background-no-p">
   <div class="custom-control custom-checkbox">
 
     <% if task.user == current_user %>
@@ -11,7 +11,7 @@
           </label>
           <%= link_to delete_task_path(task),
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-            <i data-feather="trash-2" class="trash-icon"></i>
+            <i data-feather="trash-2" class="trash-icon-blue"></i>
           <% end %>
         </div>
     <% end %>

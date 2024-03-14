@@ -58,6 +58,16 @@
   color: $buddy-dark-blue;
 }
 
+.trash-icon-blue {
+  color: $buddy-medium-blue;
+  width: 20px;
+  padding-left: 5px;
+}
+
+.trash-icon-blue:hover {
+  color: $buddy-dark-blue;
+}
+
 .achievements-section {
   display: flex;
 }
@@ -106,4 +116,14 @@
   display: flex;
   flex-flow: wrap row;
   justify-content: center;
+}
+
+.fa-face-smile, .fa-user-group {
+  margin-right: 10px;
+  color: white;
+}
+
+.fa-heart-crack {
+  color: darkred;
+  margin-right: 10px;
 }
