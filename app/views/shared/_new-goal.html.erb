@@ -10,10 +10,11 @@
       <%= f.input :sub_category, as: :select, collection: [],
                   input_html: { data: {filter_subcategory_target: "subcategory"} }   %>
 
-      <%= f.input :description, required: true, placeholder: "Type your 1-2 sentences goal..." %>
+      <%= f.input :description, label: "Describe your goal", required: true, placeholder: "For example: I really want to run a 5K in 25 minutes!" %>
       <%= f.error_notification message: "test" %>
       <%= f.full_error :confirmation_token %>
       <%= f.input :deadline  %>
+      <%= f.label "Do you prefer meeting offline with your buddy, or online (or both)?", class: "py-3" %>
       <%= f.input :offline %>
       <%= f.input :online %>
       <%= f.submit class: "btn btn-primary my-4"%>
