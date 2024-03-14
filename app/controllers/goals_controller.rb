@@ -29,7 +29,7 @@ class GoalsController < ApplicationController
   def destroy
     find_goal()
     @goal.destroy
-    redirect_to profile_path, status: :see_other
+    redirect_to profile_path(location: "goals"), status: :see_other
   end
 
 private
