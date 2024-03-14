@@ -47,34 +47,42 @@
         <%= link_to "Chat with your buddy! 💬", match_chatroom_path(@match, @chatroom), class: "btn white-background-shadow-blue-hover mb-2 text-center w-100" %>
       <% end %>
 
+      <%# complete button  %>
+
+        <div>
+          <%= simple_form_for @match do |f| %>
+            <%= f.input :status, label: false, field: false, input_html: { style: "display: none", value: "completed" }%>
+            <%= f.button :submit, "Complete buddy match", class: "btn white-background-shadow-blue-hover w-100"%>
+          <% end %>
+        </div>
+
       <!-- Button trigger modal to update match status -->
 
-      <button type="button" class="btn white-background-shadow-blue-hover" data-toggle="modal" data-target="#updateMatchModalCenter">
-        End buddy match
-      </button>
+        <button type="button" class="btn white-background-shadow-blue-hover" data-toggle="modal" data-target="#updateMatchModalCenter">
+          Cancel buddy match
+        </button>
 
-      <!-- Modal to update match status -->
-
-      <div class="modal fade" id="updateMatchModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="updateMatchModalTitle"></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= render "shared/edit-match-form" %>
+        <!-- Modal to update match status -->
+        <div class="modal fade" id="updateMatchModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateMatchModalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= render "shared/edit-match-form" %>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
-
   <%# end column 1  %>
-  </div>
 
   <%# ---------------- SECOND COLUMN: BUDDY 1 (CURRENT_USER) ------------ %>
 
