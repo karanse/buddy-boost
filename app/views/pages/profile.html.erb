@@ -15,7 +15,7 @@
 
       <%# ---------------- 1. PROFILE ---------------- %>
 
-      <div class="tab-pane fade show active" id="profile-content" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="tab-pane fade <%= 'active show' if params[:location].nil? %>"  id="profile-content" role="tabpanel" aria-labelledby="profile-tab">
         <%= render "shared/profile-card" %>
       </div>
 
@@ -47,7 +47,7 @@
 
       <%# ---------------- 3. GOALS ---------------- %>
 
-      <div class="tab-pane fade" id="goals" role="tabpanel" aria-labelledby="goals-tab">
+      <div class="tab-pane fade <%='active show' if params[:location] == 'goals'%>" id="goals" role="tabpanel" aria-labelledby="goals-tab">
 
         <div id="profile-goals" class="my-3 gray-background">
           <%# <h3>Your goals</h3> %>

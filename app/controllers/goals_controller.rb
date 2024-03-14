@@ -10,7 +10,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     @goal.user = current_user
     if @goal.save
-      redirect_to profile_path, info: "Goal successfully created! Please go to your goals!"
+      redirect_to profile_path(location: "goals"), info: "Goal successfully created! Please go to your goals!"
 
     else
       # render :new, status: :unprocessable_entity
