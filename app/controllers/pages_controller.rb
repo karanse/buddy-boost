@@ -41,7 +41,7 @@ class PagesController < ApplicationController
 
     @sign_in_log = SignInLog.where(user: current_user)
     @last_seven_days = []
-    (1..30).to_a.each do |i|
+    (0..29).to_a.each do |i|
       @last_seven_days << {
         date: (Date.today - i).to_s,
         signed_in: SignInLog.where(user: current_user, created_at: ((Date.today-i).beginning_of_day..(Date.today-i).end_of_day)).exists?
