@@ -52,7 +52,8 @@
         <div>
           <%= simple_form_for @match do |f| %>
             <%= f.input :status, label: false, field: false, input_html: { style: "display: none", value: "completed" }%>
-            <%= f.button :submit, "Complete buddy match", class: "btn white-background-shadow-blue-hover w-100"%>
+            <%= f.button :submit, "Complete buddy match", class: "btn white-background-shadow-blue-hover w-100",
+            data: {controller: "confetti", action: "click->confetti#spray", confetti_animation_value: "school-pride"}%>
           <% end %>
         </div>
 
