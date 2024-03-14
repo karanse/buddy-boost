@@ -84,8 +84,7 @@ class MatchesController < ApplicationController
 
         if goal_id_sampled_by_category.empty? && goal_id_sampled_by_subcategory.empty?
           format.html { redirect_to profile_path,
-                        info: 'Sorry, no matches yet! There is no available buddy at this moment who has
-                               similar goals to yours:( Match another goal or try again later!' }
+                        info: 'Sorry, there is no available buddy at this moment with similar goals. Match a different goal or try again later.' }
         else
           matched_goal_id = goal_id_sampled_by_subcategory.empty? ? goal_id_sampled_by_category.sample.id : goal_id_sampled_by_subcategory.sample.id
           # create the match as we now goal and matched_goal
