@@ -37,7 +37,7 @@ class MatchesController < ApplicationController
   def update
     find_match
     # @match.update(match_params)
-    redirect_to profile_path(current_user), notice: "Goal successfully created"
+    redirect_to profile_path(current_user), notice: "Goal successfully created!"
 
     # update match status based on user selection (completed or cancelled)
     @match.set_status(params[:match][:status], params[:match][:cancel_reason])
@@ -84,8 +84,7 @@ class MatchesController < ApplicationController
 
         if goal_id_sampled_by_category.empty? && goal_id_sampled_by_subcategory.empty?
           format.html { redirect_to profile_path,
-                        info: 'Sorry, no matches yet! There is no available buddy at this moment who has
-                               similar goals to yours:( Match another goal or try again later!' }
+                        info: 'No match yet! There is no available buddy at this moment with a similar goal. Match a different goal or try again later.' }
         else
           matched_goal_id = goal_id_sampled_by_subcategory.empty? ? goal_id_sampled_by_category.sample.id : goal_id_sampled_by_subcategory.sample.id
           # create the match as we now goal and matched_goal
@@ -100,7 +99,7 @@ class MatchesController < ApplicationController
           @match.matched_goal.set_status('in progress')
           @match.matched_goal.set_matched
           format.html { redirect_to profile_path, info: "Successfully matched with
-                       #{@match.matched_goal.user.first_name}, please go to your buddy dashboard to start supporting each other!"
+                       #{@match.matched_goal.user.first_name}! Go to your buddy dashboard to support each other 💪"
                       }
         end
       end
