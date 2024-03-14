@@ -21,7 +21,7 @@
   <% else %>
 
    <%= simple_form_for task, data: { turbo_frame: 'task-form' } do |f| %>
-    <div class="d-flex align-items-top">
+    <div class="d-flex align-items-center task-form-content">
       <small><%= f.input :status, as: :boolean, label: false%></small>
       <label class="form-check-label" for="task_<%= task.id %>">
         <small><%= task.description %></small>
